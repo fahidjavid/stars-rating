@@ -1,0 +1,27 @@
+/*
+*   Stars Rating Styles
+*/
+.rating-stars {
+    font-size: 15px;
+}
+
+.rating-stars i {
+    margin-right: 2px;
+}
+
+.rating-stars i.rated {
+    color: #EA923A;
+}
+
+.stars-avg-rating {
+    text-align: center; 
+    font-size: 18px;
+    margin: 20px 0;
+    clear: both;
+}
+
+.stars-avg-rating .rating-stars {
+    font-size: 18px;
+    margin-right: 10px;
+
+}

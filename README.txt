@@ -7,7 +7,6 @@ Stable tag: 4.9.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-
 == Description ==
 
 A simple and easy to use plugin that turns post, pages and custom post types comments into reviews.
@@ -32,6 +31,10 @@ Its main features are as follows:
 4. Rating option in comment form.
 
 == Changelog ==
+
+= 1.1.0 =
+
+* Tested plugin up to WP V4.9.8
 
 = 1.0.0 =
 

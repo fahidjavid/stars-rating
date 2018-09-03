@@ -5,7 +5,7 @@
  * Description: A plugin to turn comments into reviews by adding rating feature.
  * Version: 1.0.1
  * Author: Fahid Javid
- * Author URI: https://fahidjavid.com
+ * Author URI: https://www.fahidjavid.com
  * Requires at least: 3.5
  * Tested up to: 4.7.3
  *

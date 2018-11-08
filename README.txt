@@ -1,6 +1,6 @@
 === Stars Rating ===
 Contributors: fahidjavid
-Tags: comments, rating, reviews, stars rating, comments vote, voting
+Tags: comments, rating, reviews, stars rating, comments vote, voting, shortcode
 Requires at least: 3.0
 Tested up to: 4.9.8
 Stable tag: 4.9.8
@@ -16,7 +16,7 @@ Its main features are as follows:
 * Turns post, pages and custom post types comments into reviews.
 * Allows you to choose post types on which you want to enable Stars Rating feature.
 * Also, allows you to enable/disable stars rating feature for the posts and pages individually.
-
+* Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
 
 == Installation ==
 
@@ -29,8 +29,15 @@ Its main features are as follows:
 2. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments individually.
 3. Comments with their ratings and an average rating above comments.
 4. Rating option in comment form.
+5. Shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
 
 == Changelog ==
+
+= 1.2.0 =
+
+* Added show/hide support for average rating above comments section
+* Added "[stars_rating_avg]" shortcode support to display average rating in the post/page content area or loop
+* Set the rating option in the comment form to 5 stars by default
 
 = 1.1.0 =
 

@@ -77,7 +77,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			);
 
 			add_settings_field( 'avg_rating_display',
-				esc_html__( 'Average Rating Above Comments section', 'stars-rating' ),
+				esc_html__( 'Average Rating Above Comments Section', 'stars-rating' ),
 				array( $this, 'avg_rating_display_callback' ),
 				'discussion',
 				'stars_rating_section',

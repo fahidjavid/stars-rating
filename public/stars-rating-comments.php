@@ -161,7 +161,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
         }
 
         /**
-         * Display rating average based on approved comments with rating
+         * Display average rating based on approved comments with rating
          */
         public function rating_average() {
 

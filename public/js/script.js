@@ -3,7 +3,8 @@
         "use strict";
 
         $('#rate-it').barrating({
-            theme: 'fontawesome-stars'
+            theme: 'fontawesome-stars',
+            initialRating: 5
         });
 
     });

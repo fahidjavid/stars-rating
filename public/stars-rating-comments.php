@@ -71,6 +71,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			$this->init_hooks();
 
+			add_shortcode( 'stars_rating_avg', array( $this, 'rating_average_shortcode' ) );
+
 			// Stars Rating plugin loaded action hook
 			do_action( 'star_ratings_loaded' );
 
@@ -159,11 +161,9 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 			if ( $rating = get_comment_meta( get_comment_ID(), 'rating', true ) ) {
-
 				$rating = '<p>' . $this->rating_stars( $rating ) . '</p>';
 
 				return $comment . $rating;
-
 			} else {
 				return $comment;
 			}
@@ -208,6 +208,48 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 		}
+
+		public function rating_average_shortcode() {
+
+			if ( ! self::status() ) {
+				return;
+			}
+
+			$args = array(
+				'post_id' => get_the_ID(),
+				'status'  => 'approve'
+			);
+
+			$comments = get_comments( $args );
+			$ratings  = array();
+			$count    = 0;
+
+			foreach ( $comments as $comment ) {
+
+				$rating = get_comment_meta( $comment->comment_ID, 'rating', true );
+
+				if ( ! empty( $rating ) ) {
+					$ratings[] = absint( $rating );
+					$count ++;
+				}
+			}
+
+			if ( 0 != count( $ratings ) ) {
+
+				$avg = round( array_sum( $ratings ) / count( $ratings ) );
+
+				ob_start();
+				echo '<div class="stars-avg-rating">';
+				echo $this->rating_stars( $avg );
+				echo $avg . ' based on ' . $count . ' reviews';
+				echo '</div>';
+				$output = ob_get_clean();
+
+				return $output;
+			}
+
+		}
+
 
 		/**
 		 * Display rated stars based on given number of rating

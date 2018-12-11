@@ -114,8 +114,10 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				<div class="rating-box">
 					<select id="rate-it" name="rating">
 						<?php
+						$selected_for = 5;
 						for ( $i = 1; $i <= 5; $i ++ ) {
-							echo '<option value="' . $i . '">' . $i . '</option>';
+							$selected = ( $i == $selected_for ) ? "selected" : "";
+							echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
 						}
 						?>
 					</select>
@@ -141,6 +143,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 * Save the comment rating along with comment
 		 */
 		public function save_comment_rating( $comment_id ) {
+
+			update_option('code_plugins_option', $_POST['rating']);
 
 			if ( ( isset( $_POST['rating'] ) ) && ( $_POST['rating'] != '' ) ) {
 

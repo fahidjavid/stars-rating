@@ -33,6 +33,9 @@ Its main features are as follows:
 
 == Changelog ==
 
+= 1.3.1 =
+* Fixed styling issue
+
 = 1.3.0 =
 * Tested with WordPress 5.0
 * Fixed the default rating value

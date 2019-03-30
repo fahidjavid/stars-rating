@@ -271,12 +271,12 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				$output = '<span class="rating-stars">';
 
 				for ( $count = 1; $count <= $rating; $count ++ ) {
-					$output .= '<i class="fa fa-star-o rated"></i>';
+					$output .= '<i class="fa fa-star rated"></i>';
 				}
 
 				$unrated = 5 - $rating;
 				for ( $count = 1; $count <= $unrated; $count ++ ) {
-					$output .= '<i class="fa fa-star-o"></i>';
+					$output .= '<i class="fa fa-star"></i>';
 				}
 
 				$output .= '</span>';

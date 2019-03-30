@@ -10,7 +10,7 @@
   margin-right: 2px;
 }
 .br-theme-fontawesome-stars .br-widget a:after {
-  content: '\f006';
+  content: '\f005';
   color: #d2d2d2;
 }
 .br-theme-fontawesome-stars .br-widget a.br-active:after {
@@ -27,12 +27,12 @@
 }
 @media print {
   .br-theme-fontawesome-stars .br-widget a:after {
-    content: '\f006';
+    content: '\f005';
     color: black;
   }
   .br-theme-fontawesome-stars .br-widget a.br-active:after,
   .br-theme-fontawesome-stars .br-widget a.br-selected:after {
-    content: '\f006';
+    content: '\f005';
     color: black;
   }
 }

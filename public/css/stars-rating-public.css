@@ -12,10 +12,11 @@
 
 .rating-stars i {
     margin-right: 2px;
+    color: #d2d2d2;
 }
 
 .rating-stars i.rated {
-    color: #EA923A;
+    color: #EDB867;
 }
 
 .stars-avg-rating {

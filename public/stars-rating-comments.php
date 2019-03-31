@@ -109,10 +109,11 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				return;
 			}
 
+			$require_rating = get_option( 'require_rating', 'no' );
 			?>
 			<div class="stars-comment-rating">
 				<div class="rating-box">
-					<select id="rate-it" name="rating">
+					<select id="rate-it" class="require-<?php echo esc_attr( $require_rating ); ?>" name="rating">
 						<?php
 						$selected_for = 5;
 						for ( $i = 1; $i <= 5; $i ++ ) {

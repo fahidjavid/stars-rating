@@ -1,3 +1,4 @@
-label[for="avg_rating_display"] {
+label[for="avg_rating_display"],
+label[for="require_rating"] {
     margin-right: 10px;
 }

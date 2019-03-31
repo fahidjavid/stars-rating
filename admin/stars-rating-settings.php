@@ -76,6 +76,13 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				)
 			);
 
+			add_settings_field( 'require_rating',
+				esc_html__( 'Require Rating Selection', 'stars-rating' ),
+				array( $this, 'require_rating_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'require_rating' ) );
+
 			add_settings_field( 'avg_rating_display',
 				esc_html__( 'Average Rating Above Comments Section', 'stars-rating' ),
 				array( $this, 'avg_rating_display_callback' ),
@@ -85,6 +92,9 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			// register enabled_posts field
 			register_setting( 'discussion', 'enabled_post_types', 'esc_attr' );
+
+			// register require_rating field
+			register_setting( 'discussion', 'require_rating', 'esc_attr' );
 
 			// register avg_rating_display field
 			register_setting( 'discussion', 'avg_rating_display', 'esc_attr' );
@@ -132,10 +142,29 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			echo '<label for="avg_rating_display_no"><input type="radio" id="avg_rating_display_no" name="avg_rating_display" value="hide" ' . $avg_rating_hide_status . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
 		}
 
+		public function require_rating_callback() {
+			$require_rating_selection = get_option( 'require_rating', 'no' );
+
+			$require_rating = 'unchecked';
+			$require_rating_no = 'checked';
+
+			if ( 'yes' == $require_rating_selection ) {
+				$require_rating = 'checked';
+				$require_rating_no = 'unchecked';
+			}
+
+			echo '<label for="require_rating"><input type="radio" id="require_rating" name="require_rating" value="yes" ' . $require_rating . ' />' . esc_html__( 'Yes', 'stars-rating' ) . '</label>';
+			echo '<label for="require_rating_no"><input type="radio" id="require_rating_no" name="require_rating" value="no" ' . $require_rating_no . ' />' . esc_html__( 'No', 'stars-rating' ) . '</label>';
+		}
+
 		public function update_settings_field() {
 			add_filter( 'pre_update_option_enabled_post_types', array(
 				$this,
 				'update_field_enabled_post_types'
+			), 10, 2 );
+			add_filter( 'pre_update_option_require_rating', array(
+				$this,
+				'update_field_require_rating'
 			), 10, 2 );
 			add_filter( 'pre_update_option_avg_rating_display', array(
 				$this,
@@ -145,13 +174,16 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function update_field_enabled_post_types( $new_value, $old_value ) {
 			$new_value = $_POST['enabled_post_types'];
+			return $new_value;
+		}
 
+		public function update_field_require_rating( $new_value, $old_value ) {
+			$new_value = $_POST['require_rating'];
 			return $new_value;
 		}
 
 		public function update_field_avg_rating_display( $new_value, $old_value ) {
 			$new_value = $_POST['avg_rating_display'];
-
 			return $new_value;
 		}
 

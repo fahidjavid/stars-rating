@@ -15,6 +15,7 @@ Its main features are as follows:
 
 * Turns post, pages and custom post types comments into reviews.
 * Allows you to choose post types on which you want to enable Stars Rating feature.
+* An option to require rating selection to leave a review.
 * Also, allows you to enable/disable stars rating feature for the posts and pages individually.
 * Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
 

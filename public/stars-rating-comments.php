@@ -95,9 +95,35 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$avg_rating_display = get_option( ' avg_rating_display', 'show' );
 
 			if ( 'show' == $avg_rating_display ) {
-				add_filter( "comments_template", array( $this, 'rating_average' ) );
+				add_filter( "comments_template", array( $this, 'rating_average_markup' ) );
 			}
 
+			add_action( 'wp_head', array( $this, 'add_reviews_schema' ) );
+		}
+
+		public  function  add_reviews_schema(){
+
+			if ( ! self::status() ) {
+				return;
+			}
+
+			$schema_name = ucfirst(get_post_type());
+			$schema_title = get_the_title();
+			$rating_stat = $this->rating_stat();
+
+			echo '<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "'. $schema_name .'",
+  "name": "'. $schema_title .'",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "'. $rating_stat['avg'] .'",
+    "bestRating": "5",
+    "ratingCount": "'. $rating_stat['count'] .'"
+  }
+}
+	</script>';
 		}
 
 		/**
@@ -178,7 +204,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		/**
 		 * Display average rating based on approved comments with rating
 		 */
-		public function rating_average() {
+		public function rating_stat() {
 
 			if ( ! self::status() ) {
 				return;
@@ -205,14 +231,32 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			if ( 0 != count( $ratings ) ) {
 
-				$avg = round( array_sum( $ratings ) / count( $ratings ) );
+				$avg = ( array_sum( $ratings ) / count( $ratings ) );
 
-				echo '<div class="stars-avg-rating">';
-				echo $this->rating_stars( $avg );
-				echo $avg . ' based on ' . $count . ' reviews';
-				echo '</div>';
+				return array(
+						'avg' => $avg,
+						'count' => $count
+				);
 			}
 
+			return false;
+
+		}
+
+		public function rating_average_markup() {
+
+			if ( ! self::status() ) {
+				return;
+			}
+
+			$rating_stat = $this->rating_stat();
+
+			if( $rating_stat ) {
+				echo '<div class="stars-avg-rating">';
+				echo $this->rating_stars( $rating_stat['avg'] );
+				echo $rating_stat['avg'] . ' based on ' . $rating_stat['count'] . ' reviews';
+				echo '</div>';
+			}
 		}
 
 		public function rating_average_shortcode() {
@@ -221,39 +265,18 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				return;
 			}
 
-			$args = array(
-				'post_id' => get_the_ID(),
-				'status'  => 'approve'
-			);
+			$rating_stat = $this->rating_stat();
 
-			$comments = get_comments( $args );
-			$ratings  = array();
-			$count    = 0;
-
-			foreach ( $comments as $comment ) {
-
-				$rating = get_comment_meta( $comment->comment_ID, 'rating', true );
-
-				if ( ! empty( $rating ) ) {
-					$ratings[] = absint( $rating );
-					$count ++;
-				}
-			}
-
-			if ( 0 != count( $ratings ) ) {
-
-				$avg = round( array_sum( $ratings ) / count( $ratings ) );
-
+			if( $rating_stat ) {
 				ob_start();
 				echo '<div class="stars-avg-rating">';
-				echo $this->rating_stars( $avg );
-				echo $avg . ' based on ' . $count . ' reviews';
+				echo $this->rating_stars( $rating_stat['avg'] );
+				echo $rating_stat['avg'] . ' based on ' . $rating_stat['count'] . ' reviews';
 				echo '</div>';
 				$output = ob_get_clean();
 
 				return $output;
 			}
-
 		}
 
 
@@ -265,6 +288,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 * @return string
 		 */
 		public function rating_stars( $rating ) {
+
+			$rating = round($rating);
 
 			$output = '';
 

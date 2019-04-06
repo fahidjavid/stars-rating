@@ -71,24 +71,44 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				array( $this, 'enabled_post_types_callback' ),
 				'discussion',
 				'stars_rating_section',
-				array(
-					'enabled_post_types'
-				)
+				array( 'enabled_post_types' )
 			);
 
-			add_settings_field( 'require_rating',
+			add_settings_field(
+				'require_rating',
 				esc_html__( 'Require Rating Selection', 'stars-rating' ),
 				array( $this, 'require_rating_callback' ),
 				'discussion',
 				'stars_rating_section',
-				array( 'require_rating' ) );
+				array( 'require_rating' )
+			);
 
-			add_settings_field( 'avg_rating_display',
+			add_settings_field(
+				'avg_rating_display',
 				esc_html__( 'Average Rating Above Comments Section', 'stars-rating' ),
 				array( $this, 'avg_rating_display_callback' ),
 				'discussion',
 				'stars_rating_section',
-				array( 'avg_rating_display' ) );
+				array( 'avg_rating_display' )
+			);
+
+			add_settings_field(
+				'stars_style',
+				esc_html__( 'Stars Style', 'stars-rating' ),
+				array( $this, 'stars_style_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'stars_style' )
+			);
+
+			add_settings_field(
+				'google_search_stars',
+				esc_html__( 'Display Stars Rating In Google Search Results', 'stars-rating' ),
+				array( $this, 'google_search_stars_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'google_search_stars' )
+			);
 
 			// register enabled_posts field
 			register_setting( 'discussion', 'enabled_post_types', 'esc_attr' );
@@ -98,6 +118,12 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			// register avg_rating_display field
 			register_setting( 'discussion', 'avg_rating_display', 'esc_attr' );
+
+			// register stars_style field
+			register_setting( 'discussion', 'stars_style', 'esc_attr' );
+
+			// register google_search field
+			register_setting( 'discussion', 'google_search_stars', 'esc_attr' );
 		}
 
 		public function stars_rating_section_callback() {
@@ -106,7 +132,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function enabled_post_types_callback( $args ) {
 
-			$enabled_posts = get_option( ' enabled_post_types' );
+			$enabled_posts = get_option( 'enabled_post_types', array() );
 
 			if ( ! is_array( $enabled_posts ) ) {
 				$enabled_posts = (array) $enabled_posts;
@@ -145,16 +171,48 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 		public function require_rating_callback() {
 			$require_rating_selection = get_option( 'require_rating', 'no' );
 
-			$require_rating = 'unchecked';
+			$require_rating    = 'unchecked';
 			$require_rating_no = 'checked';
 
 			if ( 'yes' == $require_rating_selection ) {
-				$require_rating = 'checked';
+				$require_rating    = 'checked';
 				$require_rating_no = 'unchecked';
 			}
 
 			echo '<label for="require_rating"><input type="radio" id="require_rating" name="require_rating" value="yes" ' . $require_rating . ' />' . esc_html__( 'Yes', 'stars-rating' ) . '</label>';
 			echo '<label for="require_rating_no"><input type="radio" id="require_rating_no" name="require_rating" value="no" ' . $require_rating_no . ' />' . esc_html__( 'No', 'stars-rating' ) . '</label>';
+		}
+
+		public function stars_style_callback() {
+
+			$stars_style = get_option( 'stars_style', 'regular' );
+
+			$stars_style_regular = 'checked';
+			$stars_style_solid   = 'unchecked';
+
+			if ( 'solid' == $stars_style ) {
+				$stars_style_solid   = 'checked';
+				$stars_style_regular = 'unchecked';
+			}
+
+			echo '<label for="stars_style_regular"><input type="radio" id="stars_style_regular" name="stars_style" value="regular" ' . $stars_style_regular . ' />' . esc_html__( 'Regular', 'stars-rating' ) . '</label>';
+			echo '<label for="stars_style_solid"><input type="radio" id="stars_style_solid" name="stars_style" value="solid" ' . $stars_style_solid . ' />' . esc_html__( 'Solid', 'stars-rating' ) . '</label>';
+		}
+
+		public function google_search_stars_callback() {
+
+			$google_search_stars = get_option( 'google_search_stars', 'yes' );
+
+			$google_search_stars_yes = 'checked';
+			$google_search_stars_no   = 'unchecked';
+
+			if ( 'no' == $google_search_stars ) {
+				$google_search_stars_no   = 'checked';
+				$google_search_stars_yes = 'unchecked';
+			}
+
+			echo '<label for="google_search_stars_yes"><input type="radio" id="google_search_stars_yes" name="google_search_stars" value="yes" ' . $google_search_stars_yes . ' />' . esc_html__( 'Yes', 'stars-rating' ) . '</label>';
+			echo '<label for="google_search_stars_no"><input type="radio" id="google_search_stars_no" name="google_search_stars" value="no" ' . $google_search_stars_no . ' />' . esc_html__( 'No', 'stars-rating' ) . '</label>';
 		}
 
 		public function update_settings_field() {
@@ -169,6 +227,14 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			add_filter( 'pre_update_option_avg_rating_display', array(
 				$this,
 				'update_field_avg_rating_display'
+			), 10, 2 );
+			add_filter( 'pre_update_option_stars_style', array(
+				$this,
+				'update_field_stars_style'
+			), 10, 2 );
+			add_filter( 'pre_update_option_google_search_stars', array(
+				$this,
+				'update_field_google_search_stars'
 			), 10, 2 );
 		}
 
@@ -187,9 +253,19 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			return $new_value;
 		}
 
+		public function update_field_stars_style( $new_value, $old_value ) {
+			$new_value = $_POST['stars_style'];
+			return $new_value;
+		}
+
+		public function update_field_google_search_stars( $new_value, $old_value ) {
+			$new_value = $_POST['google_search_stars'];
+			return $new_value;
+		}
+
 		public function enqueue_plugin_files() {
 
-			$plugin_url = WP_PLUGIN_URL;
+			$plugin_url       = WP_PLUGIN_URL;
 			$plugin_admin_url = $plugin_url . '/stars-rating/admin/';
 
 			// stars rating admin

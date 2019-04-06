@@ -15,9 +15,7 @@
     color: #d2d2d2;
 }
 
-.rating-stars i.rated {
-    color: #EDB867;
-}
+
 
 .stars-avg-rating {
     text-align: center; 
@@ -30,4 +28,18 @@
     font-size: 18px;
     margin-right: 10px;
 
+}
+
+/*** Settings Customizer Style ***/
+.rating-stars i:after {
+    content: '\f006';
+    color: #d2d2d2;
+}
+
+.rating-stars i.rated:after {
+    color: #EDB867;
+}
+
+.rating-stars i.stars-style-solid:after {
+    content: '\f005';
 }

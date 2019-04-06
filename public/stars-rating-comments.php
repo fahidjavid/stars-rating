@@ -101,29 +101,28 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			add_action( 'wp_head', array( $this, 'add_reviews_schema' ) );
 		}
 
-		public  function  add_reviews_schema(){
+		public function add_reviews_schema() {
 
 			if ( ! self::status() ) {
 				return;
 			}
 
-			$schema_name = ucfirst(get_post_type());
+			$schema_name  = ucfirst( get_post_type() );
 			$schema_title = get_the_title();
-			$rating_stat = $this->rating_stat();
+			$rating_stat  = $this->rating_stat();
 
 			echo '<script type="application/ld+json">
 {
   "@context": "https://schema.org/",
-  "@type": "'. $schema_name .'",
-  "name": "'. $schema_title .'",
+  "@type": "' . $schema_name . '",
+  "name": "' . $schema_title . '",
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "'. $rating_stat['avg'] .'",
+    "ratingValue": "' . $rating_stat['avg'] . '",
     "bestRating": "5",
-    "ratingCount": "'. $rating_stat['count'] .'"
+    "ratingCount": "' . $rating_stat['count'] . '"
   }
-}
-	</script>';
+}</script>';
 		}
 
 		/**
@@ -136,7 +135,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 			$require_rating = get_option( 'require_rating', 'no' );
-			$stars_style = get_option('stars_style', 'regular');
+			$stars_style    = get_option( 'stars_style', 'regular' );
 			?>
 			<div id="stars-rating-review">
 				<div class="rating-plate stars-style-<?php echo esc_attr( $stars_style ); ?>">
@@ -171,8 +170,6 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 * Save the comment rating along with comment
 		 */
 		public function save_comment_rating( $comment_id ) {
-
-			update_option('code_plugins_option', $_POST['rating']);
 
 			if ( ( isset( $_POST['rating'] ) ) && ( $_POST['rating'] != '' ) ) {
 
@@ -234,8 +231,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				$avg = ( array_sum( $ratings ) / count( $ratings ) );
 
 				return array(
-						'avg' => $avg,
-						'count' => $count
+					'avg'   => $avg,
+					'count' => $count
 				);
 			}
 
@@ -251,7 +248,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			$rating_stat = $this->rating_stat();
 
-			if( $rating_stat ) {
+			if ( $rating_stat ) {
 				echo '<div class="stars-avg-rating">';
 				echo $this->rating_stars( $rating_stat['avg'] );
 				echo $rating_stat['avg'] . ' based on ' . $rating_stat['count'] . ' reviews';
@@ -267,7 +264,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			$rating_stat = $this->rating_stat();
 
-			if( $rating_stat ) {
+			if ( $rating_stat ) {
 				ob_start();
 				echo '<div class="stars-avg-rating">';
 				echo $this->rating_stars( $rating_stat['avg'] );
@@ -289,14 +286,14 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 */
 		public function rating_stars( $rating ) {
 
-			$rating = round($rating);
+			$rating = round( $rating );
 
 			$output = '';
 
 			if ( ! empty( $rating ) ) {
 
-				$stars_style = get_option('stars_style', 'regular');
-				$output = '<span class="rating-stars">';
+				$stars_style = get_option( 'stars_style', 'regular' );
+				$output      = '<span class="rating-stars">';
 
 				for ( $count = 1; $count <= $rating; $count ++ ) {
 					$output .= "<i class='fa stars-style-{$stars_style} rated'></i>";

@@ -1,4 +1,8 @@
 label[for="avg_rating_display"],
-label[for="require_rating"] {
+label[for="require_rating"],
+label[for="stars_style_regular"],
+label[for="google_search_stars_yes"] {
     margin-right: 10px;
+    min-width: 80px;
+    display: inline-block;
 }

@@ -14,4 +14,4 @@ require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-metabo
 /**
  * The class responsible for comments stars rating
  */
-require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/stars-rating-comments.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/stars-rating-public.php';

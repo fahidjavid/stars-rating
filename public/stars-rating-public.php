@@ -92,13 +92,15 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			add_filter( 'comment_text', array( $this, 'modify_comment' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_plugin_files' ) );
 
-			$avg_rating_display = get_option( ' avg_rating_display', 'show' );
+			$avg_rating_display  = get_option( ' avg_rating_display', 'show' );
+			$google_search_stars = get_option( ' google_search_stars', 'show' );
 
 			if ( 'show' == $avg_rating_display ) {
 				add_filter( "comments_template", array( $this, 'rating_average_markup' ) );
 			}
-
-			add_action( 'wp_head', array( $this, 'add_reviews_schema' ) );
+			if ( 'show' == $google_search_stars ) {
+				add_action( 'wp_head', array( $this, 'add_reviews_schema' ) );
+			}
 		}
 
 		public function add_reviews_schema() {

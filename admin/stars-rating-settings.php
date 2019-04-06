@@ -103,7 +103,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			add_settings_field(
 				'google_search_stars',
-				esc_html__( 'Display Stars Rating In Google Search Results', 'stars-rating' ),
+				esc_html__( 'Stars Rating In Google Search Results', 'stars-rating' ),
 				array( $this, 'google_search_stars_callback' ),
 				'discussion',
 				'stars_rating_section',
@@ -201,18 +201,18 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function google_search_stars_callback() {
 
-			$google_search_stars = get_option( 'google_search_stars', 'yes' );
+			$google_search_stars = get_option( 'google_search_stars', 'show' );
 
-			$google_search_stars_yes = 'checked';
-			$google_search_stars_no   = 'unchecked';
+			$google_search_stars_show = 'checked';
+			$google_search_stars_hide = 'unchecked';
 
-			if ( 'no' == $google_search_stars ) {
-				$google_search_stars_no   = 'checked';
-				$google_search_stars_yes = 'unchecked';
+			if ( 'hide' == $google_search_stars ) {
+				$google_search_stars_hide = 'checked';
+				$google_search_stars_show = 'unchecked';
 			}
 
-			echo '<label for="google_search_stars_yes"><input type="radio" id="google_search_stars_yes" name="google_search_stars" value="yes" ' . $google_search_stars_yes . ' />' . esc_html__( 'Yes', 'stars-rating' ) . '</label>';
-			echo '<label for="google_search_stars_no"><input type="radio" id="google_search_stars_no" name="google_search_stars" value="no" ' . $google_search_stars_no . ' />' . esc_html__( 'No', 'stars-rating' ) . '</label>';
+			echo '<label for="google_search_stars_show"><input type="radio" id="google_search_stars_show" name="google_search_stars" value="show" ' . $google_search_stars_show . ' />' . esc_html__( 'Show', 'stars-rating' ) . '</label>';
+			echo '<label for="google_search_stars_hide"><input type="radio" id="google_search_stars_hide" name="google_search_stars" value="hide" ' . $google_search_stars_hide . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
 		}
 
 		public function update_settings_field() {
@@ -240,26 +240,31 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function update_field_enabled_post_types( $new_value, $old_value ) {
 			$new_value = $_POST['enabled_post_types'];
+
 			return $new_value;
 		}
 
 		public function update_field_require_rating( $new_value, $old_value ) {
 			$new_value = $_POST['require_rating'];
+
 			return $new_value;
 		}
 
 		public function update_field_avg_rating_display( $new_value, $old_value ) {
 			$new_value = $_POST['avg_rating_display'];
+
 			return $new_value;
 		}
 
 		public function update_field_stars_style( $new_value, $old_value ) {
 			$new_value = $_POST['stars_style'];
+
 			return $new_value;
 		}
 
 		public function update_field_google_search_stars( $new_value, $old_value ) {
 			$new_value = $_POST['google_search_stars'];
+
 			return $new_value;
 		}
 

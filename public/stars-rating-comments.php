@@ -110,9 +110,10 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 			$require_rating = get_option( 'require_rating', 'no' );
+			$stars_style = get_option('stars_style', 'regular');
 			?>
-			<div class="stars-comment-rating">
-				<div class="rating-box">
+			<div id="stars-rating-review">
+				<div class="rating-plate stars-style-<?php echo esc_attr( $stars_style ); ?>">
 					<select id="rate-it" class="require-<?php echo esc_attr( $require_rating ); ?>" name="rating">
 						<?php
 						$selected_for = 5;
@@ -269,15 +270,16 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			if ( ! empty( $rating ) ) {
 
+				$stars_style = get_option('stars_style', 'regular');
 				$output = '<span class="rating-stars">';
 
 				for ( $count = 1; $count <= $rating; $count ++ ) {
-					$output .= '<i class="fa fa-star rated"></i>';
+					$output .= "<i class='fa stars-style-{$stars_style} rated'></i>";
 				}
 
 				$unrated = 5 - $rating;
 				for ( $count = 1; $count <= $unrated; $count ++ ) {
-					$output .= '<i class="fa fa-star"></i>';
+					$output .= "<i class='fa stars-style-{$stars_style}'></i>";
 				}
 
 				$output .= '</span>';

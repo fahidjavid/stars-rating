@@ -17,6 +17,8 @@ Its main features are as follows:
 * Allows you to choose post types on which you want to enable Stars Rating feature.
 * An option to require rating selection to leave a review.
 * Also, allows you to enable/disable stars rating feature for the posts and pages individually.
+* An option to display stars rating in Google search results.
+* Choose from two different rating stars styles according to your site look.
 * Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
 
 == Installation ==
@@ -26,13 +28,17 @@ Its main features are as follows:
 
 == Screenshots ==
 
-1. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments globally.
+1. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments globally and other settings.
 2. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments individually.
 3. Comments with their ratings and an average rating above comments.
 4. Rating option in comment form.
 5. Shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
 
 == Changelog ==
+
+= 3.0.0 =
+* Added an option to choose from two different rating stars style.
+* Added an option to display stars rating in Google search results.
 
 = 2.0.0 =
 * Tested plugin with WordPress 5.1.1 and PHP 7.3.3

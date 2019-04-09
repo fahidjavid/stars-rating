@@ -233,7 +233,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				$avg = ( array_sum( $ratings ) / count( $ratings ) );
 
 				return array(
-					'avg'   => $avg,
+					'avg'   => round($avg, 1),
 					'count' => $count
 				);
 			}

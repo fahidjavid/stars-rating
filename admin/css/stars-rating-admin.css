@@ -6,3 +6,26 @@ label[for="google_search_stars_show"] {
     min-width: 80px;
     display: inline-block;
 }
+
+/*** Donation Link ***/
+div.custom-links i {
+    margin: 5px;
+}
+.donation-link,
+.review-link {
+    color: white;
+    text-decoration: none;
+    background-color: #009cde;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.donation-link:hover {
+    color: #fff;
+    background-color: #1dbf73;
+}
+
+.review-link:hover {
+    color: #fff;
+    background-color: #ffc733;
+}

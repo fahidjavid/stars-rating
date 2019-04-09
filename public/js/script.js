@@ -11,8 +11,7 @@
                 theme: 'fontawesome-stars',
                 initialRating: 5,
                 onSelect: function (value, text, event) {
-                    if (event !== null && event.type === 'click') {
-                        console.log("You can go ahead");
+                    if (event !== null) {
                         submitButton.addClass('reviewed');
                     }
                 }

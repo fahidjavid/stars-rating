@@ -36,6 +36,10 @@ Its main features are as follows:
 
 == Changelog ==
 
+= 3.1.0
+* Added latest Gutenberg editor support.
+* Allowed reviews reply without rating.
+
 = 3.0.0 =
 * Added an option to choose from two different rating stars style.
 * Added an option to display stars rating in Google search results.

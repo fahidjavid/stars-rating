@@ -70,68 +70,96 @@ if ( ! class_exists( 'Stars_Rating_Metabox' ) ) :
 
 		public function init_hooks() {
 
-			add_action( 'post_comment_status_meta_box-options', array( $this, 'stars_rating_meta_box' ) );
-			add_action( 'save_post', array( $this, 'save_stars_rating_meta_box' ), 10, 3 );
+			add_action( 'add_meta_boxes', array( $this, 'register_meta_box' ) );
+			add_action( 'save_post', array( $this, 'save_meta_box' ), 10, 3 );
+
 		}
 
-		public function stars_rating_meta_box( $post ) {
+		public function register_meta_box( $post_type ) {
 
-			if ( ! self::status() ) {
-				return;
+			if ( $this->status() ) {
+
+				add_meta_box(
+					'stars-rating',
+					esc_html__( 'Stars Rating', 'stars-rating' ),
+					array( $this, 'render_meta_box' ),
+					$post_type,
+					'advanced',
+					'high'
+				);
 			}
+		}
 
-			$key     = '_comments_rating';
-			$current = 1;
+		public function render_meta_box( $post ) {
 
+			// Add nonce for security and authentication.
+			wp_nonce_field( 'sr_nonce_action', 'sr_nonce' );
+
+			$key       = 'sr-comments-rating';
+			$current   = 1;
 			$key_value = get_post_meta( $post->ID, $key, true );
 
 			if ( '0' === $key_value || ! empty( $key_value ) ) {
 				$current = $key_value;
 			}
-
-			printf(
-				'<br /><label for="%1$s"><input type="checkbox" id="%1$s" name="%1$s" class="selectit" %2$s/> %3$s</label>',
-				$key,
-				checked( 1, $current, false ),
-				__( 'Allow <a href="https://wordpress.org/plugins/stars-rating/" target="_blank">Stars Rating</a> for comments on this page.', 'stars-rating' )
-			);
-
+			?>
+			<div id="sr-inner-container" class="sr-inner-container">
+				<?php
+				printf(
+					'<br /><label for="%1$s"><input type="checkbox" id="%1$s" name="%1$s" class="selectit" %2$s/> %3$s</label>',
+					$key,
+					checked( 1, $current, false ),
+					__( 'Allow <a href="https://wordpress.org/plugins/stars-rating/" target="_blank">Stars Rating</a> for comments on this page.', 'stars-rating' )
+				);
+				?>
+			</div><!-- /.sr-inner-container -->
+			<?php
 		}
 
-		public function save_stars_rating_meta_box( $post_id, $post, $update ) {
+		public function save_meta_box( $post_id ) {
 
-			if ( ! self::status() ) {
+			// Add nonce for security and authentication.
+			$nonce_name = isset( $_POST['sr_nonce'] ) ? $_POST['sr_nonce'] : '';
+
+			// Check if nonce is valid.
+			if ( ! wp_verify_nonce( $nonce_name, 'sr_nonce_action' ) ) {
 				return;
 			}
 
-			// AJAX autosave
-			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			// Check if user has permissions to save data.
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
 				return;
 			}
 
-			// Some other POST request
-			if ( ! isset ( $_POST['post_type'] ) ) {
+			// Check if not an autosave.
+			if ( wp_is_post_autosave( $post_id ) ) {
 				return;
 			}
+
+			// Check if not a revision.
+			if ( wp_is_post_revision( $post_id ) ) {
+				return;
+			}
+
 
 			// Missing capability
 			if ( ! current_user_can( 'edit_' . $_POST['post_type'], $post_id ) ) {
 				return;
 			}
 
-			$key = '_comments_rating';
+			$key = 'sr-comments-rating';
 
 			// Checkbox successfully clicked
 			if ( isset ( $_POST[ $key ] ) && 'on' === strtolower( $_POST[ $key ] ) ) {
-				return update_post_meta( $post_id, $key, 1 );
+				update_post_meta( $post_id, $key, 1 );
 			} else {
-				return update_post_meta( $post_id, $key, 0 );
+				update_post_meta( $post_id, $key, 0 );
 			}
+
 		}
 	}
 
 endif;
-
 
 /**
  * Main instance of Stars_Rating_Metabox.

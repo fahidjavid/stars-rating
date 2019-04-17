@@ -32,7 +32,7 @@
 
 }
 
-/*** Settings Customizer Style ***/
+/*** Settings Preferences Style ***/
 .rating-stars i:after {
     content: '\f006';
     color: #d2d2d2;
@@ -40,4 +40,9 @@
 
 .rating-stars i.stars-style-solid:after {
     content: '\f005';
+}
+
+/*** Disabling the rating bar for reply comment form ***/
+.comment #respond #stars-rating-review {
+    display: none;
 }

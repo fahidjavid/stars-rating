@@ -112,6 +112,11 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$schema_name  = ucfirst( get_post_type() );
 			$schema_title = get_the_title();
 			$rating_stat  = $this->rating_stat();
+			$review_type  = get_option( 'google_search_stars_type' );
+
+			if ( ! empty( $review_type ) ) {
+				$schema_name = esc_attr( $review_type );
+			}
 
 			echo '<script type="application/ld+json">
 {

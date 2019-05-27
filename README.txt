@@ -36,6 +36,9 @@ Its main features are as follows:
 
 == Changelog ==
 
+= 3.2.0
+* Added custom reviews type support for google search results.
+
 = 3.1.0
 * Added latest Gutenberg editor support.
 * Allowed reviews reply without rating.

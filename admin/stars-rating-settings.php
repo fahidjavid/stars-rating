@@ -111,6 +111,15 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			);
 
 			add_settings_field(
+				'google_search_stars_type',
+				esc_html__( 'Type of Reviews In Google Search Results', 'stars-rating' ),
+				array( $this, 'google_search_stars_type_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'google_search_stars_type' )
+			);
+
+			add_settings_field(
 				'donation_link',
 				esc_html__( 'Donate "Stars Rating" And Similar OpenSource Projects!', 'stars-rating' ),
 				array( $this, 'donation_link_callback' ),
@@ -131,8 +140,11 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			// register stars_style field
 			register_setting( 'discussion', 'stars_style', 'esc_attr' );
 
-			// register google_search field
+			// register google_search_stars field
 			register_setting( 'discussion', 'google_search_stars', 'esc_attr' );
+
+			// register google_search_stars_type field
+			register_setting( 'discussion', 'google_search_stars_type', 'esc_attr' );
 		}
 
 		public function stars_rating_section_callback() {
@@ -224,6 +236,16 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			echo '<label for="google_search_stars_hide"><input type="radio" id="google_search_stars_hide" name="google_search_stars" value="hide" ' . $google_search_stars_hide . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
 		}
 
+		public function google_search_stars_type_callback() {
+
+			$google_search_stars_type = get_option( 'google_search_stars_type' );
+
+			echo '<input type="text" id="google_search_stars_type" name="google_search_stars_type" value="' . esc_html( $google_search_stars_type ) . '" />';
+			?>
+			<p class="description"><?php esc_html_e( 'For example: Product, Service, Brand, Event', 'stars-rating' ) ?></p>
+			<?php
+		}
+
 		public function donation_link_callback(){
 			echo '<div class="custom-links"><a class="donation-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fahidjavid%40gmail.com&item_name=OpenSource+Projects+Support&currency_code=USD&source=url" target="_blank">Donate Now!</a><i>OR</i><a class="review-link" href="https://wordpress.org/support/plugin/stars-rating/reviews/#new-post" target="_blank">Review Plugin!</a></div>';
 		}
@@ -248,6 +270,10 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			add_filter( 'pre_update_option_google_search_stars', array(
 				$this,
 				'update_field_google_search_stars'
+			), 10, 2 );
+			add_filter( 'pre_update_option_google_search_stars_type', array(
+				$this,
+				'update_field_google_search_stars_type'
 			), 10, 2 );
 		}
 
@@ -277,6 +303,12 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function update_field_google_search_stars( $new_value, $old_value ) {
 			$new_value = $_POST['google_search_stars'];
+
+			return $new_value;
+		}
+
+		public function update_field_google_search_stars_type( $new_value, $old_value ) {
+			$new_value = $_POST['google_search_stars_type'];
 
 			return $new_value;
 		}

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Stars Rating\n"
-"POT-Creation-Date: 2019-03-31 10:35+0500\n"
+"POT-Creation-Date: 2019-05-26 18:39+0500\n"
 "PO-Revision-Date: 2017-02-09 11:33+0500\n"
 "Last-Translator: \n"
 "Language-Team: Fahid Javid <fahidjavid@gmail.com>\n"
@@ -17,22 +17,32 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/stars-rating-metabox.php:93
-#: svn/tags/1.0.0/admin/stars-rating-metabox.php:93
-#: svn/tags/1.0.1/admin/stars-rating-metabox.php:93
-#: svn/tags/1.1.0/admin/stars-rating-metabox.php:93
-#: svn/tags/1.2.0/admin/stars-rating-metabox.php:93
-#: svn/trunk/admin/stars-rating-metabox.php:93
-msgid "Allow <a href=\"https://wordpress.org/plugins/stars-rating/\" target=\"_blank\">Stars Rating</a> for comments on this page."
-msgstr ""
-
-#: admin/stars-rating-settings.php:63
+#: admin/stars-rating-metabox.php:84 admin/stars-rating-settings.php:63
 #: svn/tags/1.0.0/admin/stars-rating-settings.php:61
 #: svn/tags/1.0.1/admin/stars-rating-settings.php:61
 #: svn/tags/1.1.0/admin/stars-rating-settings.php:61
 #: svn/tags/1.2.0/admin/stars-rating-settings.php:63
+#: svn/tags/1.3.1/admin/stars-rating-settings.php:63
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:63
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:63
+#: svn/tags/3.1.0/admin/stars-rating-metabox.php:84
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:63
+#: svn/trunk/admin/stars-rating-metabox.php:84
 #: svn/trunk/admin/stars-rating-settings.php:63
 msgid "Stars Rating"
+msgstr ""
+
+#: admin/stars-rating-metabox.php:112
+#: svn/tags/1.0.0/admin/stars-rating-metabox.php:93
+#: svn/tags/1.0.1/admin/stars-rating-metabox.php:93
+#: svn/tags/1.1.0/admin/stars-rating-metabox.php:93
+#: svn/tags/1.2.0/admin/stars-rating-metabox.php:93
+#: svn/tags/1.3.1/admin/stars-rating-metabox.php:93
+#: svn/tags/2.0.0/admin/stars-rating-metabox.php:93
+#: svn/tags/3.0.0/admin/stars-rating-metabox.php:93
+#: svn/tags/3.1.0/admin/stars-rating-metabox.php:112
+#: svn/trunk/admin/stars-rating-metabox.php:112
+msgid "Allow <a href=\"https://wordpress.org/plugins/stars-rating/\" target=\"_blank\">Stars Rating</a> for comments on this page."
 msgstr ""
 
 #: admin/stars-rating-settings.php:70
@@ -40,54 +50,140 @@ msgstr ""
 #: svn/tags/1.0.1/admin/stars-rating-settings.php:68
 #: svn/tags/1.1.0/admin/stars-rating-settings.php:68
 #: svn/tags/1.2.0/admin/stars-rating-settings.php:70
+#: svn/tags/1.3.1/admin/stars-rating-settings.php:70
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:70
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:70
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:70
 #: svn/trunk/admin/stars-rating-settings.php:70
 msgid "Enabled Post Types"
 msgstr ""
 
-#: admin/stars-rating-settings.php:80
+#: admin/stars-rating-settings.php:79
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:80
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:79
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:79
+#: svn/trunk/admin/stars-rating-settings.php:79
 msgid "Require Rating Selection"
 msgstr ""
 
-#: admin/stars-rating-settings.php:87
+#: admin/stars-rating-settings.php:88
 #: svn/tags/1.2.0/admin/stars-rating-settings.php:80
-#: svn/trunk/admin/stars-rating-settings.php:80
+#: svn/tags/1.3.1/admin/stars-rating-settings.php:80
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:87
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:88
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:88
+#: svn/trunk/admin/stars-rating-settings.php:88
 msgid "Average Rating Above Comments Section"
 msgstr ""
 
-#: admin/stars-rating-settings.php:104
+#: admin/stars-rating-settings.php:97
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:97
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:97
+#: svn/trunk/admin/stars-rating-settings.php:97
+msgid "Stars Style"
+msgstr ""
+
+#: admin/stars-rating-settings.php:106
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:106
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:106
+#: svn/trunk/admin/stars-rating-settings.php:106
+msgid "Stars Rating In Google Search Results"
+msgstr ""
+
+#: admin/stars-rating-settings.php:115
+msgid "Type of Reviews In Google Search Results"
+msgstr ""
+
+#: admin/stars-rating-settings.php:124
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:115
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:115
+#: svn/trunk/admin/stars-rating-settings.php:115
+msgid "Donate \"Stars Rating\" And Similar OpenSource Projects!"
+msgstr ""
+
+#: admin/stars-rating-settings.php:151
 #: svn/tags/1.0.0/admin/stars-rating-settings.php:82
 #: svn/tags/1.0.1/admin/stars-rating-settings.php:82
 #: svn/tags/1.1.0/admin/stars-rating-settings.php:82
 #: svn/tags/1.2.0/admin/stars-rating-settings.php:94
-#: svn/trunk/admin/stars-rating-settings.php:94
+#: svn/tags/1.3.1/admin/stars-rating-settings.php:94
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:104
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:139
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:139
+#: svn/trunk/admin/stars-rating-settings.php:139
 msgid "Check the post types on which you want to enable stars rating feature."
 msgstr ""
 
-#: admin/stars-rating-settings.php:141
+#: admin/stars-rating-settings.php:188 admin/stars-rating-settings.php:235
 #: svn/tags/1.2.0/admin/stars-rating-settings.php:131
-#: svn/trunk/admin/stars-rating-settings.php:131
+#: svn/tags/1.3.1/admin/stars-rating-settings.php:131
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:141
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:176
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:223
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:176
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:223
+#: svn/trunk/admin/stars-rating-settings.php:176
+#: svn/trunk/admin/stars-rating-settings.php:223
 msgid "Show"
 msgstr ""
 
-#: admin/stars-rating-settings.php:142
+#: admin/stars-rating-settings.php:189 admin/stars-rating-settings.php:236
 #: svn/tags/1.2.0/admin/stars-rating-settings.php:132
-#: svn/trunk/admin/stars-rating-settings.php:132
+#: svn/tags/1.3.1/admin/stars-rating-settings.php:132
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:142
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:177
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:224
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:177
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:224
+#: svn/trunk/admin/stars-rating-settings.php:177
+#: svn/trunk/admin/stars-rating-settings.php:224
 msgid "Hide"
 msgstr ""
 
-#: admin/stars-rating-settings.php:156
+#: admin/stars-rating-settings.php:203
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:156
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:191
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:191
+#: svn/trunk/admin/stars-rating-settings.php:191
 msgid "Yes"
 msgstr ""
 
-#: admin/stars-rating-settings.php:157
+#: admin/stars-rating-settings.php:204
+#: svn/tags/2.0.0/admin/stars-rating-settings.php:157
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:192
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:192
+#: svn/trunk/admin/stars-rating-settings.php:192
 msgid "No"
 msgstr ""
 
-#: public/stars-rating-comments.php:137
+#: admin/stars-rating-settings.php:219
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:207
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:207
+#: svn/trunk/admin/stars-rating-settings.php:207
+msgid "Regular"
+msgstr ""
+
+#: admin/stars-rating-settings.php:220
+#: svn/tags/3.0.0/admin/stars-rating-settings.php:208
+#: svn/tags/3.1.0/admin/stars-rating-settings.php:208
+#: svn/trunk/admin/stars-rating-settings.php:208
+msgid "Solid"
+msgstr ""
+
+#: admin/stars-rating-settings.php:245
+msgid "For example: Product, Service, Brand, Event"
+msgstr ""
+
+#: public/stars-rating-public.php:170
 #: svn/tags/1.0.0/public/stars-rating-comments.php:125
 #: svn/tags/1.0.1/public/stars-rating-comments.php:125
 #: svn/tags/1.1.0/public/stars-rating-comments.php:125
 #: svn/tags/1.2.0/public/stars-rating-comments.php:134
-#: svn/trunk/public/stars-rating-comments.php:136
+#: svn/tags/1.3.1/public/stars-rating-comments.php:136
+#: svn/tags/2.0.0/public/stars-rating-comments.php:137
+#: svn/tags/3.0.0/public/stars-rating-comments.php:137
+#: svn/tags/3.0.0/public/stars-rating-public.php:164
+#: svn/tags/3.1.0/public/stars-rating-public.php:165
+#: svn/trunk/public/stars-rating-public.php:165
 msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
 msgstr ""

@@ -3,19 +3,11 @@
  * Plugin Name: Stars Rating
  * Plugin URI: https://wordpress.org/plugins/stars-rating/
  * Description: A plugin to turn comments into reviews by adding rating feature.
- * Version: 1.0.1
+ * Version: 3.3.0
  * Author: Fahid Javid
- * Author URI: https://fahidjavid.com
- * Requires at least: 3.5
- * Tested up to: 4.7.3
- *
+ * Author URI: https://www.fahidjavid.com
  * Text Domain: stars-rating
  * Domain Path: languages
- *
- * @package stars-rating
- * @category Core
- * @author Fahid Javid
- * @version 1.0.0
  */
 
 

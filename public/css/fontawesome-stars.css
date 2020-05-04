@@ -1,0 +1,46 @@
+#stars-rating-review .br-widget {
+  height: 28px;
+  white-space: nowrap;
+}
+#stars-rating-review .br-widget a {
+  font: normal normal normal 20px/1 FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  text-decoration: none;
+  margin-right: 2px;
+}
+
+#stars-rating-review .br-widget a.br-active:after {
+  color: #EDB867;
+}
+#stars-rating-review .br-widget a.br-selected:after {
+  color: #EDB867;
+}
+#stars-rating-review .br-widget .br-current-rating {
+  display: none;
+}
+#stars-rating-review .br-readonly a {
+  cursor: default;
+}
+
+/*** Settings Customizer Style ***/
+#stars-rating-review .br-widget a:after {
+  content: '\f006';
+  color: #d2d2d2;
+}
+
+#stars-rating-review .stars-style-solid .br-widget a:after {
+content: '\f005';
+}
+
+@media print {
+  #stars-rating-review .br-widget a:after {
+    content: '\f005';
+    color: black;
+  }
+  #stars-rating-review .br-widget a.br-active:after,
+  #stars-rating-review .br-widget a.br-selected:after {
+    content: '\f005';
+    color: black;
+  }
+}

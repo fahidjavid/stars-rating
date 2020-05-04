@@ -1,0 +1,48 @@
+/*
+*   Stars Rating Styles
+*/
+
+#rate-it {
+    display: none !important;
+}
+
+.rating-stars {
+    font-size: 15px;
+}
+
+.rating-stars i {
+    margin-right: 2px;
+    color: #d2d2d2;
+}
+
+.rating-stars i.rated:after {
+    color: #EDB867;
+}
+
+.stars-avg-rating {
+    text-align: center; 
+    font-size: 18px;
+    margin: 20px 0;
+    clear: both;
+}
+
+.stars-avg-rating .rating-stars {
+    font-size: 18px;
+    margin-right: 10px;
+
+}
+
+/*** Settings Preferences Style ***/
+.rating-stars i:after {
+    content: '\f006';
+    color: #d2d2d2;
+}
+
+.rating-stars i.stars-style-solid:after {
+    content: '\f005';
+}
+
+/*** Disabling the rating bar for reply comment form ***/
+.comment #respond #stars-rating-review {
+    display: none;
+}

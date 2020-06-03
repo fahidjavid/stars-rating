@@ -264,7 +264,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			if ( $rating_stat ) {
 				echo '<div class="stars-avg-rating">';
 				echo $this->rating_stars( $rating_stat['avg'] );
-				echo $rating_stat['avg'] . ' ' . esc_html_( 'based on', 'stars-rating' ) . ' ' . $rating_stat['count'] . ' ' . esc_html_( 'reviews', 'stars-rating' );
+				echo $rating_stat['avg'] . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . $rating_stat['count'] . ' ' . esc_html__( 'reviews', 'stars-rating' );
 				echo '</div>';
 			}
 		}
@@ -281,7 +281,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				ob_start();
 				echo '<div class="stars-avg-rating">';
 				echo $this->rating_stars( $rating_stat['avg'] );
-				echo $rating_stat['avg'] . ' ' . esc_html_( 'based on', 'stars-rating' ) . ' ' . $rating_stat['count'] . ' ' . esc_html_( 'reviews', 'stars-rating' );
+				echo $rating_stat['avg'] . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . $rating_stat['count'] . ' ' . esc_html__( 'reviews', 'stars-rating' );
 				echo '</div>';
 				$output = ob_get_clean();
 

@@ -153,7 +153,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function enabled_post_types_callback( $args ) {
 
-			$enabled_posts = get_option( 'enabled_post_types', array() );
+			$enabled_posts = get_option( 'enabled_post_types', array('post','page') );
 
 			if ( ! is_array( $enabled_posts ) ) {
 				$enabled_posts = (array) $enabled_posts;

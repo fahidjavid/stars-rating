@@ -57,7 +57,7 @@ if ( ! class_exists( 'Stars_Rating_Metabox' ) ) :
 		 */
 		public static function status() {
 
-			$enabled_posts = get_option( ' enabled_post_types' );
+			$enabled_posts = get_option( ' enabled_post_types', array('post','page') );
 
 			if ( ! is_array( $enabled_posts ) ) {
 				$enabled_posts = (array) $enabled_posts;

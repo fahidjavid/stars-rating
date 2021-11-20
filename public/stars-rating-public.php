@@ -51,7 +51,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 */
 		public static function status() {
 
-			$enabled_posts = get_option( 'enabled_post_types' );
+			$enabled_posts = get_option( 'enabled_post_types', array('post', 'page') );
 			$post_status   = get_post_meta( get_the_ID(), 'sr-comments-rating', true );
 
 			if ( ! is_array( $enabled_posts ) ) {

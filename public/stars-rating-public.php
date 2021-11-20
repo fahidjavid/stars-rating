@@ -185,8 +185,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 			if ( ( isset( $_POST['rating'] ) ) && ( $_POST['rating'] != '' ) ) {
-
-				$rating = wp_filter_nohtml_kses( $_POST['rating'] );
+				$rating = intval( $_POST['rating'] );
 				add_comment_meta( $comment_id, 'rating', $rating );
 			}
 

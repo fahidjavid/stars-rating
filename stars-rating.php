@@ -12,20 +12,20 @@
 
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit; // Exit if accessed directly.
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'stars_rating_load_textdomain' ) ) {
-    /**
-     * Load text domain for translation.
-     * @since 1.0.0
-     */
-    function stars_rating_load_textdomain() {
-        load_plugin_textdomain( 'stars-rating', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-    }
+	/**
+	 * Load text domain for translation.
+	 * @since 1.0.0
+	 */
+	function stars_rating_load_textdomain() {
+		load_plugin_textdomain( 'stars-rating', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	}
 
-    // load text domain for translation.
-    stars_rating_load_textdomain();
+	// load text domain for translation.
+	stars_rating_load_textdomain();
 }
 
 
@@ -40,11 +40,11 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/stars-rating-include.php';
  *
  * Returns the main instance of Stars_Rating to prevent the need to use globals.
  *
- * @since  1.0.0
  * @return Stars_Rating
+ * @since  1.0.0
  */
-function Stars_Rating(){
-    return Stars_Rating::instance();
+function Stars_Rating() {
+	return Stars_Rating::instance();
 }
 
 // Get Stars_Rating Running.

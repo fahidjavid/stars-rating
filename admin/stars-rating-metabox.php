@@ -52,12 +52,12 @@ if ( ! class_exists( 'Stars_Rating_Metabox' ) ) :
 		/**
 		 * Status of the stars rating for the current post type
 		 *
-		 * @since 1.0.0
 		 * @return bool
+		 * @since 1.0.0
 		 */
 		public static function status() {
 
-			$enabled_posts = get_option( ' enabled_post_types', array('post','page') );
+			$enabled_posts = get_option( ' enabled_post_types', array( 'post', 'page' ) );
 
 			if ( ! is_array( $enabled_posts ) ) {
 				$enabled_posts = (array) $enabled_posts;
@@ -166,8 +166,8 @@ endif;
  *
  * Returns the main instance of Stars_Rating_Metabox to prevent the need to use globals.
  *
- * @since  1.0.0
  * @return Stars_Rating_Metabox
+ * @since  1.0.0
  */
 function Stars_Rating_Metabox() {
 	return Stars_Rating_Metabox::instance();

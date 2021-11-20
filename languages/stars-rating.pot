@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Stars Rating\n"
-"POT-Creation-Date: 2021-04-17 21:01+0500\n"
+"POT-Creation-Date: 2021-11-20 11:46+0500\n"
 "PO-Revision-Date: 2017-02-09 11:33+0500\n"
 "Last-Translator: \n"
 "Language-Team: Fahid Javid <fahidjavid@gmail.com>\n"
@@ -89,10 +89,10 @@ msgstr ""
 msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
 msgstr ""
 
-#: public/stars-rating-public.php:267 public/stars-rating-public.php:284
+#: public/stars-rating-public.php:266 public/stars-rating-public.php:283
 msgid "based on"
 msgstr ""
 
-#: public/stars-rating-public.php:267 public/stars-rating-public.php:284
+#: public/stars-rating-public.php:266 public/stars-rating-public.php:283
 msgid "reviews"
 msgstr ""

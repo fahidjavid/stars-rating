@@ -32,8 +32,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		/**
 		 * Provides singleton instance.
 		 *
-		 * @since 1.0.0
 		 * @return self instance
+		 * @since 1.0.0
 		 */
 		public static function instance() {
 			if ( is_null( self::$_instance ) ) {
@@ -46,12 +46,12 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		/**
 		 * Status of the stars rating for the current post type
 		 *
-		 * @since 1.0.0
 		 * @return bool
+		 * @since 1.0.0
 		 */
 		public static function status() {
 
-			$enabled_posts = get_option( 'enabled_post_types' );
+			$enabled_posts = get_option( 'enabled_post_types', array( 'post', 'page' ) );
 			$post_status   = get_post_meta( get_the_ID(), 'sr-comments-rating', true );
 
 			if ( ! is_array( $enabled_posts ) ) {
@@ -179,14 +179,13 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		public function save_comment_rating( $comment_id ) {
 
 			// check if it's a reply then do nothing
-			$comment = get_comment($comment_id, ARRAY_A);
-			if( ! empty( $comment['comment_parent'] ) ) {
+			$comment = get_comment( $comment_id, ARRAY_A );
+			if ( ! empty( $comment['comment_parent'] ) ) {
 				return;
 			}
 
 			if ( ( isset( $_POST['rating'] ) ) && ( $_POST['rating'] != '' ) ) {
-
-				$rating = wp_filter_nohtml_kses( $_POST['rating'] );
+				$rating = intval( $_POST['rating'] );
 				add_comment_meta( $comment_id, 'rating', $rating );
 			}
 

@@ -153,7 +153,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function enabled_post_types_callback( $args ) {
 
-			$enabled_posts = get_option( 'enabled_post_types', array() );
+			$enabled_posts = get_option( 'enabled_post_types', array( 'post', 'page' ) );
 
 			if ( ! is_array( $enabled_posts ) ) {
 				$enabled_posts = (array) $enabled_posts;
@@ -246,7 +246,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			<?php
 		}
 
-		public function donation_link_callback(){
+		public function donation_link_callback() {
 			echo '<div class="custom-links"><a class="donation-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fahidjavid%40gmail.com&item_name=OpenSource+Projects+Support&currency_code=USD&source=url" target="_blank">Donate Now!</a><i>OR</i><a class="review-link" href="https://wordpress.org/support/plugin/stars-rating/reviews/#new-post" target="_blank">Review Plugin!</a></div>';
 		}
 
@@ -337,8 +337,8 @@ endif;
  *
  * Returns the main instance of Stars_Rating_Settings to prevent the need to use globals.
  *
- * @since  1.0.0
  * @return Stars_Rating_Settings
+ * @since  1.0.0
  */
 function Stars_Rating_Settings() {
 	return Stars_Rating_Settings::instance();

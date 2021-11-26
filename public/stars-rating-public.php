@@ -185,7 +185,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 			if ( ( isset( $_POST['rating'] ) ) && ( $_POST['rating'] != '' ) ) {
-				$rating = intval( $_POST['rating'] );
+				$rating = min( max( 1, $_POST['rating'] ), 5 );;
 				add_comment_meta( $comment_id, 'rating', $rating );
 			}
 

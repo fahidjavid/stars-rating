@@ -115,19 +115,19 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$review_type  = get_option( 'google_search_stars_type' );
 
 			if ( ! empty( $review_type ) ) {
-				$schema_name = esc_attr( $review_type );
+				$schema_name = $review_type;
 			}
 
 			echo '<script type="application/ld+json">
 {
   "@context": "https://schema.org/",
-  "@type": "' . $schema_name . '",
-  "name": "' . $schema_title . '",
+  "@type": "' . esc_attr( $schema_name ) . '",
+  "name": "' . esc_attr( $schema_title ) . '",
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "' . $rating_stat['avg'] . '",
+    "ratingValue": "' . floatval( $rating_stat['avg'] ) . '",
     "bestRating": "5",
-    "ratingCount": "' . $rating_stat['count'] . '"
+    "ratingCount": "' . absint( $rating_stat['count'] ) . '"
   }
 }</script>';
 		}
@@ -145,8 +145,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$stars_style    = get_option( 'stars_style', 'regular' );
 			?>
 			<div id="stars-rating-review">
-				<div class="rating-plate stars-style-<?php echo esc_attr( $stars_style ); ?>">
-					<select id="rate-it" class="require-<?php echo esc_attr( $require_rating ); ?>" name="rating">
+				<div class="rating-plate stars-style-<?php echo sanitize_html_class( $stars_style ); ?>">
+					<select id="rate-it" class="require-<?php echo sanitize_html_class( $require_rating ); ?>" name="rating">
 						<?php
 						$selected_for = 5;
 						for ( $i = 1; $i <= 5; $i ++ ) {
@@ -233,7 +233,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				$rating = get_comment_meta( $comment->comment_ID, 'rating', true );
 
 				if ( ! empty( $rating ) ) {
-					$ratings[] = absint( $rating );
+					$ratings[] = min( max( 1, $rating ), 5 );
 					$count ++;
 				}
 			}
@@ -263,7 +263,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			if ( $rating_stat ) {
 				echo '<div class="stars-avg-rating">';
 				echo $this->rating_stars( $rating_stat['avg'] );
-				echo $rating_stat['avg'] . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . $rating_stat['count'] . ' ' . esc_html__( 'reviews', 'stars-rating' );
+				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
 				echo '</div>';
 			}
 		}
@@ -280,7 +280,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				ob_start();
 				echo '<div class="stars-avg-rating">';
 				echo $this->rating_stars( $rating_stat['avg'] );
-				echo $rating_stat['avg'] . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . $rating_stat['count'] . ' ' . esc_html__( 'reviews', 'stars-rating' );
+				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
 				echo '</div>';
 				$output = ob_get_clean();
 
@@ -298,13 +298,13 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 */
 		public function rating_stars( $rating ) {
 
-			$rating = round( $rating );
+			$rating = absint( sround( $rating ) );
 
 			$output = '';
 
 			if ( ! empty( $rating ) ) {
 
-				$stars_style = get_option( 'stars_style', 'regular' );
+				$stars_style = sanitize_html_class( get_option( 'stars_style', 'regular' ) );
 				$output      = '<span class="rating-stars">';
 
 				for ( $count = 1; $count <= $rating; $count ++ ) {

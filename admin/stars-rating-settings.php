@@ -169,7 +169,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			foreach ( $post_types as $post_type ) {
 
 				$checked = in_array( $post_type, $enabled_posts ) ? 'checked="checked"' : '';
-				echo '<label for="' . $post_type . '"><input type="checkbox" id="' . $post_type . '" name="' . $args[0] . '[]" value="' . $post_type . '" ' . $checked . '/>' . ucwords( $post_type ) . '</label><br>';
+				echo '<label for="' . esc_attr( $post_type ) . '"><input type="checkbox" id="' . esc_attr( $post_type ) . '" name="' . esc_attr( $args[0] ) . '[]" value="' . esc_attr( $post_type ) . '" ' . esc_html( $checked ) . '/>' . esc_html( ucwords( $post_type ) ) . '</label><br>';
 			}
 
 		}
@@ -185,8 +185,8 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				$avg_rating_hide_status = 'checked';
 			}
 
-			echo '<label for="avg_rating_display"><input type="radio" id="avg_rating_display" name="avg_rating_display" value="show" ' . $avg_rating_show_status . ' />' . esc_html__( 'Show', 'stars-rating' ) . '</label>';
-			echo '<label for="avg_rating_display_no"><input type="radio" id="avg_rating_display_no" name="avg_rating_display" value="hide" ' . $avg_rating_hide_status . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
+			echo '<label for="avg_rating_display"><input type="radio" id="avg_rating_display" name="avg_rating_display" value="show" ' . esc_html( $avg_rating_show_status ) . ' />' . esc_html__( 'Show', 'stars-rating' ) . '</label>';
+			echo '<label for="avg_rating_display_no"><input type="radio" id="avg_rating_display_no" name="avg_rating_display" value="hide" ' . esc_html( $avg_rating_hide_status ) . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
 		}
 
 		public function require_rating_callback() {
@@ -200,8 +200,8 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				$require_rating_no = 'unchecked';
 			}
 
-			echo '<label for="require_rating"><input type="radio" id="require_rating" name="require_rating" value="yes" ' . $require_rating . ' />' . esc_html__( 'Yes', 'stars-rating' ) . '</label>';
-			echo '<label for="require_rating_no"><input type="radio" id="require_rating_no" name="require_rating" value="no" ' . $require_rating_no . ' />' . esc_html__( 'No', 'stars-rating' ) . '</label>';
+			echo '<label for="require_rating"><input type="radio" id="require_rating" name="require_rating" value="yes" ' . esc_html( $require_rating ) . ' />' . esc_html__( 'Yes', 'stars-rating' ) . '</label>';
+			echo '<label for="require_rating_no"><input type="radio" id="require_rating_no" name="require_rating" value="no" ' . esc_html( $require_rating_no ) . ' />' . esc_html__( 'No', 'stars-rating' ) . '</label>';
 		}
 
 		public function stars_style_callback() {
@@ -216,8 +216,8 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				$stars_style_regular = 'unchecked';
 			}
 
-			echo '<label for="stars_style_regular"><input type="radio" id="stars_style_regular" name="stars_style" value="regular" ' . $stars_style_regular . ' />' . esc_html__( 'Regular', 'stars-rating' ) . '</label>';
-			echo '<label for="stars_style_solid"><input type="radio" id="stars_style_solid" name="stars_style" value="solid" ' . $stars_style_solid . ' />' . esc_html__( 'Solid', 'stars-rating' ) . '</label>';
+			echo '<label for="stars_style_regular"><input type="radio" id="stars_style_regular" name="stars_style" value="regular" ' . esc_html( $stars_style_regular ) . ' />' . esc_html__( 'Regular', 'stars-rating' ) . '</label>';
+			echo '<label for="stars_style_solid"><input type="radio" id="stars_style_solid" name="stars_style" value="solid" ' . esc_html( $stars_style_solid ) . ' />' . esc_html__( 'Solid', 'stars-rating' ) . '</label>';
 		}
 
 		public function google_search_stars_callback() {
@@ -232,15 +232,15 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				$google_search_stars_show = 'unchecked';
 			}
 
-			echo '<label for="google_search_stars_show"><input type="radio" id="google_search_stars_show" name="google_search_stars" value="show" ' . $google_search_stars_show . ' />' . esc_html__( 'Show', 'stars-rating' ) . '</label>';
-			echo '<label for="google_search_stars_hide"><input type="radio" id="google_search_stars_hide" name="google_search_stars" value="hide" ' . $google_search_stars_hide . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
+			echo '<label for="google_search_stars_show"><input type="radio" id="google_search_stars_show" name="google_search_stars" value="show" ' . esc_html( $google_search_stars_show ) . ' />' . esc_html__( 'Show', 'stars-rating' ) . '</label>';
+			echo '<label for="google_search_stars_hide"><input type="radio" id="google_search_stars_hide" name="google_search_stars" value="hide" ' . esc_html( $google_search_stars_hide ) . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
 		}
 
 		public function google_search_stars_type_callback() {
 
 			$google_search_stars_type = get_option( 'google_search_stars_type' );
 
-			echo '<input type="text" id="google_search_stars_type" name="google_search_stars_type" value="' . esc_html( $google_search_stars_type ) . '" />';
+			echo '<input type="text" id="google_search_stars_type" name="google_search_stars_type" value="' . esc_attr( $google_search_stars_type ) . '" />';
 			?>
 			<p class="description"><?php esc_html_e( 'For example: Product, Service, Brand, Event', 'stars-rating' ) ?></p>
 			<?php
@@ -278,37 +278,42 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 		}
 
 		public function update_field_enabled_post_types( $new_value, $old_value ) {
-			$new_value = $_POST['enabled_post_types'];
 
-			return $new_value;
+			$post_types = isset( $_POST['enabled_post_types'] ) ? (array) $_POST['enabled_post_types'] : array(
+				'post',
+				'page'
+			);
+			$post_types = array_map( 'esc_attr', $post_types );
+
+			return $post_types;
 		}
 
 		public function update_field_require_rating( $new_value, $old_value ) {
-			$new_value = $_POST['require_rating'];
+			$new_value = esc_attr( $_POST['require_rating'] );
 
 			return $new_value;
 		}
 
 		public function update_field_avg_rating_display( $new_value, $old_value ) {
-			$new_value = $_POST['avg_rating_display'];
+			$new_value = esc_attr( $_POST['avg_rating_display'] );
 
 			return $new_value;
 		}
 
 		public function update_field_stars_style( $new_value, $old_value ) {
-			$new_value = $_POST['stars_style'];
+			$new_value = esc_attr( $_POST['stars_style'] );
 
 			return $new_value;
 		}
 
 		public function update_field_google_search_stars( $new_value, $old_value ) {
-			$new_value = $_POST['google_search_stars'];
+			$new_value = esc_attr( $_POST['google_search_stars'] );
 
 			return $new_value;
 		}
 
 		public function update_field_google_search_stars_type( $new_value, $old_value ) {
-			$new_value = $_POST['google_search_stars_type'];
+			$new_value = esc_attr( $_POST['google_search_stars_type'] );
 
 			return $new_value;
 		}

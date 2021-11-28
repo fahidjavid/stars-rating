@@ -109,7 +109,7 @@ if ( ! class_exists( 'Stars_Rating_Metabox' ) ) :
 					'<br /><label for="%1$s"><input type="checkbox" id="%1$s" name="%1$s" class="selectit" %2$s/> %3$s</label>',
 					$key,
 					checked( 1, $current, false ),
-					__( 'Allow <a href="https://wordpress.org/plugins/stars-rating/" target="_blank">Stars Rating</a> for comments on this page.', 'stars-rating' )
+					sprintf( esc_html__( 'Allow %s for comments on this page.', 'stars-rating' ), '<a href="https://wordpress.org/plugins/stars-rating/" target="_blank">Stars Rating</a>' )
 				);
 				?>
 			</div><!-- /.sr-inner-container -->

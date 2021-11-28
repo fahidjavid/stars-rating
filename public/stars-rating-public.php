@@ -298,7 +298,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 */
 		public function rating_stars( $rating ) {
 
-			$rating = absint( sround( $rating ) );
+			$rating = absint( round( $rating ) );
 
 			$output = '';
 

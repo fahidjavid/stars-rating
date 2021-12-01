@@ -151,7 +151,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 						$selected_for = 5;
 						for ( $i = 1; $i <= 5; $i ++ ) {
 							$selected = ( $i == $selected_for ) ? "selected" : "";
-							echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+							echo '<option value="' . esc_attr( $i ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $i ) . '</option>';
 						}
 						?>
 					</select>
@@ -262,7 +262,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			if ( $rating_stat ) {
 				echo '<div class="stars-avg-rating">';
-				echo $this->rating_stars( $rating_stat['avg'] );
+				echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
 				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
 				echo '</div>';
 			}
@@ -279,7 +279,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			if ( $rating_stat ) {
 				ob_start();
 				echo '<div class="stars-avg-rating">';
-				echo $this->rating_stars( $rating_stat['avg'] );
+				echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
 				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
 				echo '</div>';
 				$output = ob_get_clean();

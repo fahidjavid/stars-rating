@@ -202,7 +202,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 			if ( $rating = get_comment_meta( get_comment_ID(), 'rating', true ) ) {
-				$rating = '<p>' . $this->rating_stars( $rating ) . '</p>';
+				$rating = '<p>' . wp_kses_post( $this->rating_stars( $rating ) ) . '</p>';
 
 				return $comment . $rating;
 			} else {

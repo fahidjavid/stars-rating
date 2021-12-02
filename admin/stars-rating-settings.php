@@ -283,37 +283,37 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				'post',
 				'page'
 			);
-			$post_types = array_map( 'sanitize_option', $post_types );
+			$post_types = array_map( 'sanitize_text_field', $post_types );
 
 			return $post_types;
 		}
 
 		public function update_field_require_rating( $new_value, $old_value ) {
-			$new_value = sanitize_option( $_POST['require_rating'] );
+			$new_value = sanitize_text_field( $_POST['require_rating'] );
 
 			return $new_value;
 		}
 
 		public function update_field_avg_rating_display( $new_value, $old_value ) {
-			$new_value = sanitize_option( $_POST['avg_rating_display'] );
+			$new_value = sanitize_text_field( $_POST['avg_rating_display'] );
 
 			return $new_value;
 		}
 
 		public function update_field_stars_style( $new_value, $old_value ) {
-			$new_value = sanitize_option( $_POST['stars_style'] );
+			$new_value = sanitize_text_field( $_POST['stars_style'] );
 
 			return $new_value;
 		}
 
 		public function update_field_google_search_stars( $new_value, $old_value ) {
-			$new_value = sanitize_option( $_POST['google_search_stars'] );
+			$new_value = sanitize_text_field( $_POST['google_search_stars'] );
 
 			return $new_value;
 		}
 
 		public function update_field_google_search_stars_type( $new_value, $old_value ) {
-			$new_value = sanitize_option( $_POST['google_search_stars_type'] );
+			$new_value = sanitize_text_field( $_POST['google_search_stars_type'] );
 
 			return $new_value;
 		}

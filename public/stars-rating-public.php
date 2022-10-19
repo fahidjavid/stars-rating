@@ -24,16 +24,16 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		/**
 		 * Single instance of Class.
 		 *
-		 * @var Stars_Rating
 		 * @since 1.0.0
+		 * @var Stars_Rating
 		 */
 		protected static $_instance;
 
 		/**
 		 * Provides singleton instance.
 		 *
-		 * @return self instance
 		 * @since 1.0.0
+		 * @return self instance
 		 */
 		public static function instance() {
 			if ( is_null( self::$_instance ) ) {
@@ -46,8 +46,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		/**
 		 * Status of the stars rating for the current post type
 		 *
-		 * @return bool
 		 * @since 1.0.0
+		 * @return bool
 		 */
 		public static function status() {
 
@@ -55,7 +55,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$post_status   = get_post_meta( get_the_ID(), 'sr-comments-rating', true );
 
 			if ( ! is_array( $enabled_posts ) ) {
-				$enabled_posts = (array) $enabled_posts;
+				$enabled_posts = (array)$enabled_posts;
 			}
 
 			$status = ( in_array( get_post_type(), $enabled_posts ) && ( '0' !== $post_status ) ) ? true : false;
@@ -144,19 +144,19 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$require_rating = get_option( 'require_rating', 'no' );
 			$stars_style    = get_option( 'stars_style', 'regular' );
 			?>
-			<div id="stars-rating-review">
-				<div class="rating-plate stars-style-<?php echo sanitize_html_class( $stars_style ); ?>">
-					<select id="rate-it" class="require-<?php echo sanitize_html_class( $require_rating ); ?>" name="rating">
+            <div id="stars-rating-review">
+                <div class="rating-plate stars-style-<?php echo sanitize_html_class( $stars_style ); ?>">
+                    <select id="rate-it" class="require-<?php echo sanitize_html_class( $require_rating ); ?>" name="rating">
 						<?php
 						$selected_for = 5;
-						for ( $i = 1; $i <= 5; $i ++ ) {
+						for ( $i = 1; $i <= 5; $i++ ) {
 							$selected = ( $i == $selected_for ) ? "selected" : "";
 							echo '<option value="' . esc_attr( $i ) . '" ' . esc_attr( $selected ) . '>' . esc_html( $i ) . '</option>';
 						}
 						?>
-					</select>
-				</div>
-			</div>
+                    </select>
+                </div>
+            </div>
 			<?php
 		}
 
@@ -234,7 +234,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 				if ( ! empty( $rating ) ) {
 					$ratings[] = min( max( 1, $rating ), 5 );
-					$count ++;
+					$count++;
 				}
 			}
 
@@ -261,10 +261,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$rating_stat = $this->rating_stat();
 
 			if ( $rating_stat ) {
-				echo '<div class="stars-avg-rating">';
-				echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
-				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
-				echo '</div>';
+				$this->avg_rating_markup( $rating_stat );
 			}
 		}
 
@@ -278,16 +275,28 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			if ( $rating_stat ) {
 				ob_start();
-				echo '<div class="stars-avg-rating">';
-				echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
-				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
-				echo '</div>';
+				$this->avg_rating_markup( $rating_stat );
 				$output = ob_get_clean();
 
 				return $output;
 			}
 		}
 
+		/**
+		 * Average rating markup that used in shortcode and for default hook over comments form.
+		 *
+		 * @param $rating_stat
+		 *
+		 * @return void
+		 */
+		public function avg_rating_markup( $rating_stat ) {
+			echo '<div class="stars-avg-rating">';
+			echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
+			echo '<span class="stars-rating-text">';
+			echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
+			echo '</span>';
+			echo '</div>';
+		}
 
 		/**
 		 * Display rated stars based on given number of rating
@@ -307,12 +316,12 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				$stars_style = sanitize_html_class( get_option( 'stars_style', 'regular' ) );
 				$output      = '<span class="rating-stars">';
 
-				for ( $count = 1; $count <= $rating; $count ++ ) {
+				for ( $count = 1; $count <= $rating; $count++ ) {
 					$output .= "<i class='fa stars-style-{$stars_style} rated'></i>";
 				}
 
 				$unrated = 5 - $rating;
-				for ( $count = 1; $count <= $unrated; $count ++ ) {
+				for ( $count = 1; $count <= $unrated; $count++ ) {
 					$output .= "<i class='fa stars-style-{$stars_style}'></i>";
 				}
 

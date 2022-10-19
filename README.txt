@@ -39,6 +39,7 @@ Its main features are as follows:
 = 3.5.4
 * Added average rating fallback when there is no review
 * Improved average rating display markup for better control
+* Updated language file.
 * Tested plugin with WordPress 6.0.3
 
 = 3.5.3

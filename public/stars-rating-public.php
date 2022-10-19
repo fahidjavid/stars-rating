@@ -262,6 +262,8 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			if ( $rating_stat ) {
 				$this->avg_rating_markup( $rating_stat );
+			} else {
+				$this->avg_rating_markup( null );
 			}
 		}
 
@@ -290,11 +292,19 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 * @return void
 		 */
 		public function avg_rating_markup( $rating_stat ) {
+
 			echo '<div class="stars-avg-rating">';
-			echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
-			echo '<span class="stars-rating-text">';
-			echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
-			echo '</span>';
+			if ( null === $rating_stat ) {
+				echo wp_kses_post( $this->rating_stars( 0 ) );
+				echo '<span class="rating-text">';
+				echo esc_html__( 'Be the first to write a review', 'stars-rating' );
+				echo '</span>';
+			} else {
+				echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
+				echo '<span class="rating-text">';
+				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
+				echo '</span>';
+			}
 			echo '</div>';
 		}
 
@@ -311,10 +321,11 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			$output = '';
 
-			if ( ! empty( $rating ) ) {
 
-				$stars_style = sanitize_html_class( get_option( 'stars_style', 'regular' ) );
-				$output      = '<span class="rating-stars">';
+			$stars_style = sanitize_html_class( get_option( 'stars_style', 'regular' ) );
+			$output      = '<span class="rating-stars">';
+
+			if ( ! empty( $rating ) ) {
 
 				for ( $count = 1; $count <= $rating; $count++ ) {
 					$output .= "<i class='fa stars-style-{$stars_style} rated'></i>";
@@ -324,9 +335,14 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 				for ( $count = 1; $count <= $unrated; $count++ ) {
 					$output .= "<i class='fa stars-style-{$stars_style}'></i>";
 				}
-
-				$output .= '</span>';
+			} else {
+				for ( $count = 1; $count <= 5; $count++ ) {
+					$output .= "<i class='fa stars-style-{$stars_style}'></i>";
+				}
 			}
+
+			$output .= '</span>';
+
 
 			return $output;
 		}

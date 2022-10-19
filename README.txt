@@ -2,8 +2,8 @@
 Contributors: fahidjavid
 Tags: comments, rating, reviews, stars rating, comments vote, voting, shortcode
 Requires at least: 4.0
-Tested up to: 5.9.1
-Stable tag: 3.5.3
+Tested up to: 6.0.3
+Stable tag: 3.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,11 @@ Its main features are as follows:
 5. Shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
 
 == Changelog ==
+
+= 3.5.4
+* Added average rating fallback when there is no review
+* Improved average rating display markup for better control
+* Tested plugin with WordPress 6.0.3
 
 = 3.5.3
 * Tested plugin with WordPress 5.9.1

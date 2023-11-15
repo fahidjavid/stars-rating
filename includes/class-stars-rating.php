@@ -24,6 +24,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 
 		public function init_hooks() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
 		}
 
 		public function load_files() {
@@ -52,7 +53,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 			return self::$_instance;
 		}
 
-		public function load_admin_files() {
+		public function load_admin_files() { // TODO: define the path of the directories first like URLs.
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-settings.php';
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-metabox.php';
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-comments-column.php';
@@ -63,16 +64,67 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 		}
 
 		public function enqueue_admin_scripts() {
-			$plugin_url = WP_PLUGIN_URL;
+			// fontawesome
+			wp_enqueue_style(
+				'fontawesome',
+				PLUGIN_INCLUDE_URL . 'css/font-awesome.min.css',
+				array(),
+				'4.7.0'
+			);
 
-			$plugin_public_url = $plugin_url . '/stars-rating/includes/';
+			// stars rating admin
+			wp_enqueue_style(
+				'stars-rating-admin',
+				PLUGIN_ADMIN_URL . 'css/stars-rating-admin.css',
+				array(),
+				'1.0.0'
+			);
+
+		}
+
+		public function enqueue_public_scripts() {
+			if ( ! Stars_Rating_Public::status() ) {
+				return;
+			}
 
 			// fontawesome
 			wp_enqueue_style(
 				'fontawesome',
-				$plugin_public_url . 'css/font-awesome.min.css',
+				PLUGIN_INCLUDE_URL . 'css/font-awesome.min.css',
 				array(),
 				'4.7.0'
+			);
+
+			// bar rating theme
+			wp_enqueue_style(
+				'bar-rating-theme',
+				PLUGIN_PUBLIC_URL . 'css/fontawesome-stars.css',
+				array(),
+				'2.6.3'
+			);
+
+			// plugin css
+			wp_enqueue_style(
+				'stars-rating-public',
+				PLUGIN_PUBLIC_URL . 'css/stars-rating-public.css',
+				array(),
+				'1.0.0'
+			);
+
+			// bar rating
+			wp_enqueue_script(
+				'bar-rating',
+				PLUGIN_PUBLIC_URL . 'js/jquery.barrating.min.js',
+				array( 'jquery' ),
+				'1.2.1'
+			);
+
+			// register custom js
+			wp_enqueue_script(
+				'stars-rating-script',
+				PLUGIN_PUBLIC_URL . 'js/script.js',
+				array( 'jquery' ),
+				'1.0.0'
 			);
 		}
 

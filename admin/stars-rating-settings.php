@@ -53,7 +53,6 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			add_action( 'admin_init', array( $this, 'stars_rating_section' ) );
 			add_action( 'init', array( $this, 'update_settings_field' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_plugin_files' ) );
 		}
 
 		public function stars_rating_section() {
@@ -317,21 +316,6 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			return $new_value;
 		}
-
-		public function enqueue_plugin_files() {
-
-			$plugin_url       = WP_PLUGIN_URL;
-			$plugin_admin_url = $plugin_url . '/stars-rating/admin/';
-
-			// stars rating admin
-			wp_enqueue_style(
-				'stars-rating-admin',
-				$plugin_admin_url . 'css/stars-rating-admin.css',
-				array(),
-				'1.0.0'
-			);
-		}
-
 	}
 
 endif;

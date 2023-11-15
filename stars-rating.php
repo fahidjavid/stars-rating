@@ -15,6 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+const PLUGIN_ADMIN_URL   = WP_PLUGIN_URL . '/stars-rating/admin/';
+const PLUGIN_INCLUDE_URL = WP_PLUGIN_URL . '/stars-rating/includes/';
+const PLUGIN_PUBLIC_URL  = WP_PLUGIN_URL . '/stars-rating/public/';
+
 if ( ! function_exists( 'stars_rating_load_textdomain' ) ) {
 	/**
 	 * Load text domain for translation.
@@ -40,8 +44,8 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-stars-rating.php';
  *
  * Returns the main instance of Stars_Rating to prevent the need to use globals.
  *
- * @return Stars_Rating
  * @since  1.0.0
+ * @return Stars_Rating
  */
 function Stars_Rating() {
 	return Stars_Rating::instance();

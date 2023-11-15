@@ -90,7 +90,6 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			add_filter( 'preprocess_comment', array( $this, 'verify_comment_rating' ) );
 			add_action( 'comment_post', array( $this, 'save_comment_rating' ) );
 			add_filter( 'comment_text', array( $this, 'modify_comment' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_plugin_files' ) );
 
 			$avg_rating_display  = get_option( ' avg_rating_display', 'show' );
 			$google_search_stars = get_option( ' google_search_stars', 'show' );
@@ -306,57 +305,6 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				echo '</span>';
 			}
 			echo '</div>';
-		}
-
-		public function enqueue_plugin_files() {
-
-			if ( ! self::status() ) {
-				return;
-			}
-
-			$plugin_url = WP_PLUGIN_URL;
-
-			$plugin_public_url = $plugin_url . '/stars-rating/public/';
-
-			// fontawesome
-			wp_enqueue_style(
-				'fontawesome',
-				$plugin_public_url . 'css/font-awesome.min.css',
-				array(),
-				'4.7.0'
-			);
-
-			// bar rating theme
-			wp_enqueue_style(
-				'bar-rating-theme',
-				$plugin_public_url . 'css/fontawesome-stars.css',
-				array(),
-				'2.6.3'
-			);
-
-			// plugin css
-			wp_enqueue_style(
-				'stars-rating-public',
-				$plugin_public_url . 'css/stars-rating-public.css',
-				array(),
-				'1.0.0'
-			);
-
-			// bar rating
-			wp_enqueue_script(
-				'bar-rating',
-				$plugin_public_url . 'js/jquery.barrating.min.js',
-				array( 'jquery' ),
-				'1.2.1'
-			);
-
-			// register custom js
-			wp_enqueue_script(
-				'stars-rating-script',
-				$plugin_public_url . 'js/script.js',
-				array( 'jquery' ),
-				'1.0.0'
-			);
 		}
 	}
 

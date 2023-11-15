@@ -18,8 +18,8 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 		/**
 		 * Single instance of Class.
 		 *
-		 * @var Stars_Rating_Settings
 		 * @since 1.0.0
+		 * @var Stars_Rating_Settings
 		 */
 		protected static $_instance;
 
@@ -156,7 +156,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			$enabled_posts = get_option( 'enabled_post_types', array( 'post', 'page' ) );
 
 			if ( ! is_array( $enabled_posts ) ) {
-				$enabled_posts = (array) $enabled_posts;
+				$enabled_posts = (array)$enabled_posts;
 			}
 
 			$query = array(
@@ -242,7 +242,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			echo '<input type="text" id="google_search_stars_type" name="google_search_stars_type" value="' . esc_attr( $google_search_stars_type ) . '" />';
 			?>
-			<p class="description"><?php esc_html_e( 'For example: Product, Service, Brand, Event', 'stars-rating' ) ?></p>
+            <p class="description"><?php esc_html_e( 'For example: Product, Service, Brand, Event', 'stars-rating' ) ?></p>
 			<?php
 		}
 
@@ -279,7 +279,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function update_field_enabled_post_types( $new_value, $old_value ) {
 
-			$post_types = isset( $_POST['enabled_post_types'] ) ? (array) $_POST['enabled_post_types'] : array(
+			$post_types = isset( $_POST['enabled_post_types'] ) ? (array)$_POST['enabled_post_types'] : array(
 				'post',
 				'page'
 			);
@@ -342,8 +342,8 @@ endif;
  *
  * Returns the main instance of Stars_Rating_Settings to prevent the need to use globals.
  *
- * @return Stars_Rating_Settings
  * @since  1.0.0
+ * @return Stars_Rating_Settings
  */
 function Stars_Rating_Settings() {
 	return Stars_Rating_Settings::instance();

@@ -195,18 +195,18 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 		 * Add the comment rating (saved earlier) to the comment text
 		 * You can also output the comment rating values directly to the comments template
 		 */
-		public function modify_comment( $comment ) {
+		public function modify_comment( $comment_text ) {
 
 			if ( ! self::status() ) {
-				return $comment;
+				return $comment_text;
 			}
 
 			if ( $rating = get_comment_meta( get_comment_ID(), 'rating', true ) ) {
 				$rating = '<p>' . wp_kses_post( $this->rating_stars( $rating ) ) . '</p>';
 
-				return $comment . $rating;
+				return $comment_text . $rating;
 			} else {
-				return $comment;
+				return $comment_text;
 			}
 		}
 

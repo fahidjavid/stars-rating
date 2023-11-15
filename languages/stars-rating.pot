@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Stars Rating\n"
-"POT-Creation-Date: 2023-05-16 10:54+0500\n"
+"POT-Creation-Date: 2023-11-15 12:48+0500\n"
 "PO-Revision-Date: 2017-02-09 11:33+0500\n"
 "Last-Translator: \n"
 "Language-Team: Fahid Javid <fahidjavid@gmail.com>\n"
@@ -11,13 +11,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/stars-rating-metabox.php:84 admin/stars-rating-settings.php:63
+#: admin/stars-rating-comments-column.php:52 admin/stars-rating-metabox.php:84
+#: admin/stars-rating-settings.php:62
 msgid "Stars Rating"
 msgstr ""
 
@@ -26,78 +27,78 @@ msgstr ""
 msgid "Allow %s for comments on this page."
 msgstr ""
 
-#: admin/stars-rating-settings.php:70
+#: admin/stars-rating-settings.php:74
 msgid "Enabled Post Types"
 msgstr ""
 
-#: admin/stars-rating-settings.php:79
+#: admin/stars-rating-settings.php:83
 msgid "Require Rating Selection"
 msgstr ""
 
-#: admin/stars-rating-settings.php:88
+#: admin/stars-rating-settings.php:92
 msgid "Average Rating Above Comments Section"
 msgstr ""
 
-#: admin/stars-rating-settings.php:97
+#: admin/stars-rating-settings.php:101
 msgid "Stars Style"
 msgstr ""
 
-#: admin/stars-rating-settings.php:106
+#: admin/stars-rating-settings.php:110
 msgid "Stars Rating In Google Search Results"
 msgstr ""
 
-#: admin/stars-rating-settings.php:115
+#: admin/stars-rating-settings.php:119
 msgid "Type of Reviews In Google Search Results"
 msgstr ""
 
-#: admin/stars-rating-settings.php:124
+#: admin/stars-rating-settings.php:128
 msgid "Donate \"Stars Rating\" And Similar OpenSource Projects!"
 msgstr ""
 
-#: admin/stars-rating-settings.php:151
+#: admin/stars-rating-settings.php:155
 msgid "Check the post types on which you want to enable stars rating feature."
 msgstr ""
 
-#: admin/stars-rating-settings.php:188 admin/stars-rating-settings.php:235
+#: admin/stars-rating-settings.php:192 admin/stars-rating-settings.php:239
 msgid "Show"
 msgstr ""
 
-#: admin/stars-rating-settings.php:189 admin/stars-rating-settings.php:236
+#: admin/stars-rating-settings.php:193 admin/stars-rating-settings.php:240
 msgid "Hide"
 msgstr ""
 
-#: admin/stars-rating-settings.php:203
+#: admin/stars-rating-settings.php:207
 msgid "Yes"
 msgstr ""
 
-#: admin/stars-rating-settings.php:204
+#: admin/stars-rating-settings.php:208
 msgid "No"
 msgstr ""
 
-#: admin/stars-rating-settings.php:219
+#: admin/stars-rating-settings.php:223
 msgid "Regular"
 msgstr ""
 
-#: admin/stars-rating-settings.php:220
+#: admin/stars-rating-settings.php:224
 msgid "Solid"
 msgstr ""
 
-#: admin/stars-rating-settings.php:245
+#: admin/stars-rating-settings.php:249
 msgid "For example: Product, Service, Brand, Event"
 msgstr ""
 
-#: public/stars-rating-public.php:170
+#: public/stars-rating-public.php:169
 msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
 msgstr ""
 
-#: public/stars-rating-public.php:300
+#: public/stars-rating-public.php:299
 msgid "Be the first to write a review"
 msgstr ""
 
-#: public/stars-rating-public.php:305
+#: public/stars-rating-public.php:304
 msgid "based on"
 msgstr ""
 
-#: public/stars-rating-public.php:305
+#: public/stars-rating-public.php:304
 msgid "reviews"
 msgstr ""

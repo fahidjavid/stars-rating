@@ -61,7 +61,12 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				'stars_rating_section',
 				esc_html__( 'Stars Rating', 'stars-rating' ),
 				array( $this, 'stars_rating_section_callback' ),
-				'discussion'
+				'discussion',
+                array(
+	                'before_section' => '<div style="background: #80808021; padding: 20px; border-radius: 10px;">',
+	                'after_section'  => '</div>',
+	                'section_class'  => 'stars-rating-settings', // TODO: this class is not applying, it can be WP contribution to fix.
+                )
 			);
 
 			add_settings_field(

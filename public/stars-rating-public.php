@@ -14,12 +14,6 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 	 * @since 1.0.0
 	 */
 	final class Stars_Rating_Public {
-		/**
-		 * Stars Rating Version
-		 *
-		 * @var string
-		 */
-		public $version = '1.0.0';
 
 		/**
 		 * Single instance of Class.

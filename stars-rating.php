@@ -33,7 +33,7 @@ if ( ! function_exists( 'stars_rating_load_textdomain' ) ) {
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require_once plugin_dir_path( __FILE__ ) . 'includes/stars-rating-include.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-stars-rating.php';
 
 /**
  * Main instance of Stars_Rating.

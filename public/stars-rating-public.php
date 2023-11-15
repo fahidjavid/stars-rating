@@ -95,10 +95,10 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$avg_rating_display  = get_option( ' avg_rating_display', 'show' );
 			$google_search_stars = get_option( ' google_search_stars', 'show' );
 
-			if ( 'show' == $avg_rating_display ) {
+			if ( 'show' === $avg_rating_display && comments_open() ) { // Check if average rating and comments are enabled for the post/page
 				add_filter( "comments_template", array( $this, 'rating_average_markup' ) );
 			}
-			if ( 'show' == $google_search_stars ) {
+			if ( 'show' === $google_search_stars ) {
 				add_action( 'wp_head', array( $this, 'add_reviews_schema' ) );
 			}
 		}

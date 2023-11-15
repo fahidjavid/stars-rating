@@ -20,11 +20,25 @@ Its main features are as follows:
 * An option to display stars rating in Google search results.
 * Choose from two different rating stars styles according to your site look.
 * Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
+* See each review stars rating on the comments page (backend)
 
 == Installation ==
 
-1. After installing the plugin go to the <strong>Settings > Discussion</strong> page (at the very bottom) and enable desired post types for the Stars Rating.
-1. That's it :)
+### Method 1: WordPress Admin Interface
+
+1. Navigate to your WordPress dashboard and go to **Plugins > Add New**.
+2. In the search bar, enter "Stars Rating" and press Enter.
+3. Look for the plugin in the search results and click on the **Install Now** button.
+4. Once installed, click on the **Activate** button to activate the plugin.
+
+### Method 2: FTP Upload
+
+1. Download the plugin ZIP file and extract it.
+2. Connect to your server using an FTP client (e.g., FileZilla, Cyberduck).
+3. Upload the extracted plugin folder to the `/wp-content/plugins/` directory on your server.
+4. Activate the plugin through the WordPress dashboard in **Plugins > Installed Plugins**.
+
+<strong>Note:</strong> After installing the plugin go to the <strong>Settings > Discussion</strong> page (at the very bottom) and enable desired post types for the Stars Rating.
 
 == Screenshots ==
 
@@ -33,6 +47,7 @@ Its main features are as follows:
 3. Comments with their ratings and an average rating above comments.
 4. Rating option in comment form.
 5. Shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
+6. Stars Rating display on the comments page (backend)
 
 == Changelog ==
 

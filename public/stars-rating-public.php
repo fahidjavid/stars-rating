@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( 'Stars_Rating' ) ) :
+if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 	/**
 	 * Class Stars_Rating
 	 *
@@ -13,7 +13,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 	 *
 	 * @since 1.0.0
 	 */
-	final class Stars_Rating {
+	final class Stars_Rating_Public {
 		/**
 		 * Stars Rating Version
 		 *
@@ -95,7 +95,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			$avg_rating_display  = get_option( ' avg_rating_display', 'show' );
 			$google_search_stars = get_option( ' google_search_stars', 'show' );
 
-			if ( 'show' === $avg_rating_display && comments_open() ) { // Check if average rating and comments are enabled for the post/page
+			if ( 'show' === $avg_rating_display ) { // Check if average rating and comments are enabled for the post/page
 				add_filter( "comments_template", array( $this, 'rating_average_markup' ) );
 			}
 			if ( 'show' === $google_search_stars ) {
@@ -202,7 +202,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 			}
 
 			if ( $rating = get_comment_meta( get_comment_ID(), 'rating', true ) ) {
-				$rating = '<p>' . wp_kses_post( $this->rating_stars( $rating ) ) . '</p>';
+				$rating = '<p>' . wp_kses_post( Stars_Rating::get_rating_stars_markup( $rating ) ) . '</p>';
 
 				return $comment_text . $rating;
 			} else {
@@ -262,7 +262,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			if ( $rating_stat ) {
 				$this->avg_rating_markup( $rating_stat );
-			} else {
+			} else if ( comments_open() ) {
 				$this->avg_rating_markup( null );
 			}
 		}
@@ -295,56 +295,17 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 
 			echo '<div class="stars-avg-rating">';
 			if ( null === $rating_stat ) {
-				echo wp_kses_post( $this->rating_stars( 0 ) );
+				echo wp_kses_post( Stars_rating::get_rating_stars_markup( 0 ) );
 				echo '<span class="rating-text">';
 				echo esc_html__( 'Be the first to write a review', 'stars-rating' );
 				echo '</span>';
 			} else {
-				echo wp_kses_post( $this->rating_stars( $rating_stat['avg'] ) );
+				echo wp_kses_post( Stars_Rating::get_rating_stars_markup( $rating_stat['avg'] ) );
 				echo '<span class="rating-text">';
 				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
 				echo '</span>';
 			}
 			echo '</div>';
-		}
-
-		/**
-		 * Display rated stars based on given number of rating
-		 *
-		 * @param int
-		 *
-		 * @return string
-		 */
-		public function rating_stars( $rating ) {
-
-			$rating = absint( round( $rating ) );
-
-			$output = '';
-
-
-			$stars_style = sanitize_html_class( get_option( 'stars_style', 'regular' ) );
-			$output      = '<span class="rating-stars">';
-
-			if ( ! empty( $rating ) ) {
-
-				for ( $count = 1; $count <= $rating; $count++ ) {
-					$output .= "<i class='fa stars-style-{$stars_style} rated'></i>";
-				}
-
-				$unrated = 5 - $rating;
-				for ( $count = 1; $count <= $unrated; $count++ ) {
-					$output .= "<i class='fa stars-style-{$stars_style}'></i>";
-				}
-			} else {
-				for ( $count = 1; $count <= 5; $count++ ) {
-					$output .= "<i class='fa stars-style-{$stars_style}'></i>";
-				}
-			}
-
-			$output .= '</span>';
-
-
-			return $output;
 		}
 
 		public function enqueue_plugin_files() {
@@ -400,3 +361,18 @@ if ( ! class_exists( 'Stars_Rating' ) ) :
 	}
 
 endif;
+
+/**
+ * Main instance of Stars_Rating.
+ *
+ * Returns the main instance of Stars_Rating to prevent the need to use globals.
+ *
+ * @since  1.0.0
+ * @return Stars_Rating
+ */
+function Stars_Rating_Public() {
+	return Stars_Rating_Public::instance();
+}
+
+// Get Stars_Rating Running.
+Stars_Rating_Public();

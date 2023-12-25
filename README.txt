@@ -27,16 +27,16 @@ Its main features are as follows:
 ### Method 1: WordPress Admin Interface
 
 1. Navigate to your WordPress dashboard and go to **Plugins > Add New**.
-2. In the search bar, enter "Stars Rating" and press Enter.
+2. In the search bar, enter **Stars Rating** and press Enter.
 3. Look for the plugin in the search results and click on the **Install Now** button.
 4. Once installed, click on the **Activate** button to activate the plugin.
 
 ### Method 2: FTP Upload
 
 1. Download the plugin ZIP file and extract it.
-2. Connect to your server using an FTP client (e.g., FileZilla, Cyberduck).
+2. Connect to your server using an FTP client (e.g., FileZilla, Cyberduck or cPanel).
 3. Upload the extracted plugin folder to the `/wp-content/plugins/` directory on your server.
-4. Activate the plugin through the WordPress dashboard in **Plugins > Installed Plugins**.
+4. Activate the plugin through the WordPress dashboard from **Plugins > Installed Plugins** page.
 
 <strong>Note:</strong> After installing the plugin go to the <strong>Settings > Discussion</strong> page (at the very bottom) and enable desired post types for the Stars Rating.
 

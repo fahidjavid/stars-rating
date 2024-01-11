@@ -137,23 +137,18 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			$require_rating = get_option( 'require_rating', 'no' );
 			$stars_style    = get_option( 'stars_style', 'regular' );
 			?>
-            <!--<div class="low-rating-alert-wrap">-->
-            <!--    <div class="low-rating-alert">-->
-            <!--        We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us so we can help resolve your issue-->
-            <!--    </div>-->
-            <!--</div>-->
 
             <!-- Dark Overlay -->
-            <div class="overlay"></div>
+            <div class="low-rating-alert-overlay"></div>
 
             <!-- Popup Dialog -->
-            <div class="popup">
+            <div class="low-rating-alert-wrap">
                 <i class="fa fa-frown-o" aria-hidden="true"></i>
-
                 <p>We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us so we can help resolve your issue</p>
-                <a id="noBtn">Post Review</a>
-                <a id="yesBtn">Contact Us</a>
+                <a id="post-rating">Post Review</a>
+                <a id="contact-before-rating">Contact Us</a>
             </div>
+
             <div id="stars-rating-review">
                 <div class="rating-plate stars-style-<?php echo sanitize_html_class( $stars_style ); ?>">
                     <select id="rate-it" class="require-<?php echo sanitize_html_class( $require_rating ); ?>" name="rating">

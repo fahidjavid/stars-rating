@@ -48,11 +48,7 @@
 }
 
 /*** Lower Rating Alert ***/
-.low-rating-alert-wrap {
-
-}
-
-.overlay {
+.low-rating-alert-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -62,7 +58,7 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.popup {
+.low-rating-alert-wrap {
     max-width: 500px;
     display: none;
     position: fixed;
@@ -74,16 +70,16 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
 }
 
-.popup p {
+.low-rating-alert-wrap p {
     margin: 0 0 30px;
 }
 
-.popup a {
-    padding: 5px 10px;
-    margin: 0 10px;
+.low-rating-alert-wrap a {
+    padding: 8px 14px;
+    margin: 0 5px;
     cursor: pointer;
     background: #1dbf73;
     border-radius: 4px;
@@ -91,19 +87,19 @@
     color: white;
 }
 
-.popup a:hover {
+.low-rating-alert-wrap a:hover {
     background: #00a32a;
 }
 
-.popup #noBtn {
+.low-rating-alert-wrap #post-rating {
     background: #b94a48;
 }
 
-.popup #noBtn:hover {
+.low-rating-alert-wrap #contact-before-rating:hover {
     background: #be3631;
 }
 
-.popup i {
+.low-rating-alert-wrap i {
     font-size: 50px;
     color: orange;
     margin-bottom: 20px;

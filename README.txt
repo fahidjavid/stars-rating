@@ -2,8 +2,8 @@
 Contributors: fahidjavid
 Tags: comments, rating, reviews, stars rating, comments vote, voting, shortcode
 Requires at least: 4.0
-Tested up to: 6.4.1
-Stable tag: 4.0.0
+Tested up to: 6.4.2
+Stable tag: 4.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,8 +19,10 @@ Its main features are as follows:
 * Also, allows you to enable/disable stars rating feature for the posts and pages individually.
 * An option to display stars rating in Google search results.
 * Choose from two different rating stars styles according to your site look.
-* Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
-* See each review stars rating on the comments page (backend)
+* Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page.
+* See each review stars rating on the comments page (backend).
+* Enhanced SEO with structured data for standout reviews in Google with "Google Review Schema" integration.
+* Preempt negativity with the "Negative Rating Alert" feature, promoting issue resolution before reviews are posted.
 
 == Installation ==
 
@@ -50,6 +52,12 @@ Its main features are as follows:
 6. Stars Rating display on the comments page (backend)
 
 == Changelog ==
+
+= 4.0.1
+* Added "Negative Rating Alert" system to foster positive feedback
+* Improved "Google Review Schema" display upon reviews availability
+* Updated language POT file
+* Tested plugin with WordPress 6.4.2
 
 = 4.0.0
 * Improved plugin resources management

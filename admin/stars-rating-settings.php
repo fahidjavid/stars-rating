@@ -62,11 +62,11 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				esc_html__( 'Stars Rating', 'stars-rating' ),
 				array( $this, 'stars_rating_section_callback' ),
 				'discussion',
-                array(
-	                'before_section' => '<div style="background: #80808021; padding: 20px; border-radius: 10px;">',
-	                'after_section'  => '</div>',
-	                'section_class'  => 'stars-rating-settings', // TODO: this class is not applying, it can be WP contribution to fix.
-                )
+				array(
+					'before_section' => '<div style="background: #80808021; padding: 20px; border-radius: 10px;">',
+					'after_section'  => '</div>',
+					'section_class'  => 'stars-rating-settings', // TODO: this class is not applying, it can be WP contribution to fix.
+				)
 			);
 
 			add_settings_field(
@@ -112,6 +112,15 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				'discussion',
 				'stars_rating_section',
 				array( 'google_search_stars' )
+			);
+
+			add_settings_field(
+				'negative_rating_alert',
+				esc_html__( 'Enable Negative Rating Alert', 'stars-rating' ),
+				array( $this, 'negative_rating_alert_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'negative_rating_alert' )
 			);
 
 			add_settings_field(
@@ -238,6 +247,22 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			echo '<label for="google_search_stars_show"><input type="radio" id="google_search_stars_show" name="google_search_stars" value="show" ' . esc_html( $google_search_stars_show ) . ' />' . esc_html__( 'Show', 'stars-rating' ) . '</label>';
 			echo '<label for="google_search_stars_hide"><input type="radio" id="google_search_stars_hide" name="google_search_stars" value="hide" ' . esc_html( $google_search_stars_hide ) . ' />' . esc_html__( 'Hide', 'stars-rating' ) . '</label>';
+		}
+
+		public function negative_rating_alert_callback() {
+
+			$negative_rating_alert = get_option( 'negative_rating_alert', 'disable' );
+
+			$negative_rating_alert_enabled  = 'checked';
+			$negative_rating_alert_disabled = 'unchecked';
+
+			if ( 'disable' == $negative_rating_alert ) {
+				$negative_rating_alert_enabled  = 'unchecked';
+				$negative_rating_alert_disabled = 'checked';
+			}
+
+			echo '<label for="negative_rating_alert_enable"><input type="radio" id="negative_rating_alert_enable" name="negative_rating_alert" value="enable" ' . esc_html( $negative_rating_alert_enabled ) . ' />' . esc_html__( 'Enable', 'stars-rating' ) . '</label>';
+			echo '<label for="negative_rating_alert_disable"><input type="radio" id="negative_rating_alert_disable" name="negative_rating_alert" value="disable" ' . esc_html( $negative_rating_alert_disabled ) . ' />' . esc_html__( 'Disable', 'stars-rating' ) . '</label>';
 		}
 
 		public function google_search_stars_type_callback() {

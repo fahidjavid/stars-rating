@@ -14,8 +14,6 @@
                 initialRating: 5,
                 onSelect: function (value, text, event) {
 
-                    console.log(value); // TODO: remove this line.
-
                     if (event !== null) {
 
                         submitButton.addClass('reviewed');
@@ -36,10 +34,32 @@
                 }
 
                 if(submitButton.hasClass('lower-rating')){
-                    alert('we’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us so we can help resolve your issue!');
-                    submitButton.removeClass('lower-rating');
+                    openPopup();
                     return false;
                 }
+            });
+
+            // Show the popup and overlay
+            function openPopup() {
+                $(".low-rating-alert-overlay, .low-rating-alert-wrap").fadeIn();
+            }
+
+            // Close the popup and overlay
+            function closePopup() {
+                $(".low-rating-alert-overlay, .low-rating-alert-wrap").fadeOut();
+            }
+
+            $("#post-rating").on("click", function () {
+                submitButton.removeClass('lower-rating');
+                submitButton.trigger('click');
+            });
+
+            $(".low-rating-alert-overlay").on("click", function () {
+                closePopup();
+            });
+
+            $("#contact-before-rating").on("click", function () {
+                console.log("User clicked contact");
             });
         } else {
             ratingField.barrating({
@@ -49,39 +69,17 @@
 
         }
 
-
-        // Show the popup and overlay
-        function openPopup() {
-            $(".overlay, .popup").fadeIn();
-        }
-
-        // Close the popup and overlay
-        function closePopup() {
-            $(".overlay, .popup").fadeOut();
-        }
-
-        // Trigger the popup on button click
-        // $("#openPopupBtn").on("click", function () {
-        // });
-        openPopup();
-
-        // Close the popup on "No" button click
-        $("#noBtn").on("click", function () {
-            closePopup();
-            // Do something when "No" is clicked
-            console.log("User clicked No");
-        });
-
-        // Close the popup on overlay click
-        $(".overlay").on("click", function () {
-            closePopup();
-        });
-
-        // Trigger some action on "Yes" button click
-        $("#yesBtn").on("click", function () {
-            // Do something when "Yes" is clicked
-            console.log("User clicked Yes");
-        });
+        // TODO: 3 is selected for the low rating alert.
+        // TODO: rating is being posted above 3, do nothing
+        // TODO: rating is being posted lower or = 3 then alert
+        // TODO: user click on contact us will go to the contact page with given link
+        // TODO: user click on post review, review will be posted
+        // TODO: user click on the overlay or close button then nothing happens
+        // TODO: display rating alert markup only if value is given to alert
+        // TODO: improve ids and classes of new markup
+        // TODO: why comment fields are so thin
+        // TODO: please select a rating should also be a nice popup, can be added in next version
+        // TODO: buy me a coffee should be by the buy me coffee service
 
     });
 })(jQuery);

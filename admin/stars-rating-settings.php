@@ -52,7 +52,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 		public function init_hooks() {
 
 			add_action( 'admin_init', array( $this, 'stars_rating_section' ) );
-//			add_action( 'init', array( $this, 'update_settings_field' ) );
+			add_action( 'init', array( $this, 'update_settings_field' ) );
 		}
 
 		public function stars_rating_section() {

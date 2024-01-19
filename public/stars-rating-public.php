@@ -134,8 +134,10 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				return;
 			}
 
-			$require_rating = get_option( 'require_rating', 'no' );
-			$stars_style    = get_option( 'stars_style', 'regular' );
+			$require_rating        = get_option( 'require_rating', 'no' );
+			$negative_alert = get_option( 'sr_negative_rating_alert', 'disable' );
+			$negative_threshold = get_option( 'sr_negative_rating_threshold', 0 );
+			$stars_style           = get_option( 'stars_style', 'regular' );
 			?>
 
             <!-- Dark Overlay -->
@@ -149,9 +151,13 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
                 <a id="contact-before-rating">Contact Us</a>
             </div>
 
+			<?php
+			echo $negative_alert . ' ' . $negative_threshold;
+			?>
+
             <div id="stars-rating-review">
                 <div class="rating-plate stars-style-<?php echo sanitize_html_class( $stars_style ); ?>">
-                    <select id="rate-it" class="require-<?php echo sanitize_html_class( $require_rating ); ?>" name="rating">
+                    <select id="rate-it" class="require-<?php echo sanitize_html_class( $require_rating ); ?> negative-alert-<?php echo sanitize_html_class( $negative_alert ); ?>" data-threshold="<?php echo sanitize_html_class( $negative_threshold ); ?>" name="rating">
 						<?php
 						$selected_for = 5;
 						for ( $i = 1; $i <= 5; $i++ ) {

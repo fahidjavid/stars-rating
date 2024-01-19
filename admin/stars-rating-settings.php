@@ -294,7 +294,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			echo '<input type="text" id="google_search_stars_type" name="google_search_stars_type" value="' . esc_attr( $google_search_stars_type ) . '" />';
 			?>
-            <p class="description"><?php esc_html_e( 'For example: Product, Service, Brand, Event', 'stars-rating' ) ?></p>
+            <p class="description"><?php esc_html_e( 'For example: Product, Recipe, Book, Course etc.', 'stars-rating' ) ?> <a href="https://developers.google.com/search/docs/appearance/structured-data/review-snippet" target="_blank"><?php esc_html_e('For more details click here.', 'stars-rating'); ?></a></p>
 			<?php
 		}
 

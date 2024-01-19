@@ -139,27 +139,28 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			$negative_threshold = get_option( 'sr_negative_rating_threshold', 0 );
 			$negative_contact   = get_option( 'sr_negative_rating_contact_url' );
 			$stars_style        = get_option( 'stars_style', 'regular' );
-			?>
 
-            <!-- Dark Overlay -->
-            <div class="low-rating-alert-overlay"></div>
 
-            <!-- Popup Dialog -->
-            <div class="low-rating-alert-wrap">
-                <i class="fa fa-frown-o" aria-hidden="true"></i>
-                <p>We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us so we can help resolve your issue</p>
-                <a id="post-rating">Post Review</a>
-				<?php
-				if ( ! empty( $negative_contact ) ) {
-					?>
-                    <a id="contact-before-rating" href="<?php echo esc_url( $negative_contact ); ?>">Contact Us</a>
-					<?php
-				}
+			if ( 'enable' === $negative_alert ) {
 				?>
-            </div>
+                <!-- Dark Overlay -->
+                <div class="low-rating-alert-overlay"></div>
 
-			<?php
-			echo $negative_alert . ' ' . $negative_threshold;
+                <!-- Popup Dialog -->
+                <div class="low-rating-alert-wrap">
+                    <i class="fa fa-frown-o" aria-hidden="true"></i>
+                    <p><?php esc_html_e( 'We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us, so we can help resolve your issue.', 'stars-rating' ); ?></p>
+                    <a id="post-rating"><?php esc_html_e( 'Post Review', 'stars-rating' ); ?></a>
+					<?php
+					if ( ! empty( $negative_contact ) ) {
+						?>
+                        <a id="contact-before-rating" href="<?php echo esc_url( $negative_contact ); ?>"><?php esc_html_e( 'Contact Us', 'stars-rating' ); ?></a>
+						<?php
+					}
+					?>
+                </div>
+				<?php
+			}
 			?>
 
             <div id="stars-rating-review">

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Stars Rating\n"
-"POT-Creation-Date: 2023-11-15 12:48+0500\n"
+"POT-Creation-Date: 2024-01-20 01:02+0500\n"
 "PO-Revision-Date: 2017-02-09 11:33+0500\n"
 "Last-Translator: \n"
 "Language-Team: Fahid Javid <fahidjavid@gmail.com>\n"
@@ -52,53 +52,97 @@ msgid "Type of Reviews In Google Search Results"
 msgstr ""
 
 #: admin/stars-rating-settings.php:128
-msgid "Donate \"Stars Rating\" And Similar OpenSource Projects!"
+msgid "Enable Negative Rating Alert"
+msgstr ""
+
+#: admin/stars-rating-settings.php:137
+msgid "Negative Rating Threshold for Alert"
+msgstr ""
+
+#: admin/stars-rating-settings.php:146
+msgid "Contact Before Negative Rating URL"
 msgstr ""
 
 #: admin/stars-rating-settings.php:155
+msgid "Donate \"Stars Rating\" And Similar OpenSource Projects!"
+msgstr ""
+
+#: admin/stars-rating-settings.php:187
 msgid "Check the post types on which you want to enable stars rating feature."
 msgstr ""
 
-#: admin/stars-rating-settings.php:192 admin/stars-rating-settings.php:239
+#: admin/stars-rating-settings.php:224 admin/stars-rating-settings.php:271
 msgid "Show"
 msgstr ""
 
-#: admin/stars-rating-settings.php:193 admin/stars-rating-settings.php:240
+#: admin/stars-rating-settings.php:225 admin/stars-rating-settings.php:272
 msgid "Hide"
 msgstr ""
 
-#: admin/stars-rating-settings.php:207
+#: admin/stars-rating-settings.php:239
 msgid "Yes"
 msgstr ""
 
-#: admin/stars-rating-settings.php:208
+#: admin/stars-rating-settings.php:240
 msgid "No"
 msgstr ""
 
-#: admin/stars-rating-settings.php:223
+#: admin/stars-rating-settings.php:255
 msgid "Regular"
 msgstr ""
 
-#: admin/stars-rating-settings.php:224
+#: admin/stars-rating-settings.php:256
 msgid "Solid"
 msgstr ""
 
-#: admin/stars-rating-settings.php:249
+#: admin/stars-rating-settings.php:287
+msgid "Enable"
+msgstr ""
+
+#: admin/stars-rating-settings.php:288
+msgid "Disable"
+msgstr ""
+
+#: admin/stars-rating-settings.php:297
 msgid "For example: Product, Service, Brand, Event"
 msgstr ""
 
-#: public/stars-rating-public.php:169
+#: admin/stars-rating-settings.php:307
+msgid "For example: 3"
+msgstr ""
+
+#: admin/stars-rating-settings.php:308
+msgid "Alert will be displayed if rating is selected equal or below the given threshold number."
+msgstr ""
+
+#: admin/stars-rating-settings.php:318
+msgid "For example: your website contact page url"
+msgstr ""
+
+#: public/stars-rating-public.php:155
+msgid "We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us, so we can help resolve your issue."
+msgstr ""
+
+#: public/stars-rating-public.php:156
+msgid "Post Review"
+msgstr ""
+
+#: public/stars-rating-public.php:160
+msgid "Contact Us"
+msgstr ""
+
+#: public/stars-rating-public.php:192
 msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
 msgstr ""
 
-#: public/stars-rating-public.php:299
+#: public/stars-rating-public.php:322
 msgid "Be the first to write a review"
 msgstr ""
 
-#: public/stars-rating-public.php:304
+#: public/stars-rating-public.php:327
 msgid "based on"
 msgstr ""
 
-#: public/stars-rating-public.php:304
+#: public/stars-rating-public.php:327
 msgid "reviews"
 msgstr ""

@@ -52,7 +52,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 		public function init_hooks() {
 
 			add_action( 'admin_init', array( $this, 'stars_rating_section' ) );
-			add_action( 'init', array( $this, 'update_settings_field' ) );
+//			add_action( 'init', array( $this, 'update_settings_field' ) );
 		}
 
 		public function stars_rating_section() {
@@ -115,21 +115,39 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			);
 
 			add_settings_field(
-				'negative_rating_alert',
-				esc_html__( 'Enable Negative Rating Alert', 'stars-rating' ),
-				array( $this, 'negative_rating_alert_callback' ),
-				'discussion',
-				'stars_rating_section',
-				array( 'negative_rating_alert' )
-			);
-
-			add_settings_field(
 				'google_search_stars_type',
 				esc_html__( 'Type of Reviews In Google Search Results', 'stars-rating' ),
 				array( $this, 'google_search_stars_type_callback' ),
 				'discussion',
 				'stars_rating_section',
 				array( 'google_search_stars_type' )
+			);
+
+			add_settings_field(
+				'sr_negative_rating_alert',
+				esc_html__( 'Enable Negative Rating Alert', 'stars-rating' ),
+				array( $this, 'negative_rating_alert_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'sr_negative_rating_alert' )
+			);
+
+			add_settings_field(
+				'sr_negative_rating_threshold',
+				esc_html__( 'Negative Rating Threshold for Alert', 'stars-rating' ),
+				array( $this, 'negative_rating_threshold_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'sr_negative_rating_threshold' )
+			);
+
+			add_settings_field(
+				'sr_negative_rating_contact_url',
+				esc_html__( 'Contact Before Negative Rating URL', 'stars-rating' ),
+				array( $this, 'negative_rating_contact_url_callback' ),
+				'discussion',
+				'stars_rating_section',
+				array( 'sr_negative_rating_contact_url' )
 			);
 
 			add_settings_field(
@@ -158,6 +176,11 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 			// register google_search_stars_type field
 			register_setting( 'discussion', 'google_search_stars_type', 'esc_attr' );
+
+            // register negative rating fields
+			register_setting( 'discussion', 'sr_negative_rating_alert', 'esc_attr' );
+			register_setting( 'discussion', 'sr_negative_rating_threshold', 'intVal' );
+			register_setting( 'discussion', 'sr_negative_rating_contact_url', 'esc_url' );
 		}
 
 		public function stars_rating_section_callback() {
@@ -251,7 +274,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function negative_rating_alert_callback() {
 
-			$negative_rating_alert = get_option( 'negative_rating_alert', 'disable' );
+			$negative_rating_alert = get_option( 'sr_negative_rating_alert', 'disable' );
 
 			$negative_rating_alert_enabled  = 'checked';
 			$negative_rating_alert_disabled = 'unchecked';
@@ -261,8 +284,8 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				$negative_rating_alert_disabled = 'checked';
 			}
 
-			echo '<label for="negative_rating_alert_enable"><input type="radio" id="negative_rating_alert_enable" name="negative_rating_alert" value="enable" ' . esc_html( $negative_rating_alert_enabled ) . ' />' . esc_html__( 'Enable', 'stars-rating' ) . '</label>';
-			echo '<label for="negative_rating_alert_disable"><input type="radio" id="negative_rating_alert_disable" name="negative_rating_alert" value="disable" ' . esc_html( $negative_rating_alert_disabled ) . ' />' . esc_html__( 'Disable', 'stars-rating' ) . '</label>';
+			echo '<label for="negative_rating_alert_enable"><input type="radio" id="negative_rating_alert_enable" name="sr_negative_rating_alert" value="enable" ' . esc_html( $negative_rating_alert_enabled ) . ' />' . esc_html__( 'Enable', 'stars-rating' ) . '</label>';
+			echo '<label for="negative_rating_alert_disable"><input type="radio" id="negative_rating_alert_disable" name="sr_negative_rating_alert" value="disable" ' . esc_html( $negative_rating_alert_disabled ) . ' />' . esc_html__( 'Disable', 'stars-rating' ) . '</label>';
 		}
 
 		public function google_search_stars_type_callback() {
@@ -272,6 +295,27 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			echo '<input type="text" id="google_search_stars_type" name="google_search_stars_type" value="' . esc_attr( $google_search_stars_type ) . '" />';
 			?>
             <p class="description"><?php esc_html_e( 'For example: Product, Service, Brand, Event', 'stars-rating' ) ?></p>
+			<?php
+		}
+
+		public function negative_rating_threshold_callback() {
+
+			$negative_rating_threshold = get_option( 'sr_negative_rating_threshold' );
+
+			echo '<input type="text" id="negative_rating_threshold" name="sr_negative_rating_threshold" value="' . esc_attr( $negative_rating_threshold ) . '" />';
+			?>
+            <p class="description"><?php esc_html_e( 'For example: 3', 'stars-rating' ) ?></p>
+            <p class="description"><?php esc_html_e( 'Alert will be displayed if rating is selected equal or below the given threshold number.', 'stars-rating' ) ?></p>
+			<?php
+		}
+
+		public function negative_rating_contact_url_callback() {
+
+			$negative_rating_contact_url = get_option( 'sr_negative_rating_contact_url' );
+
+			echo '<input type="text" id="negative_rating_contact_url" name="sr_negative_rating_contact_url" value="' . esc_attr( $negative_rating_contact_url ) . '" />';
+			?>
+            <p class="description"><?php esc_html_e( 'For example: your website contact page url', 'stars-rating' ) ?></p>
 			<?php
 		}
 
@@ -303,6 +347,10 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			add_filter( 'pre_update_option_google_search_stars_type', array(
 				$this,
 				'update_field_google_search_stars_type'
+			), 10, 2 );
+			add_filter( 'pre_update_option_sr_negative_rating_alert', array(
+				$this,
+				'update_field_sr_negative_rating_alert'
 			), 10, 2 );
 		}
 
@@ -343,6 +391,12 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 
 		public function update_field_google_search_stars_type( $new_value, $old_value ) {
 			$new_value = sanitize_text_field( $_POST['google_search_stars_type'] );
+
+			return $new_value;
+		}
+
+		public function update_field_sr_negative_rating_alert( $new_value, $old_value ) {
+			$new_value = sanitize_text_field( $_POST['sr_negative_rating_alert'] );
 
 			return $new_value;
 		}

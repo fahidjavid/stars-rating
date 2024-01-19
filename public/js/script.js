@@ -58,9 +58,6 @@
                 closePopup();
             } );
 
-            $( "#contact-before-rating" ).on( "click", function () {
-                console.log( "User clicked contact" );
-            } );
         } else {
             ratingField.barrating( {
                 theme         : 'fontawesome-stars',
@@ -68,18 +65,6 @@
             } );
 
         }
-
-        // TODO: 3 is selected for the low rating alert.
-        // TODO: rating is being posted above 3, do nothing
-        // TODO: rating is being posted lower or = 3 then alert
-        // TODO: user click on contact us will go to the contact page with given link
-        // TODO: user click on post review, review will be posted
-        // TODO: user click on the overlay or close button then nothing happens
-        // TODO: display rating alert markup only if value is given to alert
-        // TODO: improve ids and classes of new markup
-        // TODO: why comment fields are so thin
-        // TODO: please select a rating should also be a nice popup, can be added in next version
-        // TODO: buy me a coffee should be by the buy me coffee service
 
     } );
 } )( jQuery );

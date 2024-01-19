@@ -134,10 +134,11 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				return;
 			}
 
-			$require_rating        = get_option( 'require_rating', 'no' );
-			$negative_alert = get_option( 'sr_negative_rating_alert', 'disable' );
+			$require_rating     = get_option( 'require_rating', 'no' );
+			$negative_alert     = get_option( 'sr_negative_rating_alert', 'disable' );
 			$negative_threshold = get_option( 'sr_negative_rating_threshold', 0 );
-			$stars_style           = get_option( 'stars_style', 'regular' );
+			$negative_contact   = get_option( 'sr_negative_rating_contact_url' );
+			$stars_style        = get_option( 'stars_style', 'regular' );
 			?>
 
             <!-- Dark Overlay -->
@@ -148,7 +149,13 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
                 <i class="fa fa-frown-o" aria-hidden="true"></i>
                 <p>We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us so we can help resolve your issue</p>
                 <a id="post-rating">Post Review</a>
-                <a id="contact-before-rating">Contact Us</a>
+				<?php
+				if ( ! empty( $negative_contact ) ) {
+					?>
+                    <a id="contact-before-rating" href="<?php echo esc_url( $negative_contact ); ?>">Contact Us</a>
+					<?php
+				}
+				?>
             </div>
 
 			<?php

@@ -111,7 +111,8 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				$schema_name = $review_type;
 			}
 
-			echo '<script type="application/ld+json">
+			if ( ! empty( $rating_stat['count'] ) && 0 < $rating_stat['count'] ) {
+				echo '<script type="application/ld+json">
 {
   "@context": "https://schema.org/",
   "@type": "' . esc_attr( $schema_name ) . '",
@@ -122,7 +123,9 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
     "bestRating": "5",
     "ratingCount": "' . absint( $rating_stat['count'] ) . '"
   }
-}</script>';
+}
+</script>';
+			}
 		}
 
 		/**

@@ -137,7 +137,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 		 */
 		public static function get_rating_stars_markup( $rating ) {
 
-			$rating = absint( round( $rating ) );
+			$rating = absint( $rating > 0 ? round( $rating ) : $rating );
 
 			$stars_style = sanitize_html_class( get_option( 'stars_style', 'regular' ) );
 			$output      = '<span class="rating-stars">';

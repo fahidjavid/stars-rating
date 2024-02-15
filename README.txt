@@ -2,8 +2,8 @@
 Contributors: fahidjavid
 Tags: comments, rating, reviews, stars rating, comments vote, voting, shortcode
 Requires at least: 4.0
-Tested up to: 6.4.2
-Stable tag: 4.0.1
+Tested up to: 6.4.3
+Stable tag: 4.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,10 @@ Its main features are as follows:
 6. Stars Rating display on the comments page (backend)
 
 == Changelog ==
+
+= 4.0.2
+* Fixed a PHP version specific fatal error on (backend) comments page
+* Tested plugin with WordPress 6.4.3
 
 = 4.0.1
 * Added "Negative Rating Alert" system to foster positive feedback

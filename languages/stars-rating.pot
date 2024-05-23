@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Stars Rating\n"
-"POT-Creation-Date: 2024-01-20 01:02+0500\n"
+"POT-Creation-Date: 2024-05-23 22:06+0500\n"
 "PO-Revision-Date: 2017-02-09 11:33+0500\n"
 "Last-Translator: \n"
 "Language-Team: Fahid Javid <fahidjavid@gmail.com>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
@@ -104,7 +104,11 @@ msgid "Disable"
 msgstr ""
 
 #: admin/stars-rating-settings.php:297
-msgid "For example: Product, Service, Brand, Event"
+msgid "For example: Product, Recipe, Book, Course etc."
+msgstr ""
+
+#: admin/stars-rating-settings.php:297
+msgid "For more details click here."
 msgstr ""
 
 #: admin/stars-rating-settings.php:307
@@ -135,14 +139,14 @@ msgstr ""
 msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
 msgstr ""
 
-#: public/stars-rating-public.php:322
+#: public/stars-rating-public.php:321
 msgid "Be the first to write a review"
 msgstr ""
 
-#: public/stars-rating-public.php:327
+#: public/stars-rating-public.php:326
 msgid "based on"
 msgstr ""
 
-#: public/stars-rating-public.php:327
+#: public/stars-rating-public.php:326
 msgid "reviews"
 msgstr ""

@@ -270,7 +270,7 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				);
 			}
 
-			return false;
+			return null;
 
 		}
 

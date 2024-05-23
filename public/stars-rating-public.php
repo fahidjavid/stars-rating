@@ -280,15 +280,12 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				return;
 			}
 
-			$rating_stat = $this->rating_stat();
-
-			if ( $rating_stat ) {
+			if ( comments_open() ) {
+				$rating_stat = $this->rating_stat();
 				$this->avg_rating_markup( $rating_stat );
-			} else if ( comments_open() ) {
-				$this->avg_rating_markup( null );
 			}
 
-            return true; // returning true fixes the deprecated notice of file exits on comment_template filter.
+			return true; // returning true fixes the deprecated notice of file exits on comment_template filter.
 		}
 
 		public function rating_average_shortcode() {
@@ -297,15 +294,15 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				return;
 			}
 
-			$rating_stat = $this->rating_stat();
+			if ( comments_open() ) {
+				$rating_stat = $this->rating_stat();
 
-			if ( $rating_stat ) {
 				ob_start();
 				$this->avg_rating_markup( $rating_stat );
-				$output = ob_get_clean();
 
-				return $output;
+				return ob_get_clean();
 			}
+
 		}
 
 		/**

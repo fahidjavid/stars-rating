@@ -2,8 +2,8 @@
 Contributors: fahidjavid
 Tags: comments, rating, reviews, stars rating, comments vote, voting, shortcode
 Requires at least: 4.0
-Tested up to: 6.4.3
-Stable tag: 4.0.2
+Tested up to: 6.5.3
+Stable tag: 4.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,14 @@ Its main features are as follows:
 6. Stars Rating display on the comments page (backend)
 
 == Changelog ==
+
+= 4.0.3
+* Fixed a PHP warning on comments template
+* Displayed average rating only if comments are open
+* Displayed empty stars for average rating if no rating found
+* Improved code for average rating to work with posts/pages/CPTs list
+* Updated language file
+* Tested plugin with WordPress 6.5.3
 
 = 4.0.2
 * Fixed a PHP version specific fatal error on (backend) comments page

@@ -287,6 +287,8 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			} else if ( comments_open() ) {
 				$this->avg_rating_markup( null );
 			}
+
+            return true; // returning true fixes the deprecated notice of file exits on comment_template filter.
 		}
 
 		public function rating_average_shortcode() {

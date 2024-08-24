@@ -65,7 +65,7 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 
 			$this->init_hooks();
 
-			add_shortcode( 'stars_rating_avg', array( $this, 'rating_average_shortcode' ) );
+			add_shortcode( 'stars_rating_avg', array( $this, 'average_rating_shortcode' ) );
 
 			// Stars Rating plugin loaded action hook
 			do_action( 'star_ratings_loaded' );
@@ -276,10 +276,6 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 
 		public function rating_average_markup() {
 
-			if ( ! self::status() ) {
-				return;
-			}
-
 			if ( comments_open() ) {
 				$rating_stat = $this->rating_stat();
 				$this->avg_rating_markup( $rating_stat );
@@ -288,17 +284,13 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			return true; // returning true fixes the deprecated notice of file exits on comment_template filter.
 		}
 
-		public function rating_average_shortcode() {
-
-			if ( ! self::status() ) {
-				return;
-			}
+		public function average_rating_shortcode($attr) {
 
 			if ( comments_open() ) {
 				$rating_stat = $this->rating_stat();
 
 				ob_start();
-				$this->avg_rating_markup( $rating_stat );
+				$this->avg_rating_markup( $rating_stat, $attr );
 
 				return ob_get_clean();
 			}
@@ -312,19 +304,39 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		 *
 		 * @return void
 		 */
-		public function avg_rating_markup( $rating_stat ) {
+		public function avg_rating_markup( $rating_stat, $attr = [] ) {
+
+			$show_text         = true;
+			$show_empty_rating = true;
+
+			if ( ! empty( $attr ) ) {
+
+				if ( isset( $attr['show_empty_rating'] ) && 'no' === $attr['show_empty_rating'] ) {
+					$show_empty_rating = false;
+				}
+
+                if ( isset( $attr['show_text'] ) && 'no' === $attr['show_text'] ) {
+					$show_text = false;
+				}
+			}
 
 			echo '<div class="stars-avg-rating">';
 			if ( null === $rating_stat ) {
-				echo wp_kses_post( Stars_rating::get_rating_stars_markup( 0 ) );
-				echo '<span class="rating-text">';
-				echo esc_html__( 'Be the first to write a review', 'stars-rating' );
-				echo '</span>';
+				if ( $show_empty_rating ) {
+					echo wp_kses_post( Stars_rating::get_rating_stars_markup( 0 ) );
+					if ( $show_text ) {
+						echo '<span class="rating-text">';
+						echo esc_html__( 'Be the first to write a review', 'stars-rating' );
+						echo '</span>';
+					}
+				}
 			} else {
 				echo wp_kses_post( Stars_Rating::get_rating_stars_markup( $rating_stat['avg'] ) );
-				echo '<span class="rating-text">';
-				echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
-				echo '</span>';
+				if ( $show_text ) {
+					echo '<span class="rating-text">';
+					echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
+					echo '</span>';
+				}
 			}
 			echo '</div>';
 		}

@@ -1,89 +1,93 @@
 <?php
+/**
+ * This file is responsible for the Stars Rating plugin settings page on admin side.
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
-
+if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 	/**
-	 * Class Stars_Rating_Settings
-	 *
-	 * Plugin's settings class
-	 *
-	 * @since 1.0.0
+	 * Stars Rating Settings
 	 */
-	final class Stars_Rating_Settings {
+	class Stars_Rating_Settings {
 
-		/**
-		 * Single instance of Class.
-		 *
-		 * @since 1.0.0
-		 * @var Stars_Rating_Settings
-		 */
-		protected static $_instance;
-
-		/**
-		 * Provides singleton instance.
-		 *
-		 * @since 1.0.0
-		 */
-		public static function instance() {
-			if ( is_null( self::$_instance ) ) {
-				self::$_instance = new self();
-			}
-
-			return self::$_instance;
-		}
-
-		/**
-		 * Stars_Rating_Settings constructor.
-		 * @since 1.0.0
-		 */
 		public function __construct() {
-
-			$this->init_hooks();
-
-			// Stars Rating plugin settings loaded action hook
-			do_action( 'Stars_Rating_Settings_loaded' );
-
+			// Hook to add the settings page to the WordPress admin menu
+			add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
+			// Hook to register the plugin settings
+			add_action( 'admin_init', array( $this, 'register_settings' ) );
 		}
 
-		public function init_hooks() {
+		public function add_settings_page() {
 
-			add_action( 'admin_init', array( $this, 'stars_rating_section' ) );
-			add_action( 'init', array( $this, 'update_settings_field' ) );
+			add_menu_page(
+				esc_html__( 'Stars Rating Settings', 'stars-rating' ),  // Page title
+				esc_html__( 'Stars Rating', 'stars-rating' ),           // Menu title
+				'manage_options',                                       // Capability required to access the page
+				'stars-rating-settings',                                // Menu slug
+				array( $this, 'settings_page_content' ),                // Callback function to display the settings page content
+				'dashicons-star-filled',                                // Icon for the menu item (optional)
+				80                                                       // Position of the menu item (optional)
+			);
 		}
 
-		public function stars_rating_section() {
+		public function settings_page_content() {
+			?>
+			<div class="wrap">
+				<h1><?php esc_html_e( 'Stars Rating Settings', 'stars-rating' ); ?></h1>
+				<form method="post" action="options.php">
+					<?php
+					// Output security fields for the registered setting "stars_rating_settings"
+					settings_fields( 'stars_rating_settings' );
+					// Output setting sections and their fields
+					do_settings_sections( 'stars-rating-settings' );
+					// Output save settings button with escaping
+					submit_button( esc_html__( 'Save Settings', 'stars-rating' ) );
+					?>
+				</form>
+			</div>
+			<?php
+		}
 
+		public function register_settings() {
+			// Register a new setting group and fields
+			register_setting( 'stars_rating_settings', 'enabled_post_types' );
+			register_setting( 'stars_rating_settings', 'require_rating' );
+			register_setting( 'stars_rating_settings', 'avg_rating_display' );
+			register_setting( 'stars_rating_settings', 'stars_style' );
+			register_setting( 'stars_rating_settings', 'google_search_stars' );
+			register_setting( 'stars_rating_settings', 'google_search_stars_type' );
+			register_setting( 'stars_rating_settings', 'sr_negative_rating_alert' );
+			register_setting( 'stars_rating_settings', 'sr_negative_rating_threshold' );
+			register_setting( 'stars_rating_settings', 'sr_negative_rating_contact_url' );
+
+			// Add a new section to the settings page
 			add_settings_section(
-				'stars_rating_section',
-				esc_html__( 'Stars Rating', 'stars-rating' ),
-				array( $this, 'stars_rating_section_callback' ),
-				'discussion',
-				array(
-					'before_section' => '<div style="background: #80808021; padding: 20px; border-radius: 10px;">',
-					'after_section'  => '</div>',
-					'section_class'  => 'stars-rating-settings', // TODO: this class is not applying, it can be WP contribution to fix.
-				)
+				'stars_rating_settings_section',
+				esc_html__( 'General Settings', 'stars-rating' ),  // Section title with escaping
+				array( $this, 'settings_section_callback' ),
+				'stars-rating-settings'
 			);
 
+            // Add enabled post types field
 			add_settings_field(
 				'enabled_post_types',
 				esc_html__( 'Enabled Post Types', 'stars-rating' ),
 				array( $this, 'enabled_post_types_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'enabled_post_types' )
 			);
 
+			// Add required rating selection field
 			add_settings_field(
 				'require_rating',
 				esc_html__( 'Require Rating Selection', 'stars-rating' ),
 				array( $this, 'require_rating_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'require_rating' )
 			);
 
@@ -91,100 +95,84 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 				'avg_rating_display',
 				esc_html__( 'Average Rating Above Comments Section', 'stars-rating' ),
 				array( $this, 'avg_rating_display_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'avg_rating_display' )
 			);
 
+			// Add stars style field
 			add_settings_field(
 				'stars_style',
 				esc_html__( 'Stars Style', 'stars-rating' ),
 				array( $this, 'stars_style_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'stars_style' )
 			);
 
+			// Add stars rating in Google search results field
 			add_settings_field(
 				'google_search_stars',
 				esc_html__( 'Stars Rating In Google Search Results', 'stars-rating' ),
 				array( $this, 'google_search_stars_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'google_search_stars' )
 			);
 
+			// Add type of reviews in Google search results field
 			add_settings_field(
 				'google_search_stars_type',
 				esc_html__( 'Type of Reviews In Google Search Results', 'stars-rating' ),
 				array( $this, 'google_search_stars_type_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'google_search_stars_type' )
 			);
 
+			// Add enable negative rating alert
 			add_settings_field(
 				'sr_negative_rating_alert',
 				esc_html__( 'Enable Negative Rating Alert', 'stars-rating' ),
 				array( $this, 'negative_rating_alert_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'sr_negative_rating_alert' )
 			);
 
+			// Add negative rating threshold for alert field
 			add_settings_field(
 				'sr_negative_rating_threshold',
 				esc_html__( 'Negative Rating Threshold for Alert', 'stars-rating' ),
 				array( $this, 'negative_rating_threshold_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'sr_negative_rating_threshold' )
 			);
 
+			// Add contact before negative rating url field
 			add_settings_field(
 				'sr_negative_rating_contact_url',
 				esc_html__( 'Contact Before Negative Rating URL', 'stars-rating' ),
 				array( $this, 'negative_rating_contact_url_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'sr_negative_rating_contact_url' )
 			);
 
+			// Add donation to stars rating plugin field
 			add_settings_field(
 				'donation_link',
 				esc_html__( 'Donate "Stars Rating" And Similar OpenSource Projects!', 'stars-rating' ),
 				array( $this, 'donation_link_callback' ),
-				'discussion',
-				'stars_rating_section',
+				'stars-rating-settings',
+				'stars_rating_settings_section',
 				array( 'donation_link' )
 			);
-
-			// register enabled_posts field
-			register_setting( 'discussion', 'enabled_post_types', 'esc_attr' );
-
-			// register require_rating field
-			register_setting( 'discussion', 'require_rating', 'esc_attr' );
-
-			// register avg_rating_display field
-			register_setting( 'discussion', 'avg_rating_display', 'esc_attr' );
-
-			// register stars_style field
-			register_setting( 'discussion', 'stars_style', 'esc_attr' );
-
-			// register google_search_stars field
-			register_setting( 'discussion', 'google_search_stars', 'esc_attr' );
-
-			// register google_search_stars_type field
-			register_setting( 'discussion', 'google_search_stars_type', 'esc_attr' );
-
-            // register negative rating fields
-			register_setting( 'discussion', 'sr_negative_rating_alert', 'esc_attr' );
-			register_setting( 'discussion', 'sr_negative_rating_threshold', 'intVal' );
-			register_setting( 'discussion', 'sr_negative_rating_contact_url', 'esc_url' );
 		}
 
-		public function stars_rating_section_callback() {
-			echo '<p class="description">' . esc_html__( 'Check the post types on which you want to enable stars rating feature.', 'stars-rating' ) . '</p>';
+		public function settings_section_callback() {
+			esc_html_e( 'Adjust the general settings for the Stars Rating plugin.', 'stars-rating' );
 		}
 
 		public function enabled_post_types_callback( $args ) {
@@ -192,7 +180,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 			$enabled_posts = get_option( 'enabled_post_types', array( 'post', 'page' ) );
 
 			if ( ! is_array( $enabled_posts ) ) {
-				$enabled_posts = (array)$enabled_posts;
+				$enabled_posts = (array) $enabled_posts;
 			}
 
 			$query = array(
@@ -322,100 +310,8 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) :
 		public function donation_link_callback() {
 			echo '<div class="custom-links"><a class="donation-link" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fahidjavid%40gmail.com&item_name=OpenSource+Projects+Support&currency_code=USD&source=url" target="_blank">Buy Me A Coffee!</a><i>OR</i><a class="review-link" href="https://wordpress.org/support/plugin/stars-rating/reviews/#new-post" target="_blank">Review Plugin!</a></div>';
 		}
-
-		public function update_settings_field() {
-			add_filter( 'pre_update_option_enabled_post_types', array(
-				$this,
-				'update_field_enabled_post_types'
-			), 10, 2 );
-			add_filter( 'pre_update_option_require_rating', array(
-				$this,
-				'update_field_require_rating'
-			), 10, 2 );
-			add_filter( 'pre_update_option_avg_rating_display', array(
-				$this,
-				'update_field_avg_rating_display'
-			), 10, 2 );
-			add_filter( 'pre_update_option_stars_style', array(
-				$this,
-				'update_field_stars_style'
-			), 10, 2 );
-			add_filter( 'pre_update_option_google_search_stars', array(
-				$this,
-				'update_field_google_search_stars'
-			), 10, 2 );
-			add_filter( 'pre_update_option_google_search_stars_type', array(
-				$this,
-				'update_field_google_search_stars_type'
-			), 10, 2 );
-			add_filter( 'pre_update_option_sr_negative_rating_alert', array(
-				$this,
-				'update_field_sr_negative_rating_alert'
-			), 10, 2 );
-		}
-
-		public function update_field_enabled_post_types( $new_value, $old_value ) {
-
-			$post_types = isset( $_POST['enabled_post_types'] ) ? (array)$_POST['enabled_post_types'] : array(
-				'post',
-				'page'
-			);
-			$post_types = array_map( 'sanitize_text_field', $post_types );
-
-			return $post_types;
-		}
-
-		public function update_field_require_rating( $new_value, $old_value ) {
-			$new_value = sanitize_text_field( $_POST['require_rating'] );
-
-			return $new_value;
-		}
-
-		public function update_field_avg_rating_display( $new_value, $old_value ) {
-			$new_value = sanitize_text_field( $_POST['avg_rating_display'] );
-
-			return $new_value;
-		}
-
-		public function update_field_stars_style( $new_value, $old_value ) {
-			$new_value = sanitize_text_field( $_POST['stars_style'] );
-
-			return $new_value;
-		}
-
-		public function update_field_google_search_stars( $new_value, $old_value ) {
-			$new_value = sanitize_text_field( $_POST['google_search_stars'] );
-
-			return $new_value;
-		}
-
-		public function update_field_google_search_stars_type( $new_value, $old_value ) {
-			$new_value = sanitize_text_field( $_POST['google_search_stars_type'] );
-
-			return $new_value;
-		}
-
-		public function update_field_sr_negative_rating_alert( $new_value, $old_value ) {
-			$new_value = sanitize_text_field( $_POST['sr_negative_rating_alert'] );
-
-			return $new_value;
-		}
 	}
 
-endif;
-
-
-/**
- * Main instance of Stars_Rating_Settings.
- *
- * Returns the main instance of Stars_Rating_Settings to prevent the need to use globals.
- *
- * @since  1.0.0
- * @return Stars_Rating_Settings
- */
-function Stars_Rating_Settings() {
-	return Stars_Rating_Settings::instance();
+	// Initialize the settings page
+	new Stars_Rating_Settings();
 }
-
-// Get Stars_Rating_Settings Running.
-Stars_Rating_Settings();

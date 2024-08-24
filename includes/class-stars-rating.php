@@ -54,7 +54,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 		}
 
 		public function load_admin_files() { // TODO: define the path of the directories first like URLs.
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-settings.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Stars_Rating_Settings.php';
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-metabox.php';
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-comments-column.php';
 		}

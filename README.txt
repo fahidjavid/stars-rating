@@ -21,7 +21,7 @@ Its main features are as follows:
 * Choose from two different rating stars styles according to your site look.
 * Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page/CPTs detail or listing pages.
 * Hide average rating text <strong>[stars_rating_avg show_text="no"]</strong>.
-* Hide empty rating <strong>[stars_rating_avg show_empty_rating="no"]</strong>.
+* Hide empty average rating <strong>[stars_rating_avg show_empty_rating="no"]</strong>.
 * See each review stars rating on the comments page (backend).
 * Enhanced SEO with structured data for standout reviews in Google with "Google Review Schema" integration.
 * Preempt negativity with the "Negative Rating Alert" feature, promoting issue resolution before reviews are posted.
@@ -55,13 +55,13 @@ Its main features are as follows:
 
 == Changelog ==
 
-= 4.0.3
-* Fixed a PHP warning on comments template
-* Displayed average rating only if comments are open
-* Displayed empty stars for average rating if no rating found
-* Improved code for average rating to work with posts/pages/CPTs list
+= 4.0.4
+* Added average rating text show/hide support to shortcode
+* Added empty average rating show/hide support to shortcode
+* Added independent settings page of the plugin
+* Removed settings from "Dashboard > Settings > Discussions" page
 * Updated language file
-* Tested plugin with WordPress 6.5.3
+* Tested plugin with WordPress 6.6.1
 
 = 4.0.3
 * Fixed a PHP warning on comments template

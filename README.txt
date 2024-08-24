@@ -1,7 +1,7 @@
 === Stars Rating ===
 Contributors: fahidjavid
 Tags: comments, rating, reviews, stars, shortcode
-Requires at least: 4.0
+Requires at least: 5.0
 Tested up to: 6.6.1
 Stable tag: 4.0.4
 License: GPLv2 or later

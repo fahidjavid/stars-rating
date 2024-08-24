@@ -7,6 +7,8 @@ Stable tag: 4.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+A plugin to turn comments into reviews by adding rating feature.
+
 == Description ==
 
 A simple and easy to use plugin that turns post, pages and custom post types comments into reviews.

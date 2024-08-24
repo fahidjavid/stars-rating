@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Stars Rating\n"
-"POT-Creation-Date: 2024-05-23 22:06+0500\n"
+"POT-Creation-Date: 2024-08-24 22:09+0500\n"
 "PO-Revision-Date: 2017-02-09 11:33+0500\n"
 "Last-Translator: \n"
 "Language-Team: Fahid Javid <fahidjavid@gmail.com>\n"
@@ -11,116 +11,128 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/stars-rating-comments-column.php:52 admin/stars-rating-metabox.php:84
-#: admin/stars-rating-settings.php:62
+#: admin/Stars_Rating_Settings.php:26 admin/Stars_Rating_Settings.php:39
+msgid "Stars Rating Settings"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:27 admin/stars-rating-comments-column.php:52
+#: admin/stars-rating-metabox.php:84
 msgid "Stars Rating"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:47
+msgid "Save Settings"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:69
+msgid "General Settings"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:77
+msgid "Enabled Post Types"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:87
+msgid "Require Rating Selection"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:96
+msgid "Average Rating Above Comments Section"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:106
+msgid "Stars Style"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:116
+msgid "Stars Rating In Google Search Results"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:126
+msgid "Type of Reviews In Google Search Results"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:136
+msgid "Enable Negative Rating Alert"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:146
+msgid "Negative Rating Threshold for Alert"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:156
+msgid "Contact Before Negative Rating URL"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:166
+msgid "Donate \"Stars Rating\" And Similar OpenSource Projects!"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:175
+msgid "Adjust the general settings for the Stars Rating plugin."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:212 admin/Stars_Rating_Settings.php:259
+msgid "Show"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:213 admin/Stars_Rating_Settings.php:260
+msgid "Hide"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:227
+msgid "Yes"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:228
+msgid "No"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:243
+msgid "Regular"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:244
+msgid "Solid"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:275
+msgid "Enable"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:276
+msgid "Disable"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:285
+msgid "For example: Product, Recipe, Book, Course etc."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:285
+msgid "For more details click here."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:295
+msgid "For example: 3"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:296
+msgid "Alert will be displayed if rating is selected equal or below the given threshold number."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:306
+msgid "For example: your website contact page url"
 msgstr ""
 
 #: admin/stars-rating-metabox.php:112
 #, php-format
 msgid "Allow %s for comments on this page."
-msgstr ""
-
-#: admin/stars-rating-settings.php:74
-msgid "Enabled Post Types"
-msgstr ""
-
-#: admin/stars-rating-settings.php:83
-msgid "Require Rating Selection"
-msgstr ""
-
-#: admin/stars-rating-settings.php:92
-msgid "Average Rating Above Comments Section"
-msgstr ""
-
-#: admin/stars-rating-settings.php:101
-msgid "Stars Style"
-msgstr ""
-
-#: admin/stars-rating-settings.php:110
-msgid "Stars Rating In Google Search Results"
-msgstr ""
-
-#: admin/stars-rating-settings.php:119
-msgid "Type of Reviews In Google Search Results"
-msgstr ""
-
-#: admin/stars-rating-settings.php:128
-msgid "Enable Negative Rating Alert"
-msgstr ""
-
-#: admin/stars-rating-settings.php:137
-msgid "Negative Rating Threshold for Alert"
-msgstr ""
-
-#: admin/stars-rating-settings.php:146
-msgid "Contact Before Negative Rating URL"
-msgstr ""
-
-#: admin/stars-rating-settings.php:155
-msgid "Donate \"Stars Rating\" And Similar OpenSource Projects!"
-msgstr ""
-
-#: admin/stars-rating-settings.php:187
-msgid "Check the post types on which you want to enable stars rating feature."
-msgstr ""
-
-#: admin/stars-rating-settings.php:224 admin/stars-rating-settings.php:271
-msgid "Show"
-msgstr ""
-
-#: admin/stars-rating-settings.php:225 admin/stars-rating-settings.php:272
-msgid "Hide"
-msgstr ""
-
-#: admin/stars-rating-settings.php:239
-msgid "Yes"
-msgstr ""
-
-#: admin/stars-rating-settings.php:240
-msgid "No"
-msgstr ""
-
-#: admin/stars-rating-settings.php:255
-msgid "Regular"
-msgstr ""
-
-#: admin/stars-rating-settings.php:256
-msgid "Solid"
-msgstr ""
-
-#: admin/stars-rating-settings.php:287
-msgid "Enable"
-msgstr ""
-
-#: admin/stars-rating-settings.php:288
-msgid "Disable"
-msgstr ""
-
-#: admin/stars-rating-settings.php:297
-msgid "For example: Product, Recipe, Book, Course etc."
-msgstr ""
-
-#: admin/stars-rating-settings.php:297
-msgid "For more details click here."
-msgstr ""
-
-#: admin/stars-rating-settings.php:307
-msgid "For example: 3"
-msgstr ""
-
-#: admin/stars-rating-settings.php:308
-msgid "Alert will be displayed if rating is selected equal or below the given threshold number."
-msgstr ""
-
-#: admin/stars-rating-settings.php:318
-msgid "For example: your website contact page url"
 msgstr ""
 
 #: public/stars-rating-public.php:155
@@ -139,14 +151,14 @@ msgstr ""
 msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
 msgstr ""
 
-#: public/stars-rating-public.php:321
+#: public/stars-rating-public.php:329
 msgid "Be the first to write a review"
 msgstr ""
 
-#: public/stars-rating-public.php:326
+#: public/stars-rating-public.php:337
 msgid "based on"
 msgstr ""
 
-#: public/stars-rating-public.php:326
+#: public/stars-rating-public.php:337
 msgid "reviews"
 msgstr ""

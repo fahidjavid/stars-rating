@@ -1,9 +1,9 @@
 === Stars Rating ===
 Contributors: fahidjavid
-Tags: comments, rating, reviews, stars rating, comments vote, voting, shortcode
+Tags: comments, rating, reviews, stars, shortcode
 Requires at least: 4.0
-Tested up to: 6.5.3
-Stable tag: 4.0.3
+Tested up to: 6.6.1
+Stable tag: 4.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,9 @@ Its main features are as follows:
 * Also, allows you to enable/disable stars rating feature for the posts and pages individually.
 * An option to display stars rating in Google search results.
 * Choose from two different rating stars styles according to your site look.
-* Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page.
+* Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page/CPTs detail or listing pages.
+* Hide average rating text <strong>[stars_rating_avg show_text="no"]</strong>.
+* Hide empty rating <strong>[stars_rating_avg show_empty_rating="no"]</strong>.
 * See each review stars rating on the comments page (backend).
 * Enhanced SEO with structured data for standout reviews in Google with "Google Review Schema" integration.
 * Preempt negativity with the "Negative Rating Alert" feature, promoting issue resolution before reviews are posted.
@@ -48,10 +50,18 @@ Its main features are as follows:
 2. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments individually.
 3. Comments with their ratings and an average rating above comments.
 4. Rating option in comment form.
-5. Shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page
+5. Shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page/CPTs
 6. Stars Rating display on the comments page (backend)
 
 == Changelog ==
+
+= 4.0.3
+* Fixed a PHP warning on comments template
+* Displayed average rating only if comments are open
+* Displayed empty stars for average rating if no rating found
+* Improved code for average rating to work with posts/pages/CPTs list
+* Updated language file
+* Tested plugin with WordPress 6.5.3
 
 = 4.0.3
 * Fixed a PHP warning on comments template
@@ -110,7 +120,7 @@ Its main features are as follows:
 * Tested with WordPress 5.4.1
 
 = 3.2.0
-* Added custom reviews type support for google search results.
+* Added custom reviews type support for Google search results.
 
 = 3.1.0
 * Added latest Gutenberg editor support.

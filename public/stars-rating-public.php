@@ -235,14 +235,14 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		/**
 		 * Display average rating based on approved comments with rating
 		 */
-		public function rating_stat() {
+		public function rating_stat($postID = null) {
 
 			if ( ! self::status() ) {
 				return;
 			}
 
 			$args = array(
-				'post_id' => get_the_ID(),
+				'post_id' => ($postID ? $postID : get_the_ID()),
 				'status'  => 'approve'
 			);
 

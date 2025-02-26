@@ -46,6 +46,14 @@ Its main features are as follows:
 
 <strong>Note:</strong> After installing the plugin go to the <strong>Settings > Discussion</strong> page (at the very bottom) and enable desired post types for the Stars Rating.
 
+== Usage in theme ==
+
+```
+require_once WP_PLUGIN_DIR. '/stars-rating/public/stars-rating-public.php';
+$starsRating = Stars_Rating();
+ehco $starsRating->rating_stat($post->ID));
+```
+
 == Screenshots ==
 
 1. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments globally and other settings.

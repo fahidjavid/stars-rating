@@ -19,9 +19,17 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		 * Single instance of Class.
 		 *
 		 * @since 1.0.0
-		 * @var Stars_Rating
+		 * @var $_instance
 		 */
 		protected static $_instance;
+
+		/**
+		 * Status for the current CPT to enable rating related stuff.
+		 *
+		 * @since 1.0.0
+		 * @var bool|null $status
+		 */
+		protected static bool|null $status = null;
 
 		/**
 		 * Provides singleton instance.
@@ -35,26 +43,6 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			}
 
 			return self::$_instance;
-		}
-
-		/**
-		 * Status of the stars rating for the current post type
-		 *
-		 * @since 1.0.0
-		 * @return bool
-		 */
-		public static function status() {
-
-			$enabled_posts = get_option( 'enabled_post_types', array( 'post', 'page' ) );
-			$post_status   = get_post_meta( get_the_ID(), 'sr-comments-rating', true );
-
-			if ( ! is_array( $enabled_posts ) ) {
-				$enabled_posts = (array)$enabled_posts;
-			}
-
-			$status = ( in_array( get_post_type(), $enabled_posts ) && ( '0' !== $post_status ) ) ? true : false;
-
-			return $status;
 		}
 
 		/**
@@ -73,6 +61,27 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		}
 
 		/**
+		 * Status of the stars rating for the current post type
+		 *
+		 * Info: Wrapper function created to use over 'self::$status' because get_post_type() function loads data late
+		 * so when 'status' function called first time, it initializes the '$status' variable based on available data.
+		 *
+		 * @since 1.0.0
+		 * @return bool
+		 */
+		public static function status() {
+
+			if ( is_null( self::$status ) ) {
+				$enabled_posts = (array)get_option( 'enabled_post_types', array( 'post', 'page' ) );
+				$post_status   = get_post_meta( get_the_ID(), 'sr-comments-rating', true );
+
+				self::$status = in_array( get_post_type(), $enabled_posts ) && ( '0' !== $post_status );
+			}
+
+			return self::$status;
+		}
+
+		/**
 		 * Initialize hooks.
 		 *
 		 * @since 1.0.0
@@ -83,13 +92,13 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			add_action( 'comment_form_top', array( $this, 'comment_form_fields' ) );
 			add_filter( 'preprocess_comment', array( $this, 'verify_comment_rating' ) );
 			add_action( 'comment_post', array( $this, 'save_comment_rating' ) );
-			add_filter( 'comment_text', array( $this, 'modify_comment' ) );
+			add_filter( 'comment_text', array( $this, 'modify_comment' ), 10, 2 );
 
 			$avg_rating_display  = get_option( ' avg_rating_display', 'show' );
 			$google_search_stars = get_option( ' google_search_stars', 'show' );
 
 			if ( 'show' === $avg_rating_display ) { // Check if average rating and comments are enabled for the post/page
-				add_filter( "comments_template", array( $this, 'rating_average_markup' ) );
+				add_filter( "comments_template", array( $this, 'average_rating_above_comments' ) );
 			}
 			if ( 'show' === $google_search_stars ) {
 				add_action( 'wp_head', array( $this, 'add_reviews_schema' ) );
@@ -104,7 +113,7 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 
 			$schema_name  = ucfirst( get_post_type() );
 			$schema_title = get_the_title();
-			$rating_stat  = $this->rating_stat();
+			$rating_stat  = $this->average_rating_stat();
 			$review_type  = get_option( 'google_search_stars_type' );
 
 			if ( ! empty( $review_type ) ) {
@@ -217,13 +226,13 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		 * Add the comment rating (saved earlier) to the comment text
 		 * You can also output the comment rating values directly to the comments template
 		 */
-		public function modify_comment( $comment_text ) {
+		public function modify_comment( $comment_text, $comment ) {
 
 			if ( ! self::status() ) {
 				return $comment_text;
 			}
 
-			if ( $rating = get_comment_meta( get_comment_ID(), 'rating', true ) ) {
+			if ( $rating = get_comment_meta( $comment->comment_ID, 'rating', true ) ) {
 				$rating = '<p>' . wp_kses_post( Stars_Rating::get_rating_stars_markup( $rating ) ) . '</p>';
 
 				return $comment_text . $rating;
@@ -232,10 +241,47 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			}
 		}
 
+
+		/**
+		 * Displays average rating stats above comments on a post/page/cpt single.
+		 *
+		 * @return true
+		 */
+		public function average_rating_above_comments() {
+
+			if ( ! self::status() ) {
+				return true;
+			}
+
+			if ( comments_open() ) {
+				$rating_stat = $this->average_rating_stat();
+				$this->average_rating_markup( $rating_stat );
+			}
+
+			return true; // returning true fixes the deprecated notice of file exits on comment_template filter.
+		}
+
+		public function average_rating_shortcode( $attr ) {
+
+			if ( ! self::status() ) {
+				return;
+			}
+
+			if ( comments_open() ) {
+				$rating_stat = $this->average_rating_stat();
+
+				ob_start();
+				$this->average_rating_markup( $rating_stat, $attr );
+
+				return ob_get_clean();
+			}
+
+		}
+
 		/**
 		 * Display average rating based on approved comments with rating
 		 */
-		public function rating_stat() {
+		public function average_rating_stat() {
 
 			if ( ! self::status() ) {
 				return;
@@ -274,37 +320,15 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 
 		}
 
-		public function rating_average_markup() {
-
-			if ( comments_open() ) {
-				$rating_stat = $this->rating_stat();
-				$this->avg_rating_markup( $rating_stat );
-			}
-
-			return true; // returning true fixes the deprecated notice of file exits on comment_template filter.
-		}
-
-		public function average_rating_shortcode($attr) {
-
-			if ( comments_open() ) {
-				$rating_stat = $this->rating_stat();
-
-				ob_start();
-				$this->avg_rating_markup( $rating_stat, $attr );
-
-				return ob_get_clean();
-			}
-
-		}
-
 		/**
 		 * Average rating markup that used in shortcode and for default hook over comments form.
 		 *
-		 * @param $rating_stat
+		 * @param       $rating_stat
+		 * @param array $attr
 		 *
 		 * @return void
 		 */
-		public function avg_rating_markup( $rating_stat, $attr = [] ) {
+		public function average_rating_markup( $rating_stat, $attr = [] ) {
 
 			$show_text         = true;
 			$show_empty_rating = true;
@@ -315,7 +339,7 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 					$show_empty_rating = false;
 				}
 
-                if ( isset( $attr['show_text'] ) && 'no' === $attr['show_text'] ) {
+				if ( isset( $attr['show_text'] ) && 'no' === $attr['show_text'] ) {
 					$show_text = false;
 				}
 			}
@@ -350,7 +374,7 @@ endif;
  * Returns the main instance of Stars_Rating to prevent the need to use globals.
  *
  * @since  1.0.0
- * @return Stars_Rating
+ * @return Stars_Rating_Public
  */
 function Stars_Rating_Public() {
 	return Stars_Rating_Public::instance();

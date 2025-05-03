@@ -57,6 +57,14 @@ Its main features are as follows:
 
 == Changelog ==
 
+= 4.0.6
+* Fixed average rating display logic based on enabled/disabled custom post types (CPTs)
+* Resolved issue with rating display on individual comments
+* Improved performance and optimized query handling
+* Refactored large portions of the codebase for better readability and maintainability
+* Updated translation (.pot) file for improved localization support
+* Tested compatibility with WordPress 6.8.1
+
 = 4.0.5
 * Updated language file
 * Tested plugin with WordPress 6.7.1

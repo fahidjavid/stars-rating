@@ -3,10 +3,10 @@
  * Plugin Name: Stars Rating
  * Plugin URI: https://wordpress.org/plugins/stars-rating/
  * Description: A plugin to turn comments into reviews by adding rating feature.
- * Version: 4.0.6
- * Tested up to: 6.8.1
- * Requires at least: 5.0
- * Requires PHP: 7.4
+ * Version: 4.0.7
+ * Tested up to: 6.9
+ * Requires at least: 6.0
+ * Requires PHP: 8.3
  * Author: Fahid Javid
  * Author URI: https://www.fahidjavid.com
  * Text Domain: stars-rating

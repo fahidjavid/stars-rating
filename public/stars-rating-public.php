@@ -161,12 +161,12 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
                 <!-- Popup Dialog -->
                 <div class="low-rating-alert-wrap">
                     <i class="fa fa-frown-o" aria-hidden="true"></i>
-                    <p><?php esc_html_e( 'We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us, so we can help resolve your issue.', 'stars-rating' ); ?></p>
-                    <a id="post-rating"><?php esc_html_e( 'Post Review', 'stars-rating' ); ?></a>
+                    <p><?php echo esc_html( get_option( 'sr_str_alert_message', __( "We\xe2\x80\x99re sorry you\xe2\x80\x99ve had a bad experience. Before you post your review, feel free to contact us, so we can help resolve your issue.", 'stars-rating' ) ) ); ?></p>
+                    <a id="post-rating"><?php echo esc_html( get_option( 'sr_str_alert_post_review', __( 'Post Review', 'stars-rating' ) ) ); ?></a>
 					<?php
 					if ( ! empty( $negative_contact ) ) {
 						?>
-                        <a id="contact-before-rating" href="<?php echo esc_url( $negative_contact ); ?>"><?php esc_html_e( 'Contact Us', 'stars-rating' ); ?></a>
+                        <a id="contact-before-rating" href="<?php echo esc_url( $negative_contact ); ?>"><?php echo esc_html( get_option( 'sr_str_alert_contact_us', __( 'Contact Us', 'stars-rating' ) ) ); ?></a>
 						<?php
 					}
 					?>
@@ -351,7 +351,7 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 					echo wp_kses_post( Stars_rating::get_rating_stars_markup( 0 ) );
 					if ( $show_text ) {
 						echo '<span class="rating-text">';
-						echo esc_html__( 'Be the first to write a review', 'stars-rating' );
+						echo esc_html( get_option( 'sr_str_first_review', __( 'Be the first to write a review', 'stars-rating' ) ) );
 						echo '</span>';
 					}
 				}
@@ -359,7 +359,7 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				echo wp_kses_post( Stars_Rating::get_rating_stars_markup( $rating_stat['avg'] ) );
 				if ( $show_text ) {
 					echo '<span class="rating-text">';
-					echo floatval( $rating_stat['avg'] ) . ' ' . esc_html__( 'based on', 'stars-rating' ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html__( 'reviews', 'stars-rating' );
+					echo floatval( $rating_stat['avg'] ) . ' ' . esc_html( get_option( 'sr_str_avg_based_on', __( 'based on', 'stars-rating' ) ) ) . ' ' . absint( $rating_stat['count'] ) . ' ' . esc_html( get_option( 'sr_str_avg_reviews', __( 'reviews', 'stars-rating' ) ) );
 					echo '</span>';
 				}
 			}

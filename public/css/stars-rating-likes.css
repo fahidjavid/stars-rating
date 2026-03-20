@@ -1,0 +1,156 @@
+/*
+ * Stars Rating — Likes & Dislikes
+ * Appended after post content on enabled post types.
+ */
+
+/* ── Wrapper ─────────────────────────────────────────────────────────────── */
+.sr-likes-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 28px 0;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* "Was this helpful?" label */
+.sr-likes-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    white-space: nowrap;
+}
+
+/* ── Button group ────────────────────────────────────────────────────────── */
+.sr-likes-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* ── Individual vote button ──────────────────────────────────────────────── */
+.sr-vote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #475569;
+    line-height: 1;
+    transition: border-color 0.15s ease, background 0.15s ease,
+                color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.sr-vote-btn:hover {
+    border-color: #94a3b8;
+    background: #f1f5f9;
+    color: #1e293b;
+    transform: translateY( -1px );
+    box-shadow: 0 2px 6px rgba( 0, 0, 0, 0.06 );
+}
+
+.sr-vote-btn:active {
+    transform: translateY( 0 );
+    box-shadow: none;
+}
+
+/* ── Like button — voted state ───────────────────────────────────────────── */
+.sr-vote-btn.sr-like-btn.sr-voted {
+    border-color: #22c55e;
+    background: #f0fdf4;
+    color: #15803d;
+    box-shadow: 0 0 0 3px rgba( 34, 197, 94, 0.12 );
+}
+
+.sr-vote-btn.sr-like-btn.sr-voted .fa {
+    color: #16a34a;
+}
+
+/* ── Dislike button — voted state ────────────────────────────────────────── */
+.sr-vote-btn.sr-dislike-btn.sr-voted {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #b91c1c;
+    box-shadow: 0 0 0 3px rgba( 239, 68, 68, 0.12 );
+}
+
+.sr-vote-btn.sr-dislike-btn.sr-voted .fa {
+    color: #dc2626;
+}
+
+/* ── Loading state (request in flight) ───────────────────────────────────── */
+.sr-likes-wrap.sr-loading .sr-vote-btn {
+    opacity: 0.55;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* ── Icon ────────────────────────────────────────────────────────────────── */
+.sr-vote-btn .fa {
+    font-size: 14px;
+    transition: color 0.15s ease;
+}
+
+/* ── Count badge ─────────────────────────────────────────────────────────── */
+.sr-vote-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    line-height: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sr-vote-btn.sr-like-btn.sr-voted .sr-vote-count {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.sr-vote-btn.sr-dislike-btn.sr-voted .sr-vote-count {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* ── Feedback message ────────────────────────────────────────────────────── */
+.sr-likes-feedback {
+    display: none;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.sr-likes-feedback.sr-fb-success {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.sr-likes-feedback.sr-fb-error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+/* ── Vote label text ─────────────────────────────────────────────────────── */
+.sr-vote-label {
+    font-size: 13px;
+}

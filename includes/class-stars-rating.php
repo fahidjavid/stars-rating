@@ -25,6 +25,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 		public function init_hooks() {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_scripts' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_likes_scripts' ) );
 		}
 
 		public function load_files() {
@@ -36,6 +37,12 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 			//Load Public Files.
 			if ( ! is_admin() ) {
 				$this->load_public_files();
+			}
+
+			// The likes file must be loaded on every request (including admin-ajax.php)
+			// so its wp_ajax_* handlers are always registered.
+			if ( 'enable' === get_option( 'sr_likes_enabled', 'disable' ) ) {
+				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/stars-rating-likes.php';
 			}
 		}
 
@@ -138,7 +145,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 			);
 
 			wp_localize_script( 'stars-rating-script', 'srRatingVars', array(
-				'requireMsg' => esc_html__( 'Please select a star rating before submitting your review.', 'stars-rating' ),
+				'requireMsg' => esc_html( get_option( 'sr_str_require_rating', __( 'Please select a star rating before submitting your review.', 'stars-rating' ) ) ),
 			) );
 
 			// Inject the custom star color as inline CSS so it overrides the stylesheet default.
@@ -154,6 +161,47 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 				}
 			";
 			wp_add_inline_style( 'stars-rating-public', $inline_css );
+		}
+
+		/**
+		 * Enqueue likes/dislikes scripts and styles on singular posts of enabled types.
+		 */
+		public function enqueue_likes_scripts(): void {
+
+			if ( 'enable' !== get_option( 'sr_likes_enabled', 'disable' ) ) {
+				return;
+			}
+
+			if ( ! is_singular() ) {
+				return;
+			}
+
+			$enabled = (array) get_option( 'sr_likes_post_types', array( 'post', 'page' ) );
+			if ( ! in_array( get_post_type(), $enabled, true ) ) {
+				return;
+			}
+
+			wp_enqueue_style(
+				'stars-rating-likes',
+				PLUGIN_PUBLIC_URL . 'css/stars-rating-likes.css',
+				array(),
+				'1.0.0'
+			);
+
+			wp_enqueue_script(
+				'stars-rating-likes',
+				PLUGIN_PUBLIC_URL . 'js/likes.js',
+				array( 'jquery' ),
+				'1.0.0',
+				true
+			);
+
+			wp_localize_script( 'stars-rating-likes', 'srLikesVars', array(
+				'ajaxUrl'      => admin_url( 'admin-ajax.php' ),
+				'loginUrl'     => wp_login_url( get_permalink() ),
+				'mustLoginMsg' => esc_html( get_option( 'sr_str_likes_must_login', __( 'You must be logged in to vote.', 'stars-rating' ) ) ),
+				'thanksMsg'    => esc_html( get_option( 'sr_str_likes_thanks', __( 'Thanks for the feedback!', 'stars-rating' ) ) ),
+			) );
 		}
 
 		/**

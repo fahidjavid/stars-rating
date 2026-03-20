@@ -116,6 +116,20 @@ if ( ! class_exists( 'Stars_Rating_Posts_Column' ) ) {
 					$total
 				)
 			) . '</span>';
+
+			// Optionally show like/dislike counts if that feature is enabled for this post type.
+			$likes_types = (array) get_option( 'sr_likes_post_types', array( 'post', 'page' ) );
+			if ( 'enable' === get_option( 'sr_likes_enabled', 'disable' )
+				&& in_array( get_post_type( $post_id ), $likes_types, true ) ) {
+				$likes    = absint( get_post_meta( $post_id, '_sr_likes',    true ) );
+				$dislikes = absint( get_post_meta( $post_id, '_sr_dislikes', true ) );
+				echo '<span class="sr-col-likes">';
+				echo '<span class="sr-col-like-up" title="' . esc_attr__( 'Likes', 'stars-rating' ) . '">&#128077; ' . absint( $likes ) . '</span>';
+				echo '<span class="sr-col-like-sep">·</span>';
+				echo '<span class="sr-col-like-dn" title="' . esc_attr__( 'Dislikes', 'stars-rating' ) . '">&#128078; ' . absint( $dislikes ) . '</span>';
+				echo '</span>';
+			}
+
 			echo '</div>';
 		}
 

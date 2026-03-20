@@ -254,7 +254,7 @@
 
 .sr-field-input {
 	flex-shrink: 0;
-	width: 175px;
+	width: 180px;
 	padding-top: 2px;
 }
 
@@ -632,6 +632,102 @@
 	padding-left: 2px;
 }
 
+/* Likes / dislikes inline in the cell */
+.sr-col-likes {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 11px;
+	color: #64748b;
+	padding-left: 2px;
+}
+
+.sr-col-like-up { color: #16a34a; font-weight: 600; }
+.sr-col-like-dn { color: #dc2626; font-weight: 600; }
+.sr-col-like-sep { color: #cbd5e1; }
+
+/* ── Post edit sidebar metabox ───────────────────────────────────────────── */
+#stars-rating .inside {
+	padding: 8px 12px 10px;
+	margin: 0;
+}
+
+.sr-metabox {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.sr-metabox-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	padding: 7px 8px;
+	border-radius: 6px;
+	border: 1.5px solid #e2e8f0;
+	background: #f8fafc;
+	transition: border-color 0.15s ease, background 0.15s ease;
+	margin: 0;
+}
+
+.sr-metabox-row:hover {
+	border-color: #a5b4fc;
+	background: #eef2ff;
+}
+
+.sr-metabox-row input[type="checkbox"] {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 15px;
+	height: 15px;
+	border: 2px solid #cbd5e1;
+	border-radius: 3px;
+	background: #fff;
+	cursor: pointer;
+	flex-shrink: 0;
+	position: relative;
+	transition: border-color 0.15s, background 0.15s;
+	margin: 0;
+}
+
+.sr-metabox-row input[type="checkbox"]:checked {
+	background: #494ced;
+	border-color: #494ced;
+}
+
+.sr-metabox-row input[type="checkbox"]:checked::after {
+	content: '';
+	position: absolute;
+	left: 2px;
+	top: 0;
+	width: 4px;
+	height: 7px;
+	border: 2px solid #fff;
+	border-top: none;
+	border-left: none;
+	transform: rotate( 45deg );
+}
+
+.sr-metabox-label {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 12px;
+	font-weight: 500;
+	color: #334155;
+	line-height: 1.3;
+	user-select: none;
+}
+
+.sr-metabox-icon {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+	color: #494ced;
+	flex-shrink: 0;
+}
+
 /* ── Comment edit screen — rating meta box ───────────────────────────────── */
 .sr-comment-edit-rating {
 	padding: 8px 0;
@@ -691,4 +787,56 @@
 
 .rating-stars i.rated:after {
 	color: #edb867;
+}
+
+/* ==========================================================================
+   Labels & Messages — full-width card
+   ========================================================================== */
+
+/* Full-width card sits outside the grid */
+.sr-card-full {
+	margin-bottom: 20px;
+}
+
+/* Wider input area for text fields in this card */
+.sr-card-full .sr-field-input {
+	flex: 1;
+	width: auto;
+	max-width: 480px;
+}
+
+/* Section titles (Star Ratings / Negative Rating Alert / Likes & Dislikes) */
+.sr-section-title {
+	margin: 0;
+	padding: 12px 18px 4px;
+	font-size: 10.5px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	color: var( --sr-muted );
+	border-top: 1px solid var( --sr-border-soft );
+}
+
+.sr-card-body > .sr-section-title:first-child {
+	border-top: none;
+	padding-top: 14px;
+}
+
+/* Inline pair of inputs (e.g. "based on" + "reviews") */
+.sr-field-inline {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.sr-input-short {
+	width: 120px;
+	flex-shrink: 0;
+}
+
+/* Textarea variant */
+.sr-textarea {
+	resize: vertical;
+	min-height: 62px;
+	line-height: 1.5;
 }

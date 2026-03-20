@@ -104,3 +104,12 @@
     color: orange;
     margin-bottom: 20px;
 }
+
+/*** Inline rating validation error ***/
+.sr-rating-error {
+    color: #d63638;
+    font-size: 13px;
+    margin: 6px 0 0;
+    padding: 0;
+    display: none;
+}

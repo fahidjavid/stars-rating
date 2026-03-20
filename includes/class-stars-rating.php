@@ -53,7 +53,7 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 			return self::$_instance;
 		}
 
-		public function load_admin_files() { // TODO: define the path of the directories first like URLs.
+		public function load_admin_files() {
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Stars_Rating_Settings.php';
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-metabox.php';
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/stars-rating-comments-column.php';
@@ -126,6 +126,10 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 				array( 'jquery' ),
 				'1.0.0'
 			);
+
+			wp_localize_script( 'stars-rating-script', 'srRatingVars', array(
+				'requireMsg' => esc_html__( 'Please select a star rating before submitting your review.', 'stars-rating' ),
+			) );
 		}
 
 		/**

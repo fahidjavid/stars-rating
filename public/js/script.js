@@ -1,10 +1,10 @@
 ( function ( $ ) {
-    $( window ).load( function () {
+    $( function () {
         "use strict";
 
         var ratingField = $( '#rate-it' );
 
-        if ( ratingField.hasClass( 'require-yes' ) ) { // This will be moved over only submit button.
+        if ( ratingField.hasClass( 'require-yes' ) ) {
             var container    = $( '#stars-rating-review' );
             var parentForm   = ratingField.closest( 'form' );
             var submitButton = parentForm.find( 'input[type="submit"]' );
@@ -29,7 +29,7 @@
 
             parentForm.on( 'submit', function () {
                 if ( ! submitButton.hasClass( 'reviewed' ) && container.is( ':visible' ) ) {
-                    alert( 'Please select a rating.' )
+                    showRatingError( container );
                     return false;
                 }
 
@@ -38,6 +38,22 @@
                     return false;
                 }
             } );
+
+            // Show an inline error below the rating widget
+            function showRatingError( container ) {
+                var errorId  = 'sr-rating-error-msg';
+                var errorMsg = ( typeof srRatingVars !== 'undefined' )
+                    ? srRatingVars.requireMsg
+                    : 'Please select a star rating before submitting your review.';
+
+                if ( ! $( '#' + errorId ).length ) {
+                    $( '<p id="' + errorId + '" class="sr-rating-error" role="alert"></p>' )
+                        .text( errorMsg )
+                        .insertAfter( container );
+                }
+
+                $( '#' + errorId ).stop( true ).fadeIn();
+            }
 
             // Show the popup and overlay
             function openPopup() {
@@ -63,7 +79,6 @@
                 theme         : 'fontawesome-stars',
                 initialRating : 5
             } );
-
         }
 
     } );

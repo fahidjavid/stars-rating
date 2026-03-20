@@ -94,8 +94,8 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 			add_action( 'comment_post', array( $this, 'save_comment_rating' ) );
 			add_filter( 'comment_text', array( $this, 'modify_comment' ), 10, 2 );
 
-			$avg_rating_display  = get_option( ' avg_rating_display', 'show' );
-			$google_search_stars = get_option( ' google_search_stars', 'show' );
+			$avg_rating_display  = get_option( 'avg_rating_display', 'show' );
+			$google_search_stars = get_option( 'google_search_stars', 'show' );
 
 			if ( 'show' === $avg_rating_display ) { // Check if average rating and comments are enabled for the post/page
 				add_filter( "comments_template", array( $this, 'average_rating_above_comments' ) );
@@ -192,12 +192,13 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		}
 
 		/**
-		 * Add the filter to check whether the comment rating has been set
+		 * Validate that a rating was provided when it is required.
 		 */
 		public function verify_comment_rating( $comment_data ) {
 
-			if ( ( isset( $_POST['rating'] ) ) && ( $_POST['rating'] == '' ) ) {
+			$require_rating = get_option( 'require_rating', 'no' );
 
+			if ( 'yes' === $require_rating && empty( $_POST['rating'] ) ) {
 				wp_die( esc_html__( 'Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating.', 'stars-rating' ) );
 			}
 
@@ -205,21 +206,21 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		}
 
 		/**
-		 * Save the comment rating along with comment
+		 * Save the comment rating along with comment.
 		 */
 		public function save_comment_rating( $comment_id ) {
 
-			// check if it's a reply then do nothing
+			// Replies do not get a rating.
 			$comment = get_comment( $comment_id, ARRAY_A );
 			if ( ! empty( $comment['comment_parent'] ) ) {
 				return;
 			}
 
-			if ( ( isset( $_POST['rating'] ) ) && ( $_POST['rating'] != '' ) ) {
-				$rating = min( max( 1, $_POST['rating'] ), 5 );;
+			if ( isset( $_POST['rating'] ) && '' !== $_POST['rating'] ) {
+				$rating = absint( $_POST['rating'] );
+				$rating = min( max( 1, $rating ), 5 );
 				add_comment_meta( $comment_id, 'rating', $rating );
 			}
-
 		}
 
 		/**

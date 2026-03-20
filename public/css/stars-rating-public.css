@@ -34,12 +34,20 @@
 
 /*** Settings Preferences Style ***/
 .rating-stars i:after {
-    content: '\f006';
+    content: '\f006'; /* FontAwesome: outline star (fa-star-o) */
     color: #d2d2d2;
+    font-family: FontAwesome;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
 }
 
-.rating-stars i.stars-style-solid:after {
-    content: '\f005';
+/* Style class is on the <span> wrapper, so use a descendant selector. */
+.rating-stars.stars-style-solid i:after {
+    content: '\f005'; /* FontAwesome: filled star (fa-star) */
 }
 
 /*** Disabling the rating bar for reply comment form ***/

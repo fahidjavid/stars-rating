@@ -47,9 +47,6 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 						</div>
 					</div>
 					<div class="sr-header-links">
-						<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=fahidjavid%40gmail.com&item_name=OpenSource+Projects+Support&currency_code=USD&source=url" target="_blank" class="sr-btn sr-btn-donate">
-							☕ <?php esc_html_e( 'Buy Me a Coffee', 'stars-rating' ); ?>
-						</a>
 						<a href="https://wordpress.org/support/plugin/stars-rating/reviews/#new-post" target="_blank" class="sr-btn sr-btn-review">
 							★ <?php esc_html_e( 'Leave a Review', 'stars-rating' ); ?>
 						</a>
@@ -107,6 +104,22 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 									</div>
 									<div class="sr-field-input">
 										<?php $this->render_stars_style_field(); ?>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Stars Color', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Pick a color for rated stars to match your brand.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<input
+											type="text"
+											name="stars_color"
+											class="sr-color-picker"
+											value="<?php echo esc_attr( get_option( 'stars_color', '#EDB867' ) ); ?>"
+											data-default-color="#EDB867"
+										/>
 									</div>
 								</div>
 
@@ -290,6 +303,10 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 			) );
 			register_setting( 'stars_rating_settings', 'sr_negative_rating_contact_url', array(
 				'sanitize_callback' => 'esc_url_raw',
+			) );
+			register_setting( 'stars_rating_settings', 'stars_color', array(
+				'sanitize_callback' => 'sanitize_hex_color',
+				'default'           => '#EDB867',
 			) );
 		}
 

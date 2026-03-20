@@ -44,6 +44,11 @@ if ( ! class_exists( 'Stars_Rating' ) ) {
 			if ( 'enable' === get_option( 'sr_likes_enabled', 'disable' ) ) {
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/stars-rating-likes.php';
 			}
+
+			// Review photos — load on public requests and admin (for AJAX delete handler).
+			if ( 'enable' === get_option( 'sr_photos_enabled', 'disable' ) ) {
+				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/stars-rating-review-photos.php';
+			}
 		}
 
 		/**

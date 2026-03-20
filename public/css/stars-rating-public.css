@@ -121,3 +121,95 @@
     padding: 0;
     display: none;
 }
+
+/*** Review photo upload widget ***/
+.sr-photo-upload-wrap {
+    margin: 10px 0 4px;
+}
+
+.sr-photo-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 7px;
+    background: #f8fafc;
+    cursor: pointer;
+    font-size: 13px;
+    color: #64748b;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+    user-select: none;
+}
+
+.sr-photo-label:hover {
+    border-color: #494ced;
+    background: #eef2ff;
+    color: #494ced;
+}
+
+.sr-photo-icon {
+    font-size: 16px !important;
+    width: 16px !important;
+    height: 16px !important;
+    line-height: 1 !important;
+}
+
+/* Hide the native file input — label acts as the click target */
+.sr-photo-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+/* Photo thumbnail preview strip (before upload) */
+.sr-photo-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.sr-photo-thumb {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Photo grid displayed inside approved comments */
+.sr-review-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.sr-review-photos a {
+    display: block;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.sr-review-photos a img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    transition: opacity 0.15s ease;
+    display: block;
+}
+
+.sr-review-photos img:hover {
+    opacity: 0.82;
+}
+
+/* Hide the upload widget on reply (nested) comment forms */
+.comment #respond .sr-photo-upload-wrap {
+    display: none;
+}

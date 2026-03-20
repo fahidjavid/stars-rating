@@ -563,6 +563,10 @@
    ========================================================================== */
 
 /* Column header: icon + label inline */
+th#sr_avg_rating,
+th#rating {
+    width: 180px;
+}
 .column-sr_avg_rating .sr-col-icon,
 .column-rating .sr-col-icon {
 	color: #fbbf24;
@@ -839,4 +843,76 @@
 	resize: vertical;
 	min-height: 62px;
 	line-height: 1.5;
+}
+
+/* ==========================================================================
+   Review Photos — admin comment edit metabox
+   ========================================================================== */
+
+.sr-review-photos-admin {
+	padding: 6px 0;
+}
+
+.sr-photos-admin-count {
+	font-size: 12px;
+	color: var( --sr-muted );
+	margin: 0 0 10px;
+}
+
+.sr-admin-photo-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-bottom: 6px;
+}
+
+.sr-admin-photo-item {
+	position: relative;
+	width: 80px;
+	flex-shrink: 0;
+}
+
+.sr-admin-photo-item img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border-radius: 6px;
+	border: 1px solid var( --sr-border );
+	display: block;
+}
+
+.sr-admin-photo-item a {
+	display: block;
+	line-height: 0;
+}
+
+.sr-admin-photo-delete {
+	position: absolute;
+	top: -7px;
+	right: -7px;
+	width: 22px;
+	height: 22px;
+	background: #dc2626;
+	border: 2px solid #ffffff;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	transition: background 0.15s ease, transform 0.12s ease;
+	box-shadow: 0 1px 4px rgba( 0, 0, 0, 0.2 );
+}
+
+.sr-admin-photo-delete:hover {
+	background: #b91c1c;
+	transform: scale( 1.1 );
+}
+
+.sr-admin-photo-delete .dashicons {
+	font-size: 12px;
+	width: 12px;
+	height: 12px;
+	color: #ffffff;
+	line-height: 1;
 }

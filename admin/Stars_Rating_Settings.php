@@ -325,6 +325,101 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 							</div>
 						</div>
 
+						<!-- Review Photos Card -->
+						<div class="sr-card">
+							<div class="sr-card-header">
+								<span class="dashicons dashicons-camera-alt"></span>
+								<h2><?php esc_html_e( 'Review Photos', 'stars-rating' ); ?></h2>
+							</div>
+							<div class="sr-card-body">
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Enable Review Photos', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Allow reviewers to attach images to their comments.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<?php $this->render_radio_field( 'sr_photos_enabled', 'disable', array(
+											'enable'  => esc_html__( 'Enable',  'stars-rating' ),
+											'disable' => esc_html__( 'Disable', 'stars-rating' ),
+										) ); ?>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Post Types', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Select which post types allow photo uploads on reviews.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<?php $this->render_photos_post_types_checkboxes(); ?>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Who Can Upload', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Allow everyone to upload photos, or restrict to logged-in users only.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<?php $this->render_radio_field( 'sr_photos_voters', 'everyone', array(
+											'everyone'  => esc_html__( 'Everyone',   'stars-rating' ),
+											'logged_in' => esc_html__( 'Logged in',  'stars-rating' ),
+										) ); ?>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Max Photos per Review', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Maximum number of images a reviewer can attach (1–10).', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<input
+											type="number"
+											name="sr_photos_max_count"
+											class="sr-input sr-input-number"
+											value="<?php echo esc_attr( get_option( 'sr_photos_max_count', 3 ) ); ?>"
+											min="1" max="10" step="1"
+										/>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Max File Size (MB)', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Maximum size in megabytes per uploaded image.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<input
+											type="number"
+											name="sr_photos_max_size_mb"
+											class="sr-input sr-input-number"
+											value="<?php echo esc_attr( get_option( 'sr_photos_max_size_mb', 2 ) ); ?>"
+											min="1" max="20" step="1"
+										/>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Max Image Dimension (px)', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Images are resized to fit within this pixel dimension on upload. Saves disk space.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<input
+											type="number"
+											name="sr_photos_thumb_size"
+											class="sr-input sr-input-number"
+											value="<?php echo esc_attr( get_option( 'sr_photos_thumb_size', 800 ) ); ?>"
+											min="200" max="3000" step="50"
+										/>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
 					</div><!-- .sr-grid -->
 
 					<!-- Labels & Messages Card -->
@@ -546,6 +641,32 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 					'sanitize_callback' => 'sanitize_textarea_field',
 				) );
 			}
+
+			// Review Photos.
+			register_setting( 'stars_rating_settings', 'sr_photos_enabled', array(
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => 'disable',
+			) );
+			register_setting( 'stars_rating_settings', 'sr_photos_post_types', array(
+				'sanitize_callback' => array( $this, 'sanitize_post_types' ),
+				'default'           => array( 'post', 'page' ),
+			) );
+			register_setting( 'stars_rating_settings', 'sr_photos_voters', array(
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => 'everyone',
+			) );
+			register_setting( 'stars_rating_settings', 'sr_photos_max_count', array(
+				'sanitize_callback' => 'absint',
+				'default'           => 3,
+			) );
+			register_setting( 'stars_rating_settings', 'sr_photos_max_size_mb', array(
+				'sanitize_callback' => 'absint',
+				'default'           => 2,
+			) );
+			register_setting( 'stars_rating_settings', 'sr_photos_thumb_size', array(
+				'sanitize_callback' => 'absint',
+				'default'           => 800,
+			) );
 		}
 
 		/**
@@ -612,6 +733,26 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 			foreach ( $post_types as $post_type ) {
 				echo '<label>';
 				echo '<input type="checkbox" name="sr_likes_post_types[]" value="' . esc_attr( $post_type ) . '"';
+				checked( in_array( $post_type, $enabled, true ), true );
+				echo ' />';
+				echo '<span>' . esc_html( ucwords( $post_type ) ) . '</span>';
+				echo '</label>';
+			}
+			echo '</div>';
+		}
+
+		/**
+		 * Render post type checkboxes for the review photos feature.
+		 */
+		private function render_photos_post_types_checkboxes() {
+			$enabled    = get_option( 'sr_photos_post_types', array( 'post', 'page' ) );
+			$enabled    = is_array( $enabled ) ? $enabled : (array) $enabled;
+			$post_types = get_post_types( array( 'public' => true ), 'names' );
+
+			echo '<div class="sr-checkbox-list">';
+			foreach ( $post_types as $post_type ) {
+				echo '<label>';
+				echo '<input type="checkbox" name="sr_photos_post_types[]" value="' . esc_attr( $post_type ) . '"';
 				checked( in_array( $post_type, $enabled, true ), true );
 				echo ' />';
 				echo '<span>' . esc_html( ucwords( $post_type ) ) . '</span>';

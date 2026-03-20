@@ -1,57 +1,461 @@
-label[for="avg_rating_display"],
-label[for="require_rating"],
-label[for="stars_style_regular"],
-label[for="google_search_stars_show"],
-label[for="negative_rating_alert_enable"] {
-    margin-right: 10px;
-    min-width: 80px;
-    display: inline-block;
+/* ==========================================================================
+   Stars Rating — Admin Settings Page
+   ========================================================================== */
+
+/* Wrapper */
+.sr-wrap {
+	max-width: 1100px;
+	margin: 20px 20px 0 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
 }
 
-/*** Donation Link ***/
-div.custom-links i {
-    margin: 5px;
-}
-.donation-link,
-.review-link {
-    color: white;
-    text-decoration: none;
-    background-color: #009cde;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
-
-.donation-link:hover {
-    color: #fff;
-    background-color: #1dbf73;
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.sr-header {
+	background: linear-gradient( 135deg, #1a3557 0%, #2271b1 100% );
+	border-radius: 10px;
+	padding: 24px 28px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 16px;
+	box-shadow: 0 2px 8px rgba( 34, 113, 177, 0.25 );
 }
 
-.review-link:hover {
-    color: #fff;
-    background-color: #ffc733;
+.sr-logo {
+	display: flex;
+	align-items: center;
+	gap: 14px;
 }
 
-/**
-* Stars Rating Styles
- */
+.sr-logo .dashicons {
+	font-size: 36px;
+	width: 36px;
+	height: 36px;
+	color: #f59e0b;
+	filter: drop-shadow( 0 0 6px rgba( 245, 158, 11, 0.5 ) );
+}
+
+.sr-logo-text h1 {
+	color: #ffffff !important;
+	font-size: 22px !important;
+	font-weight: 700 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	line-height: 1.2 !important;
+	border: none !important;
+}
+
+.sr-logo-text span {
+	display: block;
+	color: rgba( 255, 255, 255, 0.65 );
+	font-size: 12px;
+	margin-top: 2px;
+}
+
+.sr-header-links {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.sr-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 8px 16px;
+	border-radius: 6px;
+	font-size: 12px;
+	font-weight: 600;
+	text-decoration: none !important;
+	transition: all 0.18s ease;
+	border: 2px solid transparent;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.sr-btn-donate {
+	background: #f59e0b;
+	color: #1a1a1a !important;
+}
+
+.sr-btn-donate:hover {
+	background: #d97706;
+	color: #1a1a1a !important;
+	transform: translateY( -1px );
+	box-shadow: 0 3px 8px rgba( 245, 158, 11, 0.4 );
+}
+
+.sr-btn-review {
+	background: rgba( 255, 255, 255, 0.12 );
+	color: #ffffff !important;
+	border-color: rgba( 255, 255, 255, 0.3 );
+}
+
+.sr-btn-review:hover {
+	background: rgba( 255, 255, 255, 0.22 );
+	color: #ffffff !important;
+	transform: translateY( -1px );
+}
+
+/* ==========================================================================
+   Success Notice
+   ========================================================================== */
+.sr-notice {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 16px;
+	border-radius: 8px;
+	margin-bottom: 18px;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.sr-notice-success {
+	background: #ecfdf5;
+	color: #065f46;
+	border-left: 4px solid #10b981;
+}
+
+.sr-notice-success .dashicons {
+	color: #10b981;
+	font-size: 18px;
+	width: 18px;
+	height: 18px;
+}
+
+/* ==========================================================================
+   Settings Grid — 2 columns
+   ========================================================================== */
+.sr-grid {
+	display: grid;
+	grid-template-columns: repeat( 2, 1fr );
+	gap: 18px;
+	margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+.sr-card {
+	background: #ffffff;
+	border-radius: 10px;
+	border: 1px solid #e2e8f0;
+	box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.06 ), 0 1px 2px rgba( 0, 0, 0, 0.04 );
+	overflow: hidden;
+}
+
+.sr-card-header {
+	display: flex;
+	align-items: center;
+	gap: 9px;
+	padding: 14px 18px;
+	background: #f8fafc;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.sr-card-header .dashicons {
+	color: #2271b1;
+	font-size: 17px;
+	width: 17px;
+	height: 17px;
+}
+
+.sr-card-header h2 {
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	color: #1e293b !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.sr-card-body {
+	padding: 0;
+}
+
+/* ==========================================================================
+   Fields
+   ========================================================================== */
+.sr-field {
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 14px 18px;
+	border-bottom: 1px solid #f1f5f9;
+}
+
+.sr-field:last-child {
+	border-bottom: none;
+}
+
+.sr-field-label {
+	flex: 1;
+	min-width: 0;
+}
+
+.sr-field-label strong {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1e293b;
+	margin-bottom: 3px;
+}
+
+.sr-field-label .sr-desc,
+.sr-field-label p.description {
+	font-size: 11.5px;
+	color: #64748b;
+	margin: 0;
+	line-height: 1.5;
+}
+
+.sr-field-label .sr-desc a,
+.sr-field-label p.description a {
+	color: #2271b1;
+	text-decoration: none;
+}
+
+.sr-field-label .sr-desc a:hover,
+.sr-field-label p.description a:hover {
+	text-decoration: underline;
+}
+
+.sr-field-input {
+	flex-shrink: 0;
+	width: 175px;
+	padding-top: 2px;
+}
+
+/* ==========================================================================
+   Radio Pill Groups
+   ========================================================================== */
+.sr-radio-group {
+	display: flex;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.sr-radio-group label {
+	position: relative;
+	margin: 0;
+	cursor: pointer;
+}
+
+.sr-radio-group input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+.sr-radio-group label span {
+	display: inline-block;
+	padding: 5px 13px;
+	border-radius: 20px;
+	border: 1.5px solid #cbd5e1;
+	font-size: 12px;
+	font-weight: 500;
+	color: #475569;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	background: #fff;
+	white-space: nowrap;
+	user-select: none;
+}
+
+.sr-radio-group label:hover span {
+	border-color: #2271b1;
+	color: #2271b1;
+}
+
+.sr-radio-group input[type="radio"]:checked + span {
+	background: #2271b1;
+	color: #ffffff;
+	border-color: #2271b1;
+}
+
+/* ==========================================================================
+   Checkbox List (Post Types)
+   ========================================================================== */
+.sr-checkbox-list {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.sr-checkbox-list label {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	font-size: 12.5px;
+	color: #1e293b;
+	cursor: pointer;
+	margin: 0;
+}
+
+.sr-checkbox-list input[type="checkbox"] {
+	margin: 0;
+	width: 14px;
+	height: 14px;
+	accent-color: #2271b1;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.sr-checkbox-list span {
+	line-height: 1;
+}
+
+/* ==========================================================================
+   Stars Style Selector
+   ========================================================================== */
+.sr-star-options {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.sr-star-option {
+	position: relative;
+}
+
+.sr-star-option input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	width: 0;
+	height: 0;
+	pointer-events: none;
+}
+
+.sr-star-option label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 11px;
+	border-radius: 7px;
+	border: 1.5px solid #cbd5e1;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	background: #fff;
+	margin: 0;
+}
+
+.sr-star-option label:hover {
+	border-color: #2271b1;
+}
+
+.sr-star-option input[type="radio"]:checked + label {
+	border-color: #2271b1;
+	background: #eff6ff;
+}
+
+.sr-star-preview {
+	color: #f59e0b;
+	font-size: 13px;
+	letter-spacing: 1px;
+	line-height: 1;
+}
+
+.sr-star-label-text {
+	font-size: 12px;
+	color: #475569;
+	font-weight: 500;
+}
+
+.sr-star-option input[type="radio"]:checked + label .sr-star-label-text {
+	color: #2271b1;
+}
+
+/* ==========================================================================
+   Text / URL / Number Inputs
+   ========================================================================== */
+.sr-input {
+	width: 100%;
+	padding: 7px 10px;
+	border: 1.5px solid #cbd5e1;
+	border-radius: 6px;
+	font-size: 12.5px;
+	color: #1e293b;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	box-sizing: border-box;
+	background: #fff;
+}
+
+.sr-input:focus {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 2px rgba( 34, 113, 177, 0.15 );
+	outline: none;
+}
+
+.sr-input-number {
+	width: 70px;
+}
+
+/* ==========================================================================
+   Shortcode Display
+   ========================================================================== */
+.sr-shortcode {
+	display: inline-block;
+	background: #f1f5f9;
+	border: 1px solid #e2e8f0;
+	border-radius: 5px;
+	padding: 4px 10px;
+	font-size: 12px;
+	color: #475569;
+	font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+	user-select: all;
+}
+
+/* ==========================================================================
+   Save Actions Bar
+   ========================================================================== */
+.sr-actions {
+	display: flex;
+	align-items: center;
+	padding: 0;
+	margin-bottom: 40px;
+}
+
+.sr-actions .button-primary {
+	height: auto !important;
+	padding: 9px 28px !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	border-radius: 6px !important;
+	line-height: 1.4 !important;
+}
+
+/* ==========================================================================
+   Stars Markup in Comments Admin Column
+   (shared with public-side stars display)
+   ========================================================================== */
 .rating-stars i:after {
-    content: '\f006';
-    color: #d2d2d2;
+	content: '\f006';
+	color: #d2d2d2;
 }
 
 .rating-stars i.stars-style-solid:after {
-    content: '\f005';
+	content: '\f005';
 }
 
 .rating-stars {
-    font-size: 15px;
+	font-size: 15px;
 }
 
 .rating-stars i {
-    margin-right: 2px;
-    color: #d2d2d2;
+	margin-right: 2px;
+	color: #d2d2d2;
 }
 
 .rating-stars i.rated:after {
-    color: #EDB867;
+	color: #edb867;
 }

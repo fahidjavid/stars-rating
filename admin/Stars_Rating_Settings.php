@@ -43,7 +43,7 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 						<span class="dashicons dashicons-star-filled"></span>
 						<div class="sr-logo-text">
 							<h1><?php esc_html_e( 'Stars Rating', 'stars-rating' ); ?></h1>
-							<span><?php esc_html_e( 'Plugin Settings', 'stars-rating' ); ?></span>
+							<span><?php printf( 'Built with <span class="sr-heart">♥</span> by <a href="https://fahidjavid.com" target="_blank" rel="noopener noreferrer">Fahid Javid</a>' ); ?></span>
 						</div>
 					</div>
 					<div class="sr-header-links">

@@ -47,6 +47,8 @@ if ( ! class_exists( 'Stars_Rating_Review_Photos' ) ) {
 			if ( ! is_admin() ) {
 				// Render the file input inside the comment form.
 				add_action( 'comment_form_top', array( $this, 'add_file_input' ) );
+				// Lightbox shell + JS injected once at wp_footer.
+				add_action( 'wp_footer', array( $this, 'render_lightbox_shell' ) );
 			}
 
 			// Core comment lifecycle — registered on every public request.
@@ -379,13 +381,19 @@ if ( ! class_exists( 'Stars_Rating_Review_Photos' ) ) {
 			}
 
 			$base_url = trailingslashit( wp_upload_dir()['baseurl'] );
+			$gallery  = 'c' . absint( $comment->comment_ID );
 			$html     = '<div class="sr-review-photos">';
+			$idx      = 0;
 
 			foreach ( $images as $rel ) {
 				$url   = esc_url( $base_url . $rel );
-				$html .= '<a href="' . $url . '" target="_blank" rel="noopener noreferrer">';
+				$html .= '<a href="' . $url . '" class="sr-lb-trigger"'
+				       . ' data-sr-gallery="' . esc_attr( $gallery ) . '"'
+				       . ' data-index="' . $idx . '"'
+				       . ' aria-label="' . esc_attr__( 'View photo', 'stars-rating' ) . '">';
 				$html .= '<img src="' . $url . '" alt="" loading="lazy" />';
 				$html .= '</a>';
+				$idx++;
 			}
 
 			$html .= '</div>';
@@ -503,6 +511,123 @@ if ( ! class_exists( 'Stars_Rating_Review_Photos' ) ) {
 					</p>
 				<?php endif; ?>
 			</div>
+			<?php
+		}
+
+		// ══════════════════════════════════════════════════════════════════
+		// Lightbox shell rendered once in wp_footer
+		// ══════════════════════════════════════════════════════════════════
+
+		public function render_lightbox_shell(): void {
+			if ( ! self::is_enabled() ) {
+				return;
+			}
+			?>
+			<div id="sr-lightbox" class="sr-lb" role="dialog" aria-modal="true"
+				 aria-label="<?php esc_attr_e( 'Photo viewer', 'stars-rating' ); ?>"
+				 tabindex="-1" hidden>
+				<div class="sr-lb-overlay"></div>
+				<button class="sr-lb-close" aria-label="<?php esc_attr_e( 'Close', 'stars-rating' ); ?>">&#x2715;</button>
+				<div class="sr-lb-content">
+					<button class="sr-lb-prev" aria-label="<?php esc_attr_e( 'Previous photo', 'stars-rating' ); ?>">&#8249;</button>
+					<div class="sr-lb-img-wrap">
+						<div class="sr-lb-spinner" aria-hidden="true"></div>
+						<img class="sr-lb-img" src="" alt="" />
+					</div>
+					<button class="sr-lb-next" aria-label="<?php esc_attr_e( 'Next photo', 'stars-rating' ); ?>">&#8250;</button>
+				</div>
+				<div class="sr-lb-counter" aria-live="polite"></div>
+			</div>
+			<script>
+			(function(){
+				var lb = document.getElementById('sr-lightbox');
+				if (!lb) return;
+				var img     = lb.querySelector('.sr-lb-img');
+				var spinner = lb.querySelector('.sr-lb-spinner');
+				var counter = lb.querySelector('.sr-lb-counter');
+				var btnPrev = lb.querySelector('.sr-lb-prev');
+				var btnNext = lb.querySelector('.sr-lb-next');
+				var items   = []; // Full-size URLs for the current review
+				var current = 0;
+				var touchX  = null;
+
+				function open(gallery, idx) {
+					var els = document.querySelectorAll('a.sr-lb-trigger[data-sr-gallery="' + gallery + '"]');
+					items   = Array.prototype.map.call(els, function(el){ return el.href; });
+					current = Math.max(0, Math.min(parseInt(idx, 10), items.length - 1));
+					show();
+					lb.removeAttribute('hidden');
+					lb.focus();
+					document.body.style.overflow = 'hidden';
+				}
+
+				function close() {
+					lb.setAttribute('hidden', '');
+					document.body.style.overflow = '';
+					img.src = '';
+					items   = [];
+				}
+
+				function show() {
+					img.style.opacity = '0';
+					spinner.style.display = '';
+					var src = items[current];
+					var tmp = new Image();
+					tmp.onload = function() {
+						img.src = src;
+						img.style.opacity = '1';
+						spinner.style.display = 'none';
+					};
+					tmp.onerror = function() { spinner.style.display = 'none'; };
+					tmp.src = src;
+					updateNav();
+				}
+
+				function prev() { current = (current - 1 + items.length) % items.length; show(); }
+				function next() { current = (current + 1) % items.length; show(); }
+
+				function updateNav() {
+					var multi = items.length > 1;
+					btnPrev.style.visibility = multi ? '' : 'hidden';
+					btnNext.style.visibility = multi ? '' : 'hidden';
+					counter.textContent = multi ? (current + 1) + ' / ' + items.length : '';
+				}
+
+				// Open on thumbnail click — event-delegated so it works for lazy-loaded comments.
+				document.addEventListener('click', function(e) {
+					var trigger = e.target.closest('a.sr-lb-trigger');
+					if (trigger) {
+						e.preventDefault();
+						open(trigger.dataset.srGallery, trigger.dataset.index);
+					}
+				});
+
+				// Close button and backdrop click.
+				lb.querySelector('.sr-lb-close').addEventListener('click', close);
+				lb.querySelector('.sr-lb-overlay').addEventListener('click', close);
+				btnPrev.addEventListener('click', function(e){ e.stopPropagation(); prev(); });
+				btnNext.addEventListener('click', function(e){ e.stopPropagation(); next(); });
+
+				// Keyboard navigation.
+				document.addEventListener('keydown', function(e) {
+					if (lb.hasAttribute('hidden')) return;
+					if (e.key === 'Escape')      { close(); }
+					if (e.key === 'ArrowLeft')   { prev(); }
+					if (e.key === 'ArrowRight')  { next(); }
+				});
+
+				// Touch swipe navigation.
+				lb.addEventListener('touchstart', function(e) {
+					touchX = e.touches[0].clientX;
+				}, { passive: true });
+				lb.addEventListener('touchend', function(e) {
+					if (touchX === null) return;
+					var diff = touchX - e.changedTouches[0].clientX;
+					if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+					touchX = null;
+				}, { passive: true });
+			})();
+			</script>
 			<?php
 		}
 

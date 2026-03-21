@@ -8,26 +8,53 @@ Stable tag: 4.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A plugin to turn comments into reviews by adding rating feature.
+A complete review plugin — star ratings, photo uploads, likes & dislikes, and Google rich snippets, all from one place.
 
 == Description ==
 
-A simple and easy to use plugin that turns post, pages and custom post types comments into reviews.
+Stars Rating transforms WordPress comments into a fully featured review system. It is simple to set up, highly configurable, and designed to keep your Media Library and admin clean no matter how many reviews come in.
 
 Its main features are as follows:
 
-* Turns post, pages and custom post types comments into reviews.
-* Allows you to choose post types on which you want to enable Stars Rating feature.
-* An option to require rating selection to leave a review.
-* Also, allows you to enable/disable stars rating feature for the posts and pages individually.
-* An option to display stars rating in Google search results.
-* Choose from two different rating stars styles according to your site look.
-* Offers a shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page/CPTs detail or listing pages.
-* Hide average rating text <strong>[stars_rating_avg show_text="no"]</strong>.
-* Hide empty average rating <strong>[stars_rating_avg show_empty_rating="no"]</strong>.
-* See each review stars rating on the comments page (backend).
-* Enhanced SEO with structured data for standout reviews in Google with "Google Review Schema" integration.
-* Preempt negativity with the "Negative Rating Alert" feature, promoting issue resolution before reviews are posted.
+**Star Ratings**
+* Turns posts, pages and custom post types comments into star-rated reviews.
+* Choose which post types have ratings enabled, globally and per post.
+* Option to require a star selection before a comment can be submitted.
+* Choose from two star styles (regular outline or solid filled) with a custom colour picker.
+* Display the average rating above the comments section.
+* Offers a shortcode <strong>[stars_rating_avg]</strong> to display the average rating anywhere.
+* Hide the average rating text: <strong>[stars_rating_avg show_text="no"]</strong>.
+* Hide an empty average rating: <strong>[stars_rating_avg show_empty_rating="no"]</strong>.
+* See each review's star rating on the WordPress comments screen (backend).
+
+**Review Photos**
+* Allow reviewers to attach photos to their comments.
+* Photos are stored in a dedicated folder (wp-content/uploads/sr-reviews/) — completely separate from the WordPress Media Library to keep it clean.
+* Photos open in a per-review lightbox gallery on the front end.
+* Manage and delete individual review photos from the comment edit screen in the admin.
+* Configure max number of photos, max file size, and max image dimension per upload.
+* Restrict photo uploads to logged-in users or allow everyone.
+
+**Likes & Dislikes**
+* Add thumbs-up / thumbs-down buttons to posts on any post type.
+* Show or hide vote counts next to each button.
+* Restrict voting to logged-in users or allow everyone.
+* SVG icons ensure consistent rendering across all browsers and devices.
+
+**Negative Rating Alert**
+* Show a popup when a reviewer selects a low star rating, giving them a chance to reach out before posting.
+* Set the rating threshold that triggers the alert.
+* Configure a direct link to your contact page inside the alert.
+
+**Google Rich Snippets**
+* Output JSON-LD structured data so star ratings can appear directly in Google search results.
+* Set the review type (Product, Recipe, Book, Course, etc.) to match your content.
+
+**Labels & Messages**
+* Customise every user-facing string — prompts, button labels, alert text, error messages — directly from the settings page without editing any code.
+
+**Settings**
+* Organised settings page with tabbed navigation (Stars & Reviews, Likes & Dislikes, Labels & Messages) for quick access to each feature area.
 
 == Installation ==
 
@@ -45,7 +72,7 @@ Its main features are as follows:
 3. Upload the extracted plugin folder to the `/wp-content/plugins/` directory on your server.
 4. Activate the plugin through the WordPress dashboard from **Plugins > Installed Plugins** page.
 
-<strong>Note:</strong> After installing the plugin go to the <strong>Settings > Discussion</strong> page (at the very bottom) and enable desired post types for the Stars Rating.
+<strong>Note:</strong> After installing & activating the plugin go to the <strong>Dashboard > Stars Rating</strong> page to enable/disable features and configure related settings.
 
 == Screenshots ==
 

@@ -4,7 +4,7 @@ Tags: comments, rating, reviews, stars, shortcode
 Tested up to: 6.9
 Requires at least: 6.0
 Requires PHP: 8.3
-Stable tag: 4.0.7
+Stable tag: 4.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,17 @@ Its main features are as follows:
 6. Stars Rating display on the comments page (backend)
 
 == Changelog ==
+
+= 4.1.0
+* New: Likes & Dislikes — let visitors like or dislike posts with configurable voter permissions, post type targeting, and visible vote counts
+* New: Review Photos — reviewers can now attach images to their comments; photos are stored in a dedicated directory (wp-content/uploads/sr-reviews/) completely separate from the WordPress Media Library to keep it uncluttered
+* New: Per-photo lightbox — clicking a review photo opens a full-size lightbox gallery navigatable per review; photo paths are not exposed in the browser status bar
+* New: Admin photo management — uploaded review photos are visible in the comment edit screen with individual delete buttons
+* New: Labels & Messages — all user-facing strings (rating prompts, alert text, button labels, likes/dislikes copy) are now fully customisable from the settings page without touching code
+* New: Settings tab navigation — settings are now organised into three focused tabs (Stars & Reviews, Likes & Dislikes, Labels & Messages) for easier navigation; active tab is remembered across page visits
+* Improved: General code structure improvements and refactoring
+* Updated: Translation files updated for multilingual support
+* WordPress 6.9.4 compatibility confirmed
 
 = 4.0.7
 * WordPress 6.9 compatibility confirmed

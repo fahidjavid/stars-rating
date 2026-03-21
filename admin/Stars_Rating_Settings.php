@@ -63,7 +63,23 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 
 				<form method="post" action="options.php">
 					<?php settings_fields( 'stars_rating_settings' ); ?>
+					<nav class="sr-tabs" role="tablist">
+						<button type="button" class="sr-tab" data-tab="stars" role="tab">
+							<span class="dashicons dashicons-star-filled"></span>
+							<?php esc_html_e( 'Stars &amp; Reviews', 'stars-rating' ); ?>
+						</button>
+						<button type="button" class="sr-tab" data-tab="likes" role="tab">
+							<span class="dashicons dashicons-thumbs-up"></span>
+							<?php esc_html_e( 'Likes &amp; Dislikes', 'stars-rating' ); ?>
+						</button>
+						<button type="button" class="sr-tab" data-tab="labels" role="tab">
+							<span class="dashicons dashicons-editor-quote"></span>
+							<?php esc_html_e( 'Labels &amp; Messages', 'stars-rating' ); ?>
+						</button>
+					</nav>
 
+					<!-- Tab Panel: Stars & Reviews -->
+					<div class="sr-tab-panel" data-panel="stars" role="tabpanel">
 					<div class="sr-grid">
 
 						<!-- General Card -->
@@ -198,66 +214,6 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 											value="<?php echo esc_attr( get_option( 'google_search_stars_type', '' ) ); ?>"
 											placeholder="<?php esc_attr_e( 'e.g. Product', 'stars-rating' ); ?>"
 										/>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<!-- Likes & Dislikes Card -->
-						<div class="sr-card">
-							<div class="sr-card-header">
-								<span class="dashicons dashicons-thumbs-up"></span>
-								<h2><?php esc_html_e( 'Likes &amp; Dislikes', 'stars-rating' ); ?></h2>
-							</div>
-							<div class="sr-card-body">
-
-								<div class="sr-field">
-									<div class="sr-field-label">
-										<strong><?php esc_html_e( 'Enable Likes &amp; Dislikes', 'stars-rating' ); ?></strong>
-										<p class="sr-desc"><?php esc_html_e( 'Let visitors like or dislike posts on enabled post types.', 'stars-rating' ); ?></p>
-									</div>
-									<div class="sr-field-input">
-										<?php $this->render_radio_field( 'sr_likes_enabled', 'disable', array(
-											'enable'  => esc_html__( 'Enable',  'stars-rating' ),
-											'disable' => esc_html__( 'Disable', 'stars-rating' ),
-										) ); ?>
-									</div>
-								</div>
-
-								<div class="sr-field">
-									<div class="sr-field-label">
-										<strong><?php esc_html_e( 'Post Types', 'stars-rating' ); ?></strong>
-										<p class="sr-desc"><?php esc_html_e( 'Select which post types show like/dislike buttons.', 'stars-rating' ); ?></p>
-									</div>
-									<div class="sr-field-input">
-										<?php $this->render_likes_post_types_checkboxes(); ?>
-									</div>
-								</div>
-
-								<div class="sr-field">
-									<div class="sr-field-label">
-										<strong><?php esc_html_e( 'Who Can Vote', 'stars-rating' ); ?></strong>
-										<p class="sr-desc"><?php esc_html_e( 'Allow everyone to vote, or restrict to logged-in users only.', 'stars-rating' ); ?></p>
-									</div>
-									<div class="sr-field-input">
-										<?php $this->render_radio_field( 'sr_likes_voters', 'everyone', array(
-											'everyone'  => esc_html__( 'Everyone',  'stars-rating' ),
-											'logged_in' => esc_html__( 'Logged in', 'stars-rating' ),
-										) ); ?>
-									</div>
-								</div>
-
-								<div class="sr-field">
-									<div class="sr-field-label">
-										<strong><?php esc_html_e( 'Show Count', 'stars-rating' ); ?></strong>
-										<p class="sr-desc"><?php esc_html_e( 'Display the number of likes and dislikes next to each button.', 'stars-rating' ); ?></p>
-									</div>
-									<div class="sr-field-input">
-										<?php $this->render_radio_field( 'sr_likes_show_count', 'yes', array(
-											'yes' => esc_html__( 'Yes', 'stars-rating' ),
-											'no'  => esc_html__( 'No',  'stars-rating' ),
-										) ); ?>
 									</div>
 								</div>
 
@@ -421,7 +377,77 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 						</div>
 
 					</div><!-- .sr-grid -->
+					</div><!-- .sr-tab-panel[stars] -->
 
+					<!-- Tab Panel: Likes & Dislikes -->
+					<div class="sr-tab-panel" data-panel="likes" role="tabpanel" hidden>
+					<div class="sr-grid">
+
+<!-- Likes & Dislikes Card -->
+						<div class="sr-card">
+							<div class="sr-card-header">
+								<span class="dashicons dashicons-thumbs-up"></span>
+								<h2><?php esc_html_e( 'Likes &amp; Dislikes', 'stars-rating' ); ?></h2>
+							</div>
+							<div class="sr-card-body">
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Enable Likes &amp; Dislikes', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Let visitors like or dislike posts on enabled post types.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<?php $this->render_radio_field( 'sr_likes_enabled', 'disable', array(
+											'enable'  => esc_html__( 'Enable',  'stars-rating' ),
+											'disable' => esc_html__( 'Disable', 'stars-rating' ),
+										) ); ?>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Post Types', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Select which post types show like/dislike buttons.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<?php $this->render_likes_post_types_checkboxes(); ?>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Who Can Vote', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Allow everyone to vote, or restrict to logged-in users only.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<?php $this->render_radio_field( 'sr_likes_voters', 'everyone', array(
+											'everyone'  => esc_html__( 'Everyone',  'stars-rating' ),
+											'logged_in' => esc_html__( 'Logged in', 'stars-rating' ),
+										) ); ?>
+									</div>
+								</div>
+
+								<div class="sr-field">
+									<div class="sr-field-label">
+										<strong><?php esc_html_e( 'Show Count', 'stars-rating' ); ?></strong>
+										<p class="sr-desc"><?php esc_html_e( 'Display the number of likes and dislikes next to each button.', 'stars-rating' ); ?></p>
+									</div>
+									<div class="sr-field-input">
+										<?php $this->render_radio_field( 'sr_likes_show_count', 'yes', array(
+											'yes' => esc_html__( 'Yes', 'stars-rating' ),
+											'no'  => esc_html__( 'No',  'stars-rating' ),
+										) ); ?>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div><!-- .sr-grid -->
+					</div><!-- .sr-tab-panel[likes] -->
+
+					<!-- Tab Panel: Labels & Messages -->
+					<div class="sr-tab-panel" data-panel="labels" role="tabpanel" hidden>
 					<!-- Labels & Messages Card -->
 					<div class="sr-card sr-card-full">
 						<div class="sr-card-header">
@@ -562,11 +588,39 @@ if ( ! class_exists( 'Stars_Rating_Settings' ) ) {
 
 						</div>
 					</div><!-- .sr-card-full -->
+					</div><!-- .sr-tab-panel[labels] -->
 
 					<div class="sr-actions">
 						<?php submit_button( esc_html__( 'Save Settings', 'stars-rating' ), 'primary', 'submit', false ); ?>
 					</div>
 
+					<script>
+					(function () {
+						var STORAGE_KEY = 'sr_active_tab';
+						var tabs   = document.querySelectorAll('.sr-tab');
+						var panels = document.querySelectorAll('.sr-tab-panel');
+
+						function activate(name) {
+							tabs.forEach(function (t) {
+								t.classList.toggle('sr-tab-active', t.dataset.tab === name);
+								t.setAttribute('aria-selected', t.dataset.tab === name ? 'true' : 'false');
+							});
+							panels.forEach(function (p) {
+								p.hidden = p.dataset.panel !== name;
+							});
+							try { localStorage.setItem(STORAGE_KEY, name); } catch(e) {}
+						}
+
+						tabs.forEach(function (t) {
+							t.addEventListener('click', function () { activate(t.dataset.tab); });
+						});
+
+						var saved = '';
+						try { saved = localStorage.getItem(STORAGE_KEY) || ''; } catch(e) {}
+						var valid = Array.from(tabs).some(function(t){ return t.dataset.tab === saved; });
+						activate(valid ? saved : 'stars');
+					})();
+					</script>
 				</form>
 			</div><!-- .sr-wrap -->
 			<?php

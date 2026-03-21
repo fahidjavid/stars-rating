@@ -189,24 +189,37 @@
     margin-top: 12px;
 }
 
-.sr-review-photos a {
+.sr-review-photos .sr-lb-trigger {
     display: block;
     flex-shrink: 0;
     line-height: 0;
+    cursor: zoom-in;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    outline: none;
 }
 
-.sr-review-photos a img {
+.sr-review-photos .sr-lb-trigger img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 6px;
     border: 1px solid #e2e8f0;
-    transition: opacity 0.15s ease;
     display: block;
+    transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
-.sr-review-photos img:hover {
+.sr-review-photos .sr-lb-trigger:hover img {
     opacity: 0.82;
+    transform: scale( 1.04 );
+}
+
+.sr-review-photos .sr-lb-trigger:focus-visible {
+    outline: 2px solid #494ced;
+    outline-offset: 2px;
+    border-radius: 7px;
 }
 
 /* Hide the upload widget on reply (nested) comment forms */
@@ -354,19 +367,7 @@
     pointer-events: none;
 }
 
-/* Thumbnails become clickable pointers */
-.sr-review-photos a.sr-lb-trigger {
-    cursor: zoom-in;
-}
 
-.sr-review-photos a.sr-lb-trigger img {
-    transition: opacity 0.15s ease, transform 0.15s ease;
-}
-
-.sr-review-photos a.sr-lb-trigger:hover img {
-    opacity: 0.82;
-    transform: scale( 1.04 );
-}
 
 /* Mobile: smaller arrows (swipe handles navigation) */
 @media ( max-width: 600px ) {

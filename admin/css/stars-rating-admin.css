@@ -669,6 +669,14 @@ th.column-rating .dashicons {
 
 .sr-col-like-up { color: #16a34a; font-weight: 600; }
 .sr-col-like-dn { color: #dc2626; font-weight: 600; }
+
+/* SVG icon inside column like/dislike badges */
+.sr-col-like-icon {
+	vertical-align: middle;
+	display: inline-block;
+	margin-right: 2px;
+	margin-top: -1px;
+}
 .sr-col-like-sep { color: #cbd5e1; }
 
 /* ── Post edit sidebar metabox ───────────────────────────────────────────── */

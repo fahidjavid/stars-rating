@@ -96,37 +96,47 @@ if ( ! class_exists( 'Stars_Rating_Posts_Column' ) ) {
 				)
 			);
 
-			if ( empty( $result ) || ! $result->total ) {
+			$has_rating  = ! empty( $result ) && $result->total;
+			$likes_types = (array) get_option( 'sr_likes_post_types', array( 'post', 'page' ) );
+			$likes_on    = 'enable' === get_option( 'sr_likes_enabled', 'disable' )
+			               && in_array( get_post_type( $post_id ), $likes_types, true );
+
+			// Nothing to display at all.
+			if ( ! $has_rating && ! $likes_on ) {
 				echo '<span class="sr-col-empty">' . esc_html__( 'No ratings', 'stars-rating' ) . '</span>';
 				return;
 			}
 
-			$avg   = round( (float) $result->avg_rating, 1 );
-			$total = absint( $result->total );
-
 			echo '<div class="sr-col-cell">';
-			echo '<div class="sr-col-row">';
-			echo '<span class="sr-col-score">' . esc_html( $avg ) . '</span>';
-			echo wp_kses_post( Stars_Rating::get_rating_stars_markup( $avg ) );
-			echo '</div>';
-			echo '<span class="sr-col-count">' . esc_html(
-				sprintf(
-					/* translators: %d number of reviews */
-					_n( '%d review', '%d reviews', $total, 'stars-rating' ),
-					$total
-				)
-			) . '</span>';
 
-			// Optionally show like/dislike counts if that feature is enabled for this post type.
-			$likes_types = (array) get_option( 'sr_likes_post_types', array( 'post', 'page' ) );
-			if ( 'enable' === get_option( 'sr_likes_enabled', 'disable' )
-				&& in_array( get_post_type( $post_id ), $likes_types, true ) ) {
+			if ( $has_rating ) {
+				$avg   = round( (float) $result->avg_rating, 1 );
+				$total = absint( $result->total );
+
+				echo '<div class="sr-col-row">';
+				echo '<span class="sr-col-score">' . esc_html( $avg ) . '</span>';
+				echo wp_kses_post( Stars_Rating::get_rating_stars_markup( $avg ) );
+				echo '</div>';
+				echo '<span class="sr-col-count">' . esc_html(
+					sprintf(
+						/* translators: %d number of reviews */
+						_n( '%d review', '%d reviews', $total, 'stars-rating' ),
+						$total
+					)
+				) . '</span>';
+			} else {
+				echo '<span class="sr-col-empty">' . esc_html__( 'No ratings', 'stars-rating' ) . '</span>';
+			}
+
+			if ( $likes_on ) {
 				$likes    = absint( get_post_meta( $post_id, '_sr_likes',    true ) );
 				$dislikes = absint( get_post_meta( $post_id, '_sr_dislikes', true ) );
+				$up_svg   = '<svg class="sr-col-like-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>';
+				$dn_svg   = '<svg class="sr-col-like-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" aria-hidden="true"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>';
 				echo '<span class="sr-col-likes">';
-				echo '<span class="sr-col-like-up" title="' . esc_attr__( 'Likes', 'stars-rating' ) . '">&#128077; ' . absint( $likes ) . '</span>';
+				echo '<span class="sr-col-like-up" title="' . esc_attr__( 'Likes', 'stars-rating' ) . '">' . $up_svg . ' ' . absint( $likes ) . '</span>';
 				echo '<span class="sr-col-like-sep">·</span>';
-				echo '<span class="sr-col-like-dn" title="' . esc_attr__( 'Dislikes', 'stars-rating' ) . '">&#128078; ' . absint( $dislikes ) . '</span>';
+				echo '<span class="sr-col-like-dn" title="' . esc_attr__( 'Dislikes', 'stars-rating' ) . '">' . $dn_svg . ' ' . absint( $dislikes ) . '</span>';
 				echo '</span>';
 			}
 

@@ -130,7 +130,7 @@ if ( ! class_exists( 'Stars_Rating_Likes' ) ) :
 						data-vote="like"
 						aria-pressed="<?php echo ( 'like' === $user_vote ) ? 'true' : 'false'; ?>"
 						aria-label="<?php esc_attr_e( 'Like this post', 'stars-rating' ); ?>">
-						<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+						<svg class="sr-icon sr-icon-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
 						<span class="sr-vote-label"><?php echo esc_html( get_option( 'sr_str_likes_yes', __( 'Yes', 'stars-rating' ) ) ); ?></span>
 						<?php if ( $show_count ) : ?>
 							<span class="sr-vote-count"><?php echo absint( $likes ); ?></span>
@@ -142,7 +142,7 @@ if ( ! class_exists( 'Stars_Rating_Likes' ) ) :
 						data-vote="dislike"
 						aria-pressed="<?php echo ( 'dislike' === $user_vote ) ? 'true' : 'false'; ?>"
 						aria-label="<?php esc_attr_e( 'Dislike this post', 'stars-rating' ); ?>">
-						<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+						<svg class="sr-icon sr-icon-dn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L10.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
 						<span class="sr-vote-label"><?php echo esc_html( get_option( 'sr_str_likes_no', __( 'No', 'stars-rating' ) ) ); ?></span>
 						<?php if ( $show_count ) : ?>
 							<span class="sr-vote-count"><?php echo absint( $dislikes ); ?></span>

@@ -73,7 +73,7 @@
     box-shadow: 0 0 0 3px rgba( 34, 197, 94, 0.12 );
 }
 
-.sr-vote-btn.sr-like-btn.sr-voted .fa {
+.sr-vote-btn.sr-like-btn.sr-voted .sr-icon {
     color: #16a34a;
 }
 
@@ -85,7 +85,7 @@
     box-shadow: 0 0 0 3px rgba( 239, 68, 68, 0.12 );
 }
 
-.sr-vote-btn.sr-dislike-btn.sr-voted .fa {
+.sr-vote-btn.sr-dislike-btn.sr-voted .sr-icon {
     color: #dc2626;
 }
 
@@ -96,11 +96,18 @@
     cursor: default;
 }
 
-/* ── Icon ────────────────────────────────────────────────────────────────── */
-.sr-vote-btn .fa {
-    font-size: 14px;
+/* ── Icon (SVG) ──────────────────────────────────────────────────────────── */
+.sr-vote-btn .sr-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
     transition: color 0.15s ease;
+    display: block;
 }
+
+/* Default icon colors — green thumb up, muted red thumb down */
+.sr-like-btn .sr-icon-up    { color: #22c55e; }
+.sr-dislike-btn .sr-icon-dn { color: #f87171; }
 
 /* ── Count badge ─────────────────────────────────────────────────────────── */
 .sr-vote-count {

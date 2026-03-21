@@ -387,12 +387,13 @@ if ( ! class_exists( 'Stars_Rating_Review_Photos' ) ) {
 
 			foreach ( $images as $rel ) {
 				$url   = esc_url( $base_url . $rel );
-				$html .= '<a href="' . $url . '" class="sr-lb-trigger"'
+				$html .= '<button type="button" class="sr-lb-trigger"'
+				       . ' data-src="' . esc_attr( $url ) . '"'
 				       . ' data-sr-gallery="' . esc_attr( $gallery ) . '"'
 				       . ' data-index="' . $idx . '"'
 				       . ' aria-label="' . esc_attr__( 'View photo', 'stars-rating' ) . '">';
 				$html .= '<img src="' . $url . '" alt="" loading="lazy" />';
-				$html .= '</a>';
+				$html .= '</button>';
 				$idx++;
 			}
 
@@ -552,8 +553,8 @@ if ( ! class_exists( 'Stars_Rating_Review_Photos' ) ) {
 				var touchX  = null;
 
 				function open(gallery, idx) {
-					var els = document.querySelectorAll('a.sr-lb-trigger[data-sr-gallery="' + gallery + '"]');
-					items   = Array.prototype.map.call(els, function(el){ return el.href; });
+					var els = document.querySelectorAll('button.sr-lb-trigger[data-sr-gallery="' + gallery + '"]');
+					items   = Array.prototype.map.call(els, function(el){ return el.dataset.src; });
 					current = Math.max(0, Math.min(parseInt(idx, 10), items.length - 1));
 					show();
 					lb.removeAttribute('hidden');
@@ -595,7 +596,7 @@ if ( ! class_exists( 'Stars_Rating_Review_Photos' ) ) {
 
 				// Open on thumbnail click — event-delegated so it works for lazy-loaded comments.
 				document.addEventListener('click', function(e) {
-					var trigger = e.target.closest('a.sr-lb-trigger');
+					var trigger = e.target.closest('button.sr-lb-trigger');
 					if (trigger) {
 						e.preventDefault();
 						open(trigger.dataset.srGallery, trigger.dataset.index);

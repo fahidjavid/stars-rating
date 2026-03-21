@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Stars Rating\n"
-"POT-Creation-Date: 2025-12-04 13:01+0500\n"
+"POT-Creation-Date: 2026-03-21 23:10+0500\n"
 "PO-Revision-Date: 2017-02-09 11:33+0500\n"
 "Last-Translator: \n"
 "Language-Team: Fahid Javid <fahidjavid@gmail.com>\n"
@@ -11,154 +11,512 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/Stars_Rating_Settings.php:26 admin/Stars_Rating_Settings.php:39
+#: admin/Stars_Rating_Settings.php:23
 msgid "Stars Rating Settings"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:27 admin/stars-rating-comments-column.php:52
-#: admin/stars-rating-metabox.php:84
+#: admin/Stars_Rating_Settings.php:24 admin/Stars_Rating_Settings.php:45
+#: admin/stars-rating-comments-column.php:55
+#: admin/stars-rating-comments-column.php:154
+#: admin/stars-rating-metabox.php:104
 msgid "Stars Rating"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:47
-msgid "Save Settings"
+#: admin/Stars_Rating_Settings.php:35
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:51
+msgid "Leave a Review"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:60
+msgid "Settings saved successfully."
 msgstr ""
 
 #: admin/Stars_Rating_Settings.php:69
-msgid "General Settings"
+msgid "Stars &amp; Reviews"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:77
+#: admin/Stars_Rating_Settings.php:73 admin/Stars_Rating_Settings.php:390
+#: admin/Stars_Rating_Settings.php:532
+msgid "Likes &amp; Dislikes"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:77 admin/Stars_Rating_Settings.php:455
+msgid "Labels &amp; Messages"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:89
+msgid "General"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:95
 msgid "Enabled Post Types"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:87
-msgid "Require Rating Selection"
+#: admin/Stars_Rating_Settings.php:96
+msgid "Select the post types where star ratings are available."
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:96
-msgid "Average Rating Above Comments Section"
+#: admin/Stars_Rating_Settings.php:105
+msgid "Require Rating"
 msgstr ""
 
 #: admin/Stars_Rating_Settings.php:106
-msgid "Stars Style"
+msgid "Force users to select a rating before submitting a comment."
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:116
-msgid "Stars Rating In Google Search Results"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:126
-msgid "Type of Reviews In Google Search Results"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:136
-msgid "Enable Negative Rating Alert"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:146
-msgid "Negative Rating Threshold for Alert"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:156
-msgid "Contact Before Negative Rating URL"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:166
-msgid "Donate \"Stars Rating\" And Similar OpenSource Projects!"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:175
-msgid "Adjust the general settings for the Stars Rating plugin."
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:212 admin/Stars_Rating_Settings.php:259
-msgid "Show"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:213 admin/Stars_Rating_Settings.php:260
-msgid "Hide"
-msgstr ""
-
-#: admin/Stars_Rating_Settings.php:227
+#: admin/Stars_Rating_Settings.php:110 admin/Stars_Rating_Settings.php:437
+#: admin/Stars_Rating_Settings.php:552 public/stars-rating-likes.php:134
 msgid "Yes"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:228
+#: admin/Stars_Rating_Settings.php:111 admin/Stars_Rating_Settings.php:438
+#: admin/Stars_Rating_Settings.php:563 public/stars-rating-likes.php:146
 msgid "No"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:243
-msgid "Regular"
+#: admin/Stars_Rating_Settings.php:118
+msgid "Stars Style"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:244
-msgid "Solid"
+#: admin/Stars_Rating_Settings.php:119
+msgid "Choose the visual style of rating stars."
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:275
+#: admin/Stars_Rating_Settings.php:128
+msgid "Stars Color"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:129
+msgid "Pick a color for rated stars to match your brand."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:149
+msgid "Display"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:155
+msgid "Average Rating"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:156
+msgid "Show the average star rating above the comments section."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:160
+msgid "Show"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:161
+msgid "Hide"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:168
+msgid "Shortcode"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:169
+msgid "Use this shortcode to display the average rating anywhere."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:183
+msgid "Google Rich Snippets"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:189
+msgid "Stars in Search Results"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:190
+msgid "Output JSON-LD structured data for Google's rating snippets."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:194 admin/Stars_Rating_Settings.php:238
+#: admin/Stars_Rating_Settings.php:299 admin/Stars_Rating_Settings.php:401
 msgid "Enable"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:276
+#: admin/Stars_Rating_Settings.php:195 admin/Stars_Rating_Settings.php:239
+#: admin/Stars_Rating_Settings.php:300 admin/Stars_Rating_Settings.php:402
 msgid "Disable"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:285
-msgid "For example: Product, Recipe, Book, Course etc."
+#: admin/Stars_Rating_Settings.php:202
+msgid "Review Type"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:285
-msgid "For more details click here."
+#: admin/Stars_Rating_Settings.php:204
+msgid "e.g. Product, Recipe, Book, Course."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:205
+msgid "Learn more ↗"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:227 admin/Stars_Rating_Settings.php:498
+msgid "Negative Rating Alert"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:233
+msgid "Enable Alert"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:234
+msgid "Show a popup when a reviewer leaves a low star rating."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:246
+msgid "Rating Threshold"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:247
+msgid "Alert fires when rating is at or below this value (1–5)."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:266
+msgid "Contact Page URL"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:267
+msgid "Direct unhappy reviewers here before they post a negative review."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:288
+#: public/stars-rating-review-photos.php:441
+msgid "Review Photos"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:294
+msgid "Enable Review Photos"
 msgstr ""
 
 #: admin/Stars_Rating_Settings.php:295
-msgid "For example: 3"
+msgid "Allow reviewers to attach images to their comments."
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:296
-msgid "Alert will be displayed if rating is selected equal or below the given threshold number."
+#: admin/Stars_Rating_Settings.php:307 admin/Stars_Rating_Settings.php:409
+msgid "Post Types"
 msgstr ""
 
-#: admin/Stars_Rating_Settings.php:306
-msgid "For example: your website contact page url"
+#: admin/Stars_Rating_Settings.php:308
+msgid "Select which post types allow photo uploads on reviews."
 msgstr ""
 
-#: admin/stars-rating-metabox.php:112
-#, php-format
-msgid "Allow %s for comments on this page."
+#: admin/Stars_Rating_Settings.php:317
+msgid "Who Can Upload"
 msgstr ""
 
-#: public/stars-rating-public.php:164
-msgid "We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us, so we can help resolve your issue."
+#: admin/Stars_Rating_Settings.php:318
+msgid "Allow everyone to upload photos, or restrict to logged-in users only."
 msgstr ""
 
-#: public/stars-rating-public.php:165
-msgid "Post Review"
+#: admin/Stars_Rating_Settings.php:322 admin/Stars_Rating_Settings.php:424
+msgid "Everyone"
 msgstr ""
 
-#: public/stars-rating-public.php:169
-msgid "Contact Us"
+#: admin/Stars_Rating_Settings.php:323 admin/Stars_Rating_Settings.php:425
+msgid "Logged in"
 msgstr ""
 
-#: public/stars-rating-public.php:201
-msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
+#: admin/Stars_Rating_Settings.php:330
+msgid "Max Photos per Review"
 msgstr ""
 
-#: public/stars-rating-public.php:353
+#: admin/Stars_Rating_Settings.php:331
+msgid "Maximum number of images a reviewer can attach (1–10)."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:346
+msgid "Max File Size (MB)"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:347
+msgid "Maximum size in megabytes per uploaded image."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:362
+msgid "Max Image Dimension (px)"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:363
+msgid "Images are resized to fit within this pixel dimension on upload. Saves disk space."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:396
+msgid "Enable Likes &amp; Dislikes"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:397
+msgid "Let visitors like or dislike posts on enabled post types."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:410
+msgid "Select which post types show like/dislike buttons."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:419
+msgid "Who Can Vote"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:420
+msgid "Allow everyone to vote, or restrict to logged-in users only."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:432
+msgid "Show Count"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:433
+msgid "Display the number of likes and dislikes next to each button."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:459
+msgid "Star Ratings"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:463
+msgid "Require Rating Error"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:464
+msgid "Shown when a user submits a comment without selecting a rating."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:468 includes/class-stars-rating.php:153
+msgid "Please select a star rating before submitting your review."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:474
+msgid "No Reviews Yet"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:475
+msgid "Shown above the comment form when no reviews have been posted yet."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:479 public/stars-rating-public.php:354
 msgid "Be the first to write a review"
 msgstr ""
 
-#: public/stars-rating-public.php:361
+#: admin/Stars_Rating_Settings.php:485
+msgid "Average Rating Text"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:486
+msgid "Displayed as: \"4.5 [Prefix] 12 [Suffix]\". Adjust wording to match your language."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:490 public/stars-rating-public.php:362
 msgid "based on"
 msgstr ""
 
-#: public/stars-rating-public.php:361
+#: admin/Stars_Rating_Settings.php:493 public/stars-rating-public.php:362
 msgid "reviews"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:502
+msgid "Alert Message"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:503
+msgid "Popup text shown when a reviewer selects a low star rating."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:506 public/stars-rating-public.php:164
+msgid "We’re sorry you’ve had a bad experience. Before you post your review, feel free to contact us, so we can help resolve your issue."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:512
+msgid "Post Review Button"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:513
+msgid "Label for the \"continue anyway\" link in the alert popup."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:517 public/stars-rating-public.php:165
+msgid "Post Review"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:523
+msgid "Contact Us Button"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:524
+msgid "Label for the contact link in the alert popup."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:528 public/stars-rating-public.php:169
+msgid "Contact Us"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:536
+msgid "Prompt Label"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:537
+msgid "Question displayed next to the like/dislike buttons."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:541 public/stars-rating-likes.php:124
+msgid "Was this helpful?"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:547
+msgid "Like Button"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:548
+msgid "Label text on the thumbs-up (Yes) button."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:558
+msgid "Dislike Button"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:559
+msgid "Label text on the thumbs-down (No) button."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:569
+msgid "Login Required Message"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:570
+msgid "Shown when a guest tries to vote but only logged-in users are allowed."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:574 includes/class-stars-rating.php:207
+#: public/stars-rating-likes.php:175
+msgid "You must be logged in to vote."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:580
+msgid "Thank You Message"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:581
+msgid "Brief confirmation shown after a successful vote."
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:585 includes/class-stars-rating.php:208
+msgid "Thanks for the feedback!"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:594
+msgid "Save Settings"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:825
+msgid "Regular"
+msgstr ""
+
+#: admin/Stars_Rating_Settings.php:829
+msgid "Solid"
+msgstr ""
+
+#: admin/stars-rating-comments-column.php:73
+msgid "No rating"
+msgstr ""
+
+#: admin/stars-rating-comments-column.php:179
+#, php-format
+msgid "%s out of 5"
+msgstr ""
+
+#: admin/stars-rating-comments-column.php:188
+msgid "No star rating was submitted with this comment."
+msgstr ""
+
+#: admin/stars-rating-metabox.php:147
+msgid "Enable star ratings"
+msgstr ""
+
+#: admin/stars-rating-metabox.php:162
+msgid "Enable likes &amp; dislikes"
+msgstr ""
+
+#: admin/stars-rating-posts-column.php:67
+msgid "Avg. Rating"
+msgstr ""
+
+#: admin/stars-rating-posts-column.php:106
+#: admin/stars-rating-posts-column.php:128
+msgid "No ratings"
+msgstr ""
+
+#: public/stars-rating-likes.php:195
+msgid "Invalid request."
+msgstr ""
+
+#: public/stars-rating-likes.php:200
+msgid "Security check failed."
+msgstr ""
+
+#: public/stars-rating-likes.php:205
+msgid "Feature not enabled."
+msgstr ""
+
+#: public/stars-rating-likes.php:211
+msgid "Post not found."
+msgstr ""
+
+#: public/stars-rating-likes.php:215
+msgid "Feature not enabled for this post type."
+msgstr ""
+
+#: public/stars-rating-likes.php:221
+msgid "Likes & dislikes are disabled for this post."
+msgstr ""
+
+#: public/stars-rating-public.php:202
+msgid "Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:163
+#, php-format
+msgid "Add photos (up to %1$d, %2$dMB each)"
+msgstr ""
+
+#: public/stars-rating-review-photos.php:251
+#, php-format
+msgid "Error: You may upload a maximum of %d photo(s) per review. Please go back and try again."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:268
+msgid "Error: A problem occurred while uploading one of your photos. Please go back and try again."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:275
+#, php-format
+msgid "Error: \"%1$s\" exceeds the maximum allowed file size of %2$d MB."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:288
+#, php-format
+msgid "Error: \"%s\" is not an allowed image type. Please upload JPEG, PNG, WebP, or GIF files only."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:494
+msgid "Delete this photo? This cannot be undone."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:511
+msgid "No photos were uploaded with this review."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:645
+msgid "Permission denied."
+msgstr ""
+
+#: public/stars-rating-review-photos.php:652
+msgid "Photo not found."
 msgstr ""

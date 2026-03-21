@@ -153,6 +153,8 @@
     width: 16px !important;
     height: 16px !important;
     line-height: 1 !important;
+    vertical-align: middle;
+    margin-right: 2px;
 }
 
 /* Hide the native file input — label acts as the click target */

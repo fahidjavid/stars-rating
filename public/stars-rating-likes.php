@@ -92,7 +92,7 @@ if ( ! class_exists( 'Stars_Rating_Likes' ) ) :
 		 */
 		public function append_buttons( string $content ): string {
 
-			if ( ! is_singular() || ! in_the_loop() || ! is_main_query() ) {
+			if ( ! is_singular() || ! is_main_query() ) {
 				return $content;
 			}
 

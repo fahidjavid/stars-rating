@@ -6,7 +6,7 @@
  * Version: 4.1.0
  * Tested up to: 6.9
  * Requires at least: 6.0
- * Requires PHP: 8.3
+ * Requires PHP: 7.4
  * Author: Fahid Javid
  * Author URI: https://www.fahidjavid.com
  * Text Domain: stars-rating

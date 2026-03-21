@@ -159,13 +159,13 @@ span.sr-heart {
 }
 
 .sr-notice-success {
-	background: #eef2ff;
-	color: #3730a3;
-	border-left: 4px solid var( --sr-indigo );
+	background: #eefff1;
+	color: #30a332;
+	border-left: 4px solid #30a332;
 }
 
 .sr-notice-success .dashicons {
-	color: var( --sr-indigo );
+	color: #30a332;
 	font-size: 18px;
 	width: 18px;
 	height: 18px;

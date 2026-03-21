@@ -76,12 +76,18 @@ Its main features are as follows:
 
 == Screenshots ==
 
-1. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments globally and other settings.
-2. Enable/Disable 'Stars Rating' for the posts, pages and custom post types comments individually.
-3. Comments with their ratings and an average rating above comments.
-4. Rating option in comment form.
-5. Shortcode <strong>[stars_rating_avg]</strong> to display average rating anywhere in the post/page/CPTs
-6. Stars Rating display on the comments page (backend)
+1. Plugin settings — Stars & Reviews tab covering General, Display, Google Rich Snippets, Negative Rating Alert, and Review Photos configuration in one organised view.
+2. Likes & Dislikes settings tab — enable/disable the feature, select target post types, restrict voting to logged-in users, and toggle vote count visibility.
+3. Labels & Messages settings tab — customise every user-facing string for star ratings, the negative rating alert popup, and likes & dislikes buttons without touching any code.
+4. Per-post Stars Rating panel in the block editor sidebar — independently enable or disable star ratings and likes & dislikes for each post or page.
+5. Adding the [stars_rating_avg] shortcode via the WordPress block editor to embed the average rating anywhere in a post or page.
+6. Average rating shortcode rendered on the front end — displays star icons alongside the rating score and total review count.
+7. Review submission form with a five-star rating selector, photo upload button with live thumbnail preview, and the standard comment field.
+8. Published review on the front end showing the star rating and reviewer-attached photos displayed in a clean thumbnail grid.
+9. Likes & Dislikes buttons rendered on a post — shows the prompt label, thumbs-up/thumbs-down SVG icons, and live vote counts.
+10. WordPress Posts admin list with the custom "Avg. Rating" column showing average star rating and total review count per post.
+11. WordPress Comments admin screen with the custom "Stars Rating" column displaying the individual star rating for each comment.
+12. Edit Comment screen in the WordPress admin — Stars Rating metabox shows the numeric rating, and the Review Photos metabox displays all attached images with individual delete buttons.
 
 == Changelog ==
 

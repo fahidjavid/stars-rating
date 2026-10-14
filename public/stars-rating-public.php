@@ -246,12 +246,13 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 		/**
 		 * Displays average rating stats above comments on a post/page/cpt single.
 		 *
-		 * @return true
+		 * @param string $path Path to the comments template file.
+		 * @return string $path Unmodified path to the comments template file.
 		 */
-		public function average_rating_above_comments() {
+		public function average_rating_above_comments( $path ) {
 
 			if ( ! self::status() ) {
-				return true;
+				return $path;
 			}
 
 			if ( comments_open() ) {
@@ -259,7 +260,7 @@ if ( ! class_exists( 'Stars_Rating_Public' ) ) :
 				$this->average_rating_markup( $rating_stat );
 			}
 
-			return true; // returning true fixes the deprecated notice of file exits on comment_template filter.
+			return $path;
 		}
 
 		public function average_rating_shortcode( $attr ) {
